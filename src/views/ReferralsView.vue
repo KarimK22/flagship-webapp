@@ -16,11 +16,14 @@ import mixpanel from 'mixpanel-browser'
 import { useGetMe } from '@/composables/get-me'
 import { useWalletConnect } from '@/composables/wallet/use-wallet-connect'
 import { useTranslation } from '@/composables/use-i18n'
+import RaffleReferralProgress from '@/components/referral-view/RaffleReferralProgress.vue'
+import { useRaffleReferralProgress } from '@/composables/raffle-referral-progress'
 
 const { isConnected } = useGetMe()
 const { connect } = useWalletConnect()
 const { data } = useGetMyReferrals()
 const { t } = useTranslation()
+const { referralProgress } = useRaffleReferralProgress()
 
 const referralLink = computed(() => {
   const origin = window.location.origin
@@ -121,6 +124,12 @@ onMounted(() => {
             {{ t('referrals.yourReferral') }}
           </div>
           <ReferralStats :data="data.referral" />
+        </div>
+        <div
+          v-if="referralProgress"
+          class="w-full p-4 z-1"
+        >
+          <RaffleReferralProgress :progress="referralProgress" />
         </div>
       </CardLayoutBackground>
     </div>

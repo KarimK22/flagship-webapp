@@ -434,6 +434,22 @@ export type ClaimTaskResponse = {
   error?: string
 }
 
+export type RaffleReferralMilestone = {
+  count: number
+  tickets: number
+  achieved: boolean
+}
+
+export type RaffleReferralProgress = {
+  referredCount: number
+  milestones: RaffleReferralMilestone[]
+  nextMilestone: RaffleReferralMilestone | null
+}
+
+export type RaffleReferralProgressResponse = {
+  referralProgress: RaffleReferralProgress | null
+}
+
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -1382,6 +1398,13 @@ export class Api {
   }
 
   // Raffle Boost API methods
+  public async getRaffleReferralProgress({ raffleId }: { raffleId: string }) {
+    return await this.fetch<RaffleReferralProgressResponse>({
+      path: `/raffles/${raffleId}/referral-progress`,
+      method: 'GET',
+    })
+  }
+
   public async getBoostOffer({ raffleId }: { raffleId: string }) {
     return await this.fetch<RaffleBoostOffer>({
       path: `/raffles/${raffleId}/boost-offer`,
