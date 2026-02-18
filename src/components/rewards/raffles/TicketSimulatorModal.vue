@@ -189,6 +189,15 @@
         </span>
       </div>
 
+      <!-- View Referral Progress Button -->
+      <GlowButton
+        :color="EButtonColor.BLUE"
+        class="w-full !h-12"
+        @click="handleViewReferralProgress"
+      >
+        View Referral Progress
+      </GlowButton>
+
       <!-- CTA Button -->
       <GlowButton
         :color="EButtonColor.BLUE"
@@ -207,6 +216,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import BaseModal from '@/components/ui/dialog/BaseModal.vue'
 import GlowButton from '@/components/ui/button/GlowButton.vue'
 import { EButtonColor } from '@/types/shared/button'
@@ -215,6 +225,7 @@ import ticketIcon from '@/assets/icons/ticket.svg'
 import lingoIcon from '@/assets/images/lingo-icon.svg'
 import { formatNumberToUS } from '@/composables/helpers'
 import { useLingoPrice } from '@/composables/contracts/lingo-price'
+import { LingoRouteName } from '@/router/routes'
 
 const props = defineProps<{
   modelValue: boolean
@@ -224,6 +235,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
 }>()
 
+const router = useRouter()
 const { price } = useLingoPrice()
 
 const lingoAmount = ref(1000)
@@ -293,6 +305,11 @@ const totalTickets = computed(() => {
   // Early bird +25%
   return Math.floor(afterLockBonus.value * 1.25)
 })
+
+const handleViewReferralProgress = () => {
+  emit('update:modelValue', false)
+  router.push({ name: LingoRouteName.REFERRALS })
+}
 
 const handleBuyLingo = () => {
   // TODO: integrate with actual buy flow
