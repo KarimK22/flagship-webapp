@@ -1,0 +1,1674 @@
+{
+  "header": {
+    "balance": {
+      "available": "LINGO Balance",
+      "availableDescription": "The amount of LINGO tokens currently available in your wallet.",
+      "price": "LINGO Price",
+      "priceDescription": "The current price of the LINGO token, including its change over the last 24 hours.",
+      "powerMiles": "Power Miles Balance",
+      "powerMilesDescription": "Your current Power Miles balance. Earn Power Miles by holding LINGO and use them to join raffles, airdrops, and more."
+    }
+  },
+  "badgesDescription": {
+    "believer": "More than $50 worth of LINGO staked & locked for at least 6 months",
+    "oldBeliever": "More than 500 LINGO staked & locked for at least 3 months",
+    "holder": "More than $100 worth of LINGO staked & locked for at least 6 months",
+    "oldHolder": "More than 1,000 LINGO staked & locked for at least 3 months",
+    "enjoyer": "More than $500 worth of LINGO staked & locked for at least 6 months",
+    "oldEnjoyer": "More than 10,000 LINGO staked & locked for at least 3 months",
+    "whale": "More than $5,000 worth of LINGO staked & locked for at least 6 months",
+    "oldWhale": "More than 50,000 LINGO staked & locked for at least 3 months",
+    "loyalty": "Claimed and staked your allocation with 3 month-lock period or longer",
+    "oldLoyalty": "Claimed and staked your allocation with 3 month-lock period or longer",
+    "privateJet": "Private Jet role in the Lingo Discord community"
+  },
+  "compactElements": {
+    "smashToUnlock": "Smash to Unlock",
+    "unlocked": "You’ve unlocked this Element. Collect all five to unlock the rewarding Element 6.",
+    "notUnlocked": "Smash the asteroid to unlock this Element. Collect all five to unlock the rewarding Element 6.",
+    "collectAll": "Collect all five Elements to unlock Element 6 and start receiving VIP rewards. The more Element 6s you hold, the greater the benefits."
+  },
+  "buyOrStakeLingo": {
+    "title": "Hold LINGO to Smash Asteroids and Win Rewards",
+    "description": "Hold LINGO tokens to earn Power Miles—your key to smashing asteroids and entering raffles.<br>With just <strong class=\"text-[#FFBC70]\">$10 worth of LINGO</strong>, you get <strong class=\"text-[#FFBC70]\">{entries} chances</strong> to win incredible prizes like luxury cars, Rolexes, iPhones, and more.",
+    "buy": "Buy LINGO",
+    "stake": "Stake LINGO"
+  },
+  "common": {
+    "3Months": "3 Months",
+    "6Months": "6 Months",
+    "12Months": "12 Months",
+    "small": "Small",
+    "moreRewards": "More rewards",
+    "flexible": "Flexible",
+    "amount": "Amount",
+    "claimableIn": "Claimable in",
+    "generated": "Generated",
+    "rate": "Rate",
+    "powerBoost": "Power Boost",
+    "action": "Action",
+    "goIt": "Go It",
+    "won": "won",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "new": "New",
+    "retry": "Retry",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "language": "Language",
+    "available": "Available",
+    "comingSoon": "Coming Soon",
+    "finished": "Finished",
+    "enterNow": "Enter Now",
+    "dontMissOut": "Don't miss out!",
+    "checkEligibility": "Check Eligibility",
+    "endsIn": "Ends in",
+    "ended": "Ended",
+    "outOfStock": "Out of Stock",
+    "claim": "Claim",
+    "copyLink": "Copy Link",
+    "enjoyYourExperience": "Enjoy Your Experience",
+    "congratsYouClaimedIt": "Congrats! You Claimed It",
+    "firstInFirstOut": "First In - First Out!",
+    "claimUntil": "Claim until",
+    "item": "item | items",
+    "winner": "winner | winners",
+    "day": "day | days",
+    "Days": "days",
+    "Hours": "hrs",
+    "hour": "hour | hours",
+    "minute": "minute | minutes",
+    "second": "second | seconds",
+    "only": "Only",
+    "min": "Min",
+    "sec": "Sec",
+    "entries": "Entries",
+    "share": "Share",
+    "participants": "Participants",
+    "myEntries": "My Entries",
+    "total": "Total",
+    "you": "You",
+    "openMenu": "Open menu",
+    "nextSlide": "Next Slide",
+    "previousSlide": "Previous Slide",
+    "opensIn": "Opens in",
+    "ended": "Ended",
+    "logInSignUp": "Log In / Sign Up",
+    "typeHere": "type here ...",
+    "youHave": "You have",
+    "stakingProfile": "Staking Profile",
+    "myStakingProfile": "My staking profile",
+    "myPowerMiles": "My power miles",
+    "stakingPowerRate": "Staking power rate",
+    "perDay": "PER DAY",
+    "powerMilePerDay": "1 Power Mile per day",
+    "powerMilesPerDay": "Power Miles Per day",
+    "twentyLingoStaked": "20 Lingo staked =",
+    "stakeLingoFor": "Stake lingo for",
+    "andRewards": "and rewards",
+    "stake": "Stake",
+    "wallet": "wallet",
+    "wallets": "wallets",
+    "connecting": "connecting...",
+    "requestOpenInBrowser": {
+      "title": "✨ Unlock Lingo's<br>Best in Your Browser",
+      "description": "Lingo works best in your browser — smoother, faster, and just plain better. Tap below to copy the link and continue!",
+      "copyUrl": "Copy URL",
+      "copied": "Copied!"
+    },
+    "connectSocials": {
+      "title": "Connect your socials to unlock additional benefits"
+    },
+    "notifications": {
+      "badge": {
+        "title": "Congrats! You unlocked a badge...",
+        "button": "Get the badge!"
+      },
+      "raffle": {
+        "title": "Congrats! You won {prize}",
+        "button": "Claim Now",
+        "youWon": "You won",
+        "youWonGeneric": "You won!",
+        "youReceived": "You received"
+      },
+      "airdrop": {
+        "title": "{name} airdrop is ready to claim",
+        "button": "Claim Now"
+      }
+    },
+    "activityHistory": {
+      "purchaseRaffleTicket": "Used {powerAmount} _POWER_ Entered a raffle for \"{raffleName}\" with {ticketsCount} {ticketsLabel}",
+      "receiveExtraTicket": "Received 1 extra raffle ticket",
+      "winRafflePrize": "You Won {prizeName}",
+      "smashAsteroidStake": "Used 100 _POWER_ Smashed an asteroid",
+      "smashAsteroidElement": "You Won Element {elementId} {rafflePrize}",
+      "autoSmashed": "(Auto-Smash)",
+      "smashAsteroidPowerMiles": "You Won {amount} Power Miles",
+      "stake": "New holding added: {amount} LINGO (${totalFiat}) {lockDuration}",
+      "unstake": "Holding claimed: {amount} LINGO",
+      "ticket": "ticket",
+      "tickets": "tickets",
+      "andRaffleTicket": "and a raffle ticket for \"{raffleName}\""
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Lingo. All rights reserved.",
+    "howItWorks": "How it works?",
+    "faq": "FAQ",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "navigation": {
+    "play": "Play",
+    "claim": "Claim",
+    "staking": "Staking",
+    "rewards": "Rewards",
+    "referrals": "Referrals",
+    "membership": "Membership",
+    "buy": "Buy",
+    "bridge": "Bridge",
+    "openWallet": "Open Wallet",
+    "logOut": "Log Out",
+    "logInSignUp": "Log In / Sign Up",
+    "email": "Email",
+    "walletAddress": "Wallet address"
+  },
+  "home": {
+    "learnMore": "Learn More",
+    "dataDisclaimer": " We’ll never send marketing spam.",
+    "whyTrustUs": {
+      "title": "Why Trust Us?",
+      "step1": {
+        "title": "Trusted by users"
+      },
+      "step2": {
+        "title": "followers on X",
+        "cta": "View on X"
+      },
+      "step3": {
+        "title": "on Instagram",
+        "cta": "View on Instagram"
+      }
+    },
+    "spinTheWheel": {
+      "title": "Join our growing community and claim your prize today!",
+      "cta": "Spin The Wheel"
+    },
+    "howItWorks": {
+      "title": "How it works?",
+      "subtitle": "Lingo pass opens up access to lifetime of rewards.\nJoin ones for infinite rewards chances.",
+      "step1": {
+        "title": "Join Lingo",
+        "description": "Lingo pass is your single ticket to infinite raffles."
+      },
+      "step2": {
+        "title": "Collect Points",
+        "description": "Your Lingo generate points for you 24 / 7"
+      },
+      "step3": {
+        "title": "Join, Win & Repeat",
+        "description": "Use your points to pick a rewards and join raffles. Your points keep accumulating."
+      }
+    },
+    "hero": {
+      "title": "Welcome to Lingo",
+      "subtitle": "Your gateway to infinite rewards and opportunities"
+    },
+    "elements": {
+      "collectAll": "Collect all Elements to unlock Big Prizes!",
+      "stepsAway": "You are {steps} step{plural} away from the Big Prizes!",
+      "smashingHistory": "Your Smashing History",
+      "historyEmpty": "Your smashing history will show up here",
+      "loginToSee": "Log in to see your prizes"
+    },
+    "asteroid": {
+      "title": "Smash Asteroid - Win Luxury Prizes",
+      "joinLingo": "Join Lingo and earn points",
+      "automatically": "automatically",
+      "swapPoints": "Swap points for chances to win Rolexes, iPhones, holidays and more.",
+      "cost": "COST",
+      "powerMiles": "Power Miles",
+      "howItWorks": "How it works?",
+      "smashFirstAsteroid": "Smash First Asteroid for Free",
+      "getStarted": "Get Started",
+      "extraPowerOrReward": "You can get extra Power or a Reward Element to enter a Raffle",
+      "congratsElement": "Congrats! You won Element {elementId}\n{raffleTicket}",
+      "congratsPowerMiles": "Congrats!\nYou won {amount} Power Miles",
+      "andRaffleTicket": "and {title} raffle ticket",
+      "autoSmash": {
+        "locked": "Auto-Smash Locked",
+        "on": "Auto-Smash ON",
+        "off": "Auto-Smash OFF",
+        "autoSmash": "Auto-Smash",
+        "description": "Tired of hitting the Smash button? You can now unlock Auto-Smash and let the system smash asteroids for you — automatically, nonstop.",
+        "finger": "No more tapping",
+        "ticket": "Continuous raffle entries",
+        "helperText": "Press the button below to subscribe to Auto-Smash.",
+        "buy": "Subscribe to Auto-Smash ({lingoAmount} ≈ {usdAmount}$)",
+        "confirming": "Confirming"
+      }
+    },
+    "dynamicHome": {
+      "variants": {
+        "asteroid": {
+          "title": "Smash Asteroid - Win Luxury Prizes",
+          "cta": "Smash Asteroid for Free"
+        },
+        "mysteryBox": {
+          "title": "Open Mystery Box - Win Luxury Prizes",
+          "cta": "Open The Box for Free"
+        },
+        "wheel": {
+          "title": "Spin the Wheel - Win Luxury Prizes",
+          "cta": "Spin NOW"
+        },
+        "wheelIphone": {
+          "title": "Spin the Wheel - Win an iPhone",
+          "cta": "Spin NOW"
+        },
+        "wheelRolex": {
+          "title": "Spin the Wheel - Win a Rolex",
+          "cta": "Spin NOW"
+        },
+        "wheelLong": {
+          "title": "Spin the Wheel - Win Luxury Prizes",
+          "cta": "Spin NOW"
+        },
+        "wheelNotifyMe": {
+          "title": "Spin the Wheel - Win Luxury Prizes",
+          "cta": "Spin NOW"
+        },
+        "wheel10x": {
+          "title": "Spin the Wheel - Win Luxury Prizes",
+          "cta": "Spin NOW"
+        },
+        "wheelLn": {
+          "title": "Spin the Wheel - Win Luxury Prizes",
+          "cta": "Spin NOW"
+        }
+      },
+      "prizes": {
+        "iphone": {
+          "name": "an iPhone Giveaway Ticket",
+          "claimedText": "The iPhone Giveaway Ticket is yours!",
+          "actionText": "Claim your prize or it expires.",
+          "cta": "Sign Up to Claim"
+        },
+        "rolex": {
+          "name": "a Rolex Giveaway Ticket",
+          "claimedText": "The Rolex Giveaway Ticket is yours!",
+          "actionText": "Claim your prize or it expires.",
+          "cta": "Sign Up to Claim"
+        },
+        "mysteryBox": {
+          "name": "a Mystery Box",
+          "claimedText": "The Mystery Box is yours!",
+          "actionText": "Open it or it expires.",
+          "cta": "Sign Up to Open"
+        }
+      },
+      "prizeTexts": {
+        "wheelNotifyMe": {
+          "actionText": "We need your email to tell you if you win",
+          "subText": "Don’t miss your chance — we’ll only reach out if you do!",
+          "cta": "Notify Me If I Win"
+        },
+        "wheel10x": {
+          "actionText": "10x Your Chances To Win",
+          "subText": "Confirm your email to 10x your chances.\n Don't miss out!",
+          "cta": "Get 10x More Chances"
+        },
+        "default": {
+          "subText": "Over 13K already claimed their prizes.\n Don't miss yours!"
+        }
+      }
+    }
+  },
+  "staking": {
+    "title": "Staking",
+    "apyLabel": "APY",
+    "totalStaked": "Total Staked",
+    "yourStake": "Your Stake",
+    "rewards": "Rewards",
+    "stake": "Stake",
+    "unstake": "Unstake",
+    "claim": "Claim",
+    "lockPeriod": "Lock Period",
+    "dailyEarnings": "Daily Earnings",
+    "holdingHistory": "Holding History",
+    "showMore": "Show more",
+    "holdingActivitiesEmpty": "Your holding activities will show up here",
+    "activeHoldingsEmpty": "Your active LINGO holdings will show up here",
+    "level": {
+      "loginToSee": "Log in to see your Holdings details and Power Miles earned",
+      "stakeToEarn": "Stake LINGO to earn Power Miles and reach top level 1",
+      "earnPowerMiles": "Earn at least 100 Power Miles to get Level 5",
+      "logIn": "Log in",
+      "getMorePower": "Get More Power",
+      "stakeNow": "Stake Now",
+      "betterThan": "You are better than",
+      "ofAllUsers": "of all other users"
+    },
+    "apyDetails": {
+      "earningsDetails": "Your Element 6\nearnings details",
+      "totalLingoEarned": "Total Lingo\nEarned",
+      "sinceLastClaim": "Since Last\nClaim",
+      "currentAverageAPY": "Current\nAverage APY",
+      "claim": "Claim",
+      "claimInDays": "Claim in {days} days",
+      "getMore": "Get more",
+      "unlockElement6": "Unlock Element 6",
+      "earnUpToAPY": "and Earn up to 30% APY on Your Stakes"
+    },
+    "tokens": {
+      "powerMiles": "Power Miles",
+      "holdingTotal": "Holding Total"
+    },
+    "activities": {
+      "powerMilesUsageHistory": "Power Miles\nUsage History",
+      "showMore": "Show more",
+      "emptyText": "Your used power miles will show up here"
+    },
+    "holdings": {
+      "title": "Your LINGO\nholdings details",
+      "totalActiveHoldings": "Total Active\nHoldings",
+      "totalPowerRate": "Total Power\nRate",
+      "extraPowerBoost": "Extra Power\nBoost",
+      "powerMilesPerDay": "power miles/day",
+      "until": "until {date}"
+    },
+    "table": {
+      "now": "Now",
+      "perDay": "Per Day",
+      "powerMiles": "power miles",
+      "showDetails": "Show details",
+      "upgrade": "Upgrade",
+      "claim": "Claim",
+      "detailsTitle": "{lockDuration} details"
+    },
+    "stakingFlow": {
+      "confirmStake": {
+        "lockPeriod": "Lock Period",
+        "flexible": "Flexible",
+        "warning": "Warning: Claiming will reduce your Power Miles generation and burn all your Element 6s except one.",
+        "youWillReceive": "You will receive",
+        "perDay": "Per Day",
+        "powerMiles": "Power Miles",
+        "upgradeToGetMore": "Upgrade to get More Power",
+        "confirm": "Confirm",
+        "claim": "Claim"
+      },
+      "formStakeBase": {
+        "lockPeriod": "Lock Period",
+        "youWillReceive": "You will receive",
+        "for1Month": "For 1 Month",
+        "powerMiles": "Power Miles",
+        "enoughToUnlock": "Enough to unlock",
+        "rewards": "Rewards",
+        "buyLingo": "Buy LINGO",
+        "stakeLingo": "Stake LINGO"
+      },
+      "resultModal": {
+        "congrats": "Congrats!",
+        "oops": "Oops!",
+        "somethingWentWrong": "Something went wrong",
+        "share": "Share",
+        "continueToDashboard": "Continue to Dashboard",
+        "retry": "Retry",
+        "discordMessage": "Please join our Discord community for assistance or try again later.",
+        "lingoRenewed": "LINGO Renewed",
+        "lingoUnstaked": "LINGO Unstaked",
+        "lingoStaked": "LINGO Staked",
+        "lingoClaimed": "LINGO Claimed",
+        "lingoClaimedAndStaked": "LINGO Claimed and Staked",
+        "transactionSuccessful": "Transaction successful"
+      }
+    }
+  },
+  "rewards": {
+    "title": "Rewards",
+    "available": "Available Rewards",
+    "claimed": "Claimed Rewards",
+    "raffles": "Raffles",
+    "badges": "Badges",
+    "experiences": "Experiences",
+    "airdrops": "Airdrops",
+    "carousel": {
+      "rafflesEmpty": "Raffles will show up here",
+      "rewardsEmpty": "Your rewards will show up here",
+      "rewardsEmptyNotLogged": "Log in to see your Rewards",
+      "airdropsEmpty": "Airdrops will show up here",
+      "experiencesEmpty": "Experiences will show up here"
+    },
+    "history": {
+      "showMore": "Show more"
+    },
+    "wheel": {
+      "spinNow": "Spin Now",
+      "logInSignUp": "Log in to spin",
+      "getMore": "Get More",
+      "yourSpins": "Your Spins",
+      "spinAndWinEveryMonth": "Spin & Win Every Month",
+      "description": "Get 1 spin for each ${amount} LINGO staked for at least {months} months, every month. Get a guaranteed prize with each spin.",
+      "noSpinsYet": "No spins yet",
+      "loginToSeeYourSpins": "Login to see your spins"
+    },
+    "tieredStaking": {
+      "title": "Stake to unlock new Wheel!",
+      "subtitle": "You have staked {current}. Stake {remaining} more to unlock {tier} Wheel",
+      "subtitleUnlocked": "You have staked {current}. {tier} Wheel unlocked.",
+      "stakeNow": "Stake Now!",
+      "expectedValue": "Expected value:",
+      "expectedValueTitle": "Expected Value (EV):",
+      "expectedValueDescription": "Represents the average return from spinning the wheel over time, based on the probability and value of each possible prize.",
+      "tierRewardsDescription": "Rewards:\n{rewards}",
+      "spinsTooltipTitle": "Spin details",
+      "spinsTooltip": "Your monthly spins depend on how much you stake and how long you lock it.\n\n🔒 Longer locks = more weight\n💰 More stake = more spins\n\nWe calculate a weighted average of your stakes. Locking tokens for longer boosts your chances without needing to add more tokens.\n\n🔄 Your spins reset every month, so you receive a fresh number of spins based on your current staking setup.",
+      "lockMultipliersTitle": "Lock multipliers",
+      "lockDurations": {
+        "noLock": "No lock",
+        "oneMonth": "1 month",
+        "threeMonths": "3 months",
+        "sixMonths": "6 months",
+        "twelveMonths": "12 months"
+      },
+      "wheelSpins": " wheel - you have {spins} spins",
+      "spinNow": "Spin Now",
+      "spinning": "Spinning..."
+    },
+    "tradingGacha": {
+      "title": "The Wheel is currently empty.",
+      "subtitle": "Trading volume is not being counted right now stay tuned for updates once it's restocked.",
+      "yourPulls": "Your Spins",
+      "yourTradingVolume": "Your Trading Volume: ",
+      "yourTradingVolumeDescription": "This is your volume traded since the start of the campaign.",
+      "pullCta": "Spin",
+      "pulling": "Spinning...",
+      "logInSignUp": "Log in to spin",
+      "noPullsYet": "No spins yet",
+      "loginToSeeYourPulls": "Log in to see your spins",
+      "historyTitle": "Spin History",
+      "unknownPrize": "Unknown Prize",
+      "transactionProcessing": "Transaction is being processed",
+      "pleaseWait": "Please wait a few seconds",
+      "transactionDelayed": "Still processing",
+      "transactionDelayedBody": "This can take a few minutes. Please check back soon.",
+      "transactionError": "Transaction status unavailable",
+      "transactionErrorBody": "We couldn't load your transaction right now. Please try again.",
+      "transactionConfirmed": "Transaction confirmed",
+      "hash": "Hash",
+      "viewOnExplorer": "View on explorer",
+      "yourLeftSpins": "You have left",
+      "untilUnlock": "spins until you unlock",
+      "unlockedTier": "Congratulations! You unlocked "
+    },
+    "stakingWheel": {
+      "title": "Stake LINGO. Spin the wheel. Win prizes.",
+      "subtitle": "Get spins by staking $Lingo for at least 3 months.",
+      "historyTitle": "Spin History",
+      "spinning": "Spinning...",
+      "tooltip": {
+    "title": "Stake LINGO. Spin the wheel. Win prizes.",
+    "sections": {
+      "pickWheel": {
+        "title": "Pick Your Wheel",
+        "items": [
+          { "label": "🥈 Silver", "detail": "3 months", "prizes": "Apple Watch, AirPods Pro" },
+          { "label": "🥇 Gold", "detail": "6 months", "prizes": "iPhone 16 Pro, Apple Watch Ultra" },
+          { "label": "💎 Diamond", "detail": "12 months", "prizes": "Rolex, PS5 Pro, iPhone 16 Pro Max" }
+        ]
+      },
+      "spins": {
+        "title": "How Many Spins?",
+        "rule": "1 spin for every $100 you stake",
+        "bonusTitle": "Stake bigger, get bonus spins:",
+        "bonus": [
+          { "range": "$250–$499", "bonus": "+20%" },
+          { "range": "$500–$999", "bonus": "+40%" },
+          { "range": "$1,000–$2,499", "bonus": "+50%" },
+          { "range": "$2,500–$4,999", "bonus": "+60%" },
+          { "range": "$5,000–$9,999", "bonus": "+70%" },
+          { "range": "$10,000–$24,999", "bonus": "+80%" },
+          { "range": "$25,000+", "bonus": "+100%" }
+        ]
+      },
+      "examples": {
+        "title": "Quick Examples",
+        "headers": {
+          "stake": "You Stake",
+          "lock": "Lock",
+          "wheel": "Wheel",
+          "spins": "Spins"
+        },
+        "rows": [
+          { "stake": "$100", "lock": "3 months", "wheel": "🥈 Silver", "spins": "1" },
+          { "stake": "$500", "lock": "6 months", "wheel": "🥇 Gold", "spins": "7" },
+          { "stake": "$1,000", "lock": "12 months", "wheel": "💎 Diamond", "spins": "15" },
+          { "stake": "$10,000", "lock": "12 months", "wheel": "💎 Diamond", "spins": "180" }
+        ]
+      }
+    }
+  }
+    },
+    "PTScore": {
+        "title": "Your PT Score {tier}",
+        "percentage": "PTB percentage -",
+        "guaranteedReward": "Guaranteed Reward on score {score}",
+        "tierLabel": "Tier {tier} Prizes: ",
+        "tierText": "{prizeName}: chances {baseProbability}% → {boostedProbability}% (boosted probability)"
+      },
+    "leaderboard": {
+      "prizesHistory": {
+        "title": "Your Prizes History",
+        "noPrizesYet": "No prizes yet",
+        "viewPrize": "Details",
+        "loginToSeeYourPrizes": "Log in to see your prizes"
+      }
+    }
+  },
+  "wallet": {
+    "connect": "Connect Wallet",
+    "disconnect": "Disconnect",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "notConnected": "Not Connected",
+    "switchNetwork": "Switch Network",
+    "wrongNetwork": "Wrong Network"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signMessage": "Sign Message",
+    "signing": "Signing...",
+    "signed": "Signed",
+    "signatureRequired": "Signature Required"
+  },
+  "modals": {
+    "info": "Information",
+    "warning": "Warning",
+    "error": "Error",
+    "success": "Success",
+    "confirmation": "Confirmation",
+    "howItWorks": {
+      "title": "What is Lingo?",
+      "howItWorks": "How it works?",
+      "description": "Lingo is a rewards platform where you earn points, spin to win real prizes, join raffles, and unlock VIP experiences",
+      "users": "1.2M users",
+      "x": "632.7K on X",
+      "instagram": "87.3K on Instagram",
+      "tryItForFree": "Try It for Free",
+      "privacyFirst": "Privacy First",
+      "getALingoPass": "1. Get a Lingo Pass",
+      "collectPoints": "2. Collect Points",
+      "spinAndWin": "3. Spin & Win",
+      "getYourFirstSpin": "Get your first spin just by leaving your email — no credit card or purchase required.",
+      "weNeverSpamOrSellYourData": "We never spam or sell your data. Ever.",
+      "yourPassEarnsPoints": "Your pass earns points for you automatically, 24/7.",
+      "startsAtJust": "Starts at just $10, and you can sell it anytime.",
+      "useYourPoints": "Use your points to spin the wheel and win real rewards.",
+      "claimThePrize": "Claim The Prize"
+    },
+    "infoModal": {
+      "title": "How it works?",
+      "letsGo": "Let's Go!",
+      "generatePower": "1. Generate Power",
+      "playAndEarn": "2. Play & Earn",
+      "winBigPrizes": "3. Win Big Prizes",
+      "firstSection": {
+        "platformRuns": "Lingo Platform runs on Power Miles. Stake LINGO to earn Power Miles—the more you stake, the more you earn!",
+        "newToCrypto": "New to crypto?",
+        "stakingExplanation": "Staking is like putting money into a savings account—except instead of earning interest, you get Power Miles to play & win prizes!"
+      },
+      "secondSection": {
+        "smashAsteroids": "Smash asteroids",
+        "asteroids": "asteroids",
+        "withPowerMiles": "with Power Miles to collect",
+        "rareElements": "rare elements",
+        "andRaffleTicket": "and raffle tickets.",
+        "collectAll": "Collect all 5 Elements for guaranteed VIP prizes!",
+        "combinedText": "Smash <span class=\"text-lavender contents\">asteroids</span> with Power Miles to collect <span class=\"text-lavender contents\">rare elements</span> and raffle tickets.<br><span>Collect all 5 Elements for guaranteed VIP prizes!</span>"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "whyStaking": "Why Staking Lingo?",
+      "whyStakingAnswer": "Staking LINGO is your gateway to earning Power Miles, which you can use to smash asteroids and enter raffles for real prizes like iPhones, Rolexes, and more. The more you stake, the more Power Miles you earn, and the better your chances of winning!",
+      "whatArePowerMiles": "What are Power Miles?",
+      "whatArePowerMilesAnswer": "Power Miles are points you earn by staking LINGO tokens. You earn 1 Power Mile per day for every 20 LINGO staked. Use 100 Power Miles to smash an asteroid and unlock Elements + raffle tickets. Collect all 5 Elements for guaranteed VIP prizes!"
+    },
+    "discord": {
+      "oops": "Oops!",
+      "somethingWentWrong": "Something went wrong",
+      "connecting": "Connecting your Discord account...",
+      "successfullyConnected": "You successfully connected Discord!",
+      "close": "Close",
+      "gotIt": "Got it!",
+      "joinLingoOnDiscord": "Join Lingo on Discord",
+      "connected": "Connected",
+      "inProgress": "In progress...",
+      "joinCommunity": "Join the Lingo Discord community and earn up to",
+      "powerMilesPerDay": "400 Power Miles per day",
+      "dependingOnRoles": "depending on your roles!",
+      "youllEarn": "You'll now earn",
+      "powerMilesDaily": "Power Miles daily",
+      "basedOnRoles": "based on your Discord roles.",
+      "wantEvenMore": "Want even more? Get the",
+      "rolesToEarn": "roles to earn an extra",
+      "powerMilesDailyExtra": "Power Miles daily!",
+      "holdAnyRoles": "Hold any of these roles on Discord to start earning",
+      "powerMilesPerRole": "100 Power Miles per day",
+      "perRole": "per role:",
+      "validFor": "Valid for:",
+      "min": "Min",
+      "sec": "Sec"
+    },
+    "freePowerMiles": {
+      "instantAsteroidsBonus": "Instant 5 Asteroids Bonus",
+      "stakeToClaim": "Stake to Claim Free Asteroids",
+      "get5EntriesInstantly": "Get 5 Entries Instantly",
+      "upgradeAnd5xChances": "Upgrade And 5x Chances",
+      "stakeFor6Months": "Stake",
+      "inLingo": "in LINGO",
+      "for6Months": "for 6 month and",
+      "skipTheWait": "skip the\nwait - grab",
+      "freeAsteroids": "5 free Asteroids",
+      "instantly": "instantly.",
+      "getPowerMiles": "get",
+      "powerMiles": "500 Power Miles",
+      "instantlyToBoost": "instantly to boost your raffle odds.",
+      "important": "IMPORTANT: It may take up to 10 minutes for your bonus to be allocated."
+    },
+    "helpModal": {
+      "gotIt": "Got it!",
+      "wheelInfo": {
+        "title": "Spin & Win Every Month",
+        "description": "Get spins on the Wheel based on the <strong>USD value of your LINGO staked</strong>. The LINGO price is locked at <strong>the moment of staking</strong> to calculate your spin allocation. Spins are distributed <strong>at the beginning of each month</strong>, but your number of spins is <strong>adjusted immediately</strong> whenever you stake or unstake.",
+        "note": "Note: <strong>Unused spins expire</strong> when new spins are allocated, so make sure to use them before the month ends!"
+      },
+      "tieredWheelInfo": {
+        "title": "Spin details",
+        "description": "Your monthly spins depend on how much you stake and how long you lock it.\n\n🔒 Longer locks = more weight\n💰 More stake = more spins\n\nWe calculate a weighted average of your stakes. Locking tokens for longer boosts your chances without needing to add more tokens.\n\n🔄 Your spins reset every month, so you receive a fresh number of spins based on your current staking setup.",
+        "lockMultipliersTitle": "Lock multipliers",
+        "lockDurations": {
+          "noLock": "No lock",
+          "threeMonths": "3 months",
+          "sixMonths": "6 months",
+          "twelveMonths": "12 months"
+        }
+      },
+      "whatIsAPY": {
+        "title": "What is\nAverage APY?",
+        "description": "Your <strong>Average APY (Annual Percentage Yield)</strong> is the combined rate you're earning across all active stakes, factoring in your staking terms and any Element 6 boosts you've unlocked.",
+        "flexibleStaking": "Flexible staking earns 5% APY. Locked staking offers 10% APY for 3 months, 20% APY for 6 months, and 30% APY for 12 months.",
+        "element6Boost": "If you own Element 6, you get an additional boost: owning 5 adds 5%, owning 10 adds 10%, and owning 15 adds 15% to your staking rewards.",
+        "reflection": "Your Average APY reflects all of these factors and updates based on your current staking setup."
+      },
+      "elements": {
+        "title": "Collect All Elements — Get VIP Perks",
+        "description": "Collect Elements 1–5 to unlock Element 6 and receive:",
+        "upTo30APY": "Up to 30% APY on your stake",
+        "shareInAirdrops": "A share of 30% in 3 airdrops of your choice",
+        "luxuryCarTicket": "A ticket to a luxury car giveaway at year’s end"
+      },
+      "howPowerMilesWork": {
+        "title": "How\nPower Miles Work",
+        "description": "Stake LINGO to earn Power Miles, used for smashing asteroids and entering raffles for real prizes.",
+        "earning": "Earning:",
+        "earningDetails": "20 LINGO = 1 Power Mile/day (earned hourly)",
+        "rewards": "Rewards:",
+        "rewardsDetails": "100 Power Miles = 1 smash, unlocking an Element + raffle ticket. Win a raffle or collect all 5 Elements for a guaranteed prize.",
+        "boost": "Boost:",
+        "boostDetails": "Stake longer for up to 180% more Power Miles!",
+        "conclusion": "More staked = faster earnings = bigger chances to win!"
+      },
+      "boostYourAPY": {
+        "title": "Boost Your\nAverage APY",
+        "intro": "Want to increase your rewards? Here's how:",
+        "lockStakes": "Lock your stakes for longer periods to earn higher base APY — 10% for 3 months, 20% for 6 months, and 30% for 12 months.",
+        "element6Boost": "Then, boost even further by unlocking additional Element 6. The more Element 6 you hold, the higher your bonus: 5 Element 6 = +5%, 10 = +10%, 15 = +15%.",
+        "conclusion": "The longer you stake and the more Element 6 you own, the more your Average APY grows."
+      },
+      "myLevel": {
+        "title": "My Level",
+        "description": "Levels are based on your Power Miles Balance relative to others"
+      }
+    }
+  },
+  "errors": {
+    "networkError": "Network Error",
+    "userRejected": "User rejected the transaction",
+    "insufficientBalance": "Insufficient balance",
+    "transactionFailed": "Transaction failed",
+    "unknownError": "An unknown error occurred"
+  },
+  "membership": {
+    "joinDiscord": "Join our Discord community",
+    "joinNow": "Join now!",
+    "exploreBenefits": "Explore Your Benefits",
+    "whale": "Whale",
+    "benefitsTable": {
+      "powerMiles": "Power Miles",
+      "normalStaker": {
+        "title": "Normal\nStaker",
+        "description": "Any amount staked"
+      },
+      "silverStaker": {
+        "title": "Enjoyer\nMin $500 LINGO",
+        "description": "Staked for 6+ month"
+      },
+      "goldStaker": {
+        "title": "Min $5000 LINGO",
+        "description": "Staked for 6+ month"
+      },
+      "benefits": {
+        "earnPowerMiles": "Earn Power Miles for daily raffles",
+        "bonusPowerMiles": "500 bonus Power Miles/week (+5 raffle tickets)",
+        "powerMilesBoost": "Power Miles Boost: +10% bonus entries",
+        "raffleAccess": "Raffle Access",
+        "enterDailyRaffles": "Enter daily raffles for high-end prizes",
+        "premiumRaffles": "Access to premium raffles",
+        "whaleRaffles": "Whale-only raffles for luxury items",
+        "airdropAccess": "Airdrop Access",
+        "someAirdrops": "Some airdrops (via raffles)",
+        "guaranteedAirdrops": "Guaranteed airdrop access",
+        "whaleAirdropPool": "10% Whale-Only Airdrop Pool",
+        "element6Benefits": "Element 6 Benefits",
+        "upTo45APY": "Up to 45% APY",
+        "shareInAirdrops": "Share of 30% in 3 airdrops of your choice",
+        "luxuryCarTicket": "1 ticket to Year-End Luxury Car Giveaway",
+        "discordBenefits": "Discord Benefits",
+        "exclusiveRole": "Exclusive role + channel",
+        "whaleBadge": "Whale Badge in Discord",
+        "privateChannel": "Private Whale Channel",
+        "vipExclusives": "VIP Exclusives",
+        "irlEvents": "Invites to IRL / virtual events",
+        "bidOnItems": "Bid on special items using Power Miles",
+        "voteOnRewards": "Vote on next major rewards"
+      }
+    }
+  },
+  "buy": {
+    "title": "Buy",
+    "description": "Purchase tokens here"
+  },
+  "claim": {
+    "title": "Claim Your LINGO",
+    "readyToClaim": "Ready to Claim",
+    "buyNow": "Buy Now",
+    "claim": "Claim",
+    "allocationDetails": "Your LINGO allocation details",
+    "description": "Description",
+    "totalAmount": "Total Amount",
+    "loginToSee": "Log in to see your LINGO allocation",
+    "noTokensYet": "Haven't got any LINGO tokens yet?",
+    "importantNotice": "Important: Your locked tokens have been unlocking since March 12th. You can claim them once they reach 1% of your total allocation and at least 1 LINGO. When eligible, your claimable amount will update on your dashboard."
+  },
+  "referrals": {
+    "title": "Refer & Earn Power Miles",
+    "loginToStart": "Log in to start inviting friend and see your referrals",
+    "logIn": "Log in",
+    "referFriends": "Refer your friends and get {percentage}% of their Power Miles lifetime",
+    "yourReferralLink": "Your Referral Link",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "shareOnX": "Share on X",
+    "sharedOnX": "Shared on X!",
+    "shareOnTelegram": "Share on Telegram",
+    "sharedOnTelegram": "Shared on Telegram!",
+    "stakeToEarn": "Make sure to stake to start earning Power Miles from your referrals!",
+    "yourReferral": "Your Referrals",
+    "shareTexts": [
+      "Unlock exclusive rewards with Lingo! Sign up using my link and start earning today",
+      "Hey friends! I've been earning cool rewards with Lingo, and you can too! Sign up with my link",
+      "Don't miss out on amazing rewards! Join Lingo now with my referral link and start earning perks instantly"
+    ]
+  },
+  "otherComponents": {
+    "discordConnect": {
+      "loading": "Loading...",
+      "connectedToDiscord": "Connected to Discord",
+      "connecting": "Connecting...",
+      "connectToDiscord": "Connect to Discord",
+      "disconnectFromDiscord": "Disconnect from Discord",
+      "role": "Role:",
+      "moreRoles": "more roles",
+      "getRolesToEarn": "Get this roles {roles} to earn daily Power Miles based on your owned roles",
+      "powerMilesDaily": "You get {amount} Power Miles daily based on your role",
+      "joinDiscord": "Join our <a href='https://discord.com/invite/lingo' class='text-[#FF9D5C] cursor-pointer underline' target='_blank'>Discord community</a> to start earning Power Miles"
+    },
+    "referralStats": {
+      "totalReferrals": "Total Referrals",
+      "activeReferrals": "Active Referrals",
+      "totalPowerMiles": "Total Power Miles"
+    },
+    "claimForm": {
+      "selectLockPeriod": "Select Lock Period",
+      "youWillReceive": "You will receive",
+      "for1Month": "For 1 Month",
+      "powerMiles": "Power Miles",
+      "enoughToUnlock": "Enough to unlock",
+      "rewards": "Rewards",
+      "stakeLingo": "Stake LINGO"
+    }
+  },
+  "views": {
+    "claimWizardView": {
+      "title": "Choose Your\nClaim Type",
+      "claimExtra": "Claim Extra",
+      "claimInstantly": "Claim Instantly",
+      "instant": "Instant",
+      "extra": "Extra",
+      "claimButton": "Claim {type}",
+      "rewardsDescription": "Up to 🎁 {rewards} rewards / month",
+      "rewardsDescriptionFallback": "Fantastic rewards every week",
+      "extraDescription": [
+        "Up to 30% APY on stakes if you play",
+        "Access to exclusive partner airdrops",
+        "👑 VIP Lingo community"
+      ],
+      "instantDescription": ["No rewards or access to Lingo community perks"],
+      "recommended": "Recommended"
+    },
+    "stakingView": {
+      "warningTitle": "Warning! Your last APY claiming transaction failed.",
+      "retry": "Retry"
+    },
+    "rewardsView": {
+      "title": "Collect Your Rewards",
+      "raffles": "Raffles",
+      "airdrops": "Airdrops",
+      "experiences": "Experiences",
+      "spins": "Spins",
+      "wheels": "Wheels",
+      "whaleWheel": "Whale Wheel",
+      "whaleWheelDesc": "Become a whale staker to access the Whale Wheel.",
+      "stakingWheels": "Staking Wheels",
+      "stakingWheelsDesc": "Stake $LINGO for at least 3 months and spin the wheel.",
+      "tieredStakingWheels": "Tiered Staking Wheels",
+      "tieredStakingWheelsDesc": "Stake more $LINGO to access different tiered wheels.",
+      "pulls": "Trading",
+      "staking": "Staking",
+      "tasks": "Tasks",
+      "backToWheels": "Back to Wheels"
+    },
+    "bridge": {
+      "title": "Bridge",
+      "description": "Bridge your tokens across chains"
+    },
+    "claimConfirm": {
+      "confirmStaking": "Now, confirm staking LINGO",
+      "confirmClaiming": "Now, confirm claiming LINGO",
+      "claimAndStake": "Claim & Stake to Get Extra"
+    },
+    "admin": {
+      "giftCards": {
+        "token": "Token",
+        "save": "Save",
+        "summary": "Summary",
+        "whatToDo": "What do you want to do?",
+        "add": "Add",
+        "generateCsv": "Generate csv",
+        "count": "Count",
+        "usedFor": "Used for",
+        "generateCsvButton": "Generate CSV",
+        "filesGenerated": "File generated",
+        "filesGeneratedPlural": "Files generated"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "howDoesItWork": {
+        "title": "How does it work?",
+        "description": "Lingo Platform runs on Power Miles, which you earn by staking LINGO tokens. Use Power Miles to smash asteroids (100 Power Miles per smash) or join weekly raffles.",
+        "elementsDescription": "Each smash unlocks a reward Element:",
+        "elementsList": [
+          "There are 5 unique Elements, each with different rarity.",
+          "Collect all 5 to unlock Element 6, which guarantees exclusive prizes—the more you have, the bigger the rewards.",
+          "Every Element also grants a raffle ticket, with rarer Elements offering bigger prizes."
+        ],
+        "refundInfo": "If you don't win a raffle, 30% of your Power Miles are refunded, letting you smash again. No losses, just rewards!",
+        "ticketInfo": "You can also buy raffle tickets with Power Miles—the more tickets, the higher your chances to win. Each raffle has a set ticket price. 🚀"
+      },
+      "whatRewards": {
+        "title": "What rewards can I win?",
+        "element6Description": "Unlocking Element 6 guarantees you top-tier rewards:",
+        "element6List": [
+          "Supercharged Staking – Earn up to 30% APY on your stake.",
+          "Airdrop King Status – Get a share of 30% in three airdrops of your choice.",
+          "Year-End Jackpot – Secure a ticket for a luxury car giveaway."
+        ],
+        "additionalDescription": "Additionally, Lingo offers a variety of other exciting rewards, including:",
+        "additionalList": [
+          "Prize raffles featuring gift cards, iPhones, laptops, vacations, PS5s, cars, and more. Unlike traditional raffles, active participants regularly win small or big prizes with Lingo!",
+          "Partner token airdrops – get free tokens from top projects.",
+          "NFT badges to showcase your achievement (coming!)",
+          "Exclusive partner discounts & offers (coming!)"
+        ]
+      },
+      "staking": {
+        "title": "How does staking work?",
+        "description": [
+          "Staking works like a savings account—but instead of earning interest, you generate Power Miles to play & win prizes.",
+          "Stake LINGO tokens to start earning Power Miles automatically.",
+          "Choose between:",
+          "After the staking period ends, you can either:",
+          "Staking happens on the Base blockchain for security & efficiency."
+        ],
+        "options": {
+          "flexible": "Flexible staking – withdraw at any time.",
+          "fixed": "Fixed staking (3, 6, or 12 months) – earns Power Miles faster with a boosted rate."
+        },
+        "afterPeriod": [
+          "Extend your stake for another fixed period to keep earning faster.",
+          "Withdraw your tokens—your Power Miles will keep accumulating, just without the boost."
+        ]
+      },
+      "powerMiles": {
+        "title": "How are Power Miles calculated?",
+        "description": [
+          "The more LINGO you stake, the more Power Miles you earn.",
+          "Power Miles accumulate hourly based on your active staking positions.",
+          "Your Power Miles balance is directly tied to your wallet and updates in real time."
+        ],
+        "rates": "Earning rates:",
+        "flexible": "Flexible staking – 1 Power Mile per day for every 20 LINGO staked.",
+        "fixed": "Fixed staking (3, 6, or 12 months) – provides a power boost, allowing you to accumulate Power Miles faster."
+      },
+      "superchargedStaking": {
+        "title": "How does Supercharged Staking work?",
+        "description": "Once you unlock Element 6, you will earn LINGO tokens continuously on all your stakes, and your earnings become claimable every 3 months.",
+        "optionsTitle": "Your Staking Options & APY Rates",
+        "flexible": "Flexible Staking → 5% APY",
+        "locked": "Locked Staking:",
+        "lockedOptions": [
+          "3 months → 10% APY",
+          "6 months → 20% APY",
+          "12 months → 30% APY"
+        ],
+        "claimingTitle": "Claiming Your Rewards",
+        "claimingList": [
+          "You can claim your rewards every 3 months, and they go directly to your wallet—immediately accessible, not automatically staked.",
+          "You'll also have the option to Claim & Stake to keep growing your rewards.",
+          "Your earnings accrue daily, so your rewards increase over time."
+        ],
+        "boostingTitle": "Boosting Your Earnings with Element 6",
+        "boostingDescription": "If you own multiple Element 6, you get extra staking rewards:",
+        "boosts": [
+          "5 → +5% boost",
+          "10 → +10% boost",
+          "15 → +15% boost"
+        ],
+        "rulesTitle": "Unstaking & Element 6 Rules",
+        "rules": [
+          "If you unstake, you lose your booster—all your Element 6 will be lost except one.",
+          "Each Element 6 expires one year after you acquire it."
+        ]
+      },
+      "airdropKing": {
+        "title": "How does Airdrop King Status work?",
+        "description": "We'll set aside 30% of the total allocation exclusively for Element 6 holders. If you own Element 6, you will be able to register for the airdrop directly within the product. The reserved amount will then be shared among all Element 6 users who apply."
+      },
+      "raffleWinners": {
+        "title": "How are raffle winners selected?",
+        "description": "To ensure a fair, transparent, and tamper-proof raffle, we use a combination of Chainlink VRF for generating verifiable randomness and seedrandom for deterministic winner selection. This process guarantees that no one can manipulate the results, and anyone can verify the outcome.",
+        "howItWorks": "How It Works:"
+      },
+      "whatRewardsCanIWin": {
+        "title1": "What Rewards",
+        "title2": "Can I Win?",
+        "rafflesDescription": "Join raffles for real-world prizes like <span class=\"text-lavender\">gift cards, iPhones, laptops, vacations, and even cars!</span>",
+        "elementsDescription": "Or collect all 5 Elements for <span class=\"text-lavender\">a guaranteed VIP prizes:</span>",
+        "apyReward": "💰 <span class=\"text-lavender\">Up to 30% APY</span> on your stake",
+        "airdropReward": "🎁 a share of <span class=\"text-lavender\">30% in 3 airdrops</span> of your choice!",
+        "carReward": "🚗 a ticket for a <span class=\"text-lavender\">luxury car giveaway</span> at year's end"
+      }
+    }
+  },
+  "components": {
+    "miniAppBanner": {
+      "title": "Win a Rolex for a \n fraction of the cost.",
+      "button": "Play Now!"
+    },
+    "miniAppPromoModal": {
+      "title": "Try Lingo Mini App on Farcaster!",
+      "description": "We’ve just launched our <strong class=\"text-lavender\">Lingo Mini App</strong> on <strong class=\"text-lavender\">Farcaster:</strong>",
+      "item1": "Unlock daily gift boxes with <strong class=\"text-lavender\">Tickets, Lingo Tokens</strong>, or <strong class=\"text-lavender\">USDC</strong>",
+      "item2": "Use <strong class=\"text-lavender\">Tickets</strong> in the weekly auction to compete for <strong class=\"text-lavender\">top prizes</strong>",
+      "item3": "Refer friends and climb the leaderboard for guaranteed <strong class=\"text-lavender\">USDC rewards</strong>",
+      "item4": "Use the referral code below to claim 5 free Tickets and get started today!",
+      "button": "🚀 Start Playing Now"
+    },
+    "celebsSupport": {
+      "title": "Supported by Celebrities"
+    },
+    "recentClaimsSlider": {
+      "title": "Recent Claims"
+    },
+    "interactiveAsteroid": {
+      "speedUp": "Speed Up",
+      "tryAgain": "Try Again!"
+    },
+    "experiencesWrapper": {
+      "comingSoon": "Can't buy experiences are coming soon",
+      "yourExperiences": "Your Experiences",
+      "finishedExperiences": "Finished Experiences",
+      "finishedExperiencesEmpty": "Finished experiences will show up here",
+      "yourExperiencesEmpty": "Your claimed experiences will show up here",
+      "loginToSeeExperiences": "Log in to see available experiences"
+    },
+    "rafflesWrapper": {
+      "finishedRaffles": "Finished Raffles",
+      "yourRafflePrizes": "Your Raffle Prizes",
+      "rewardsEmpty": "Your rewards will show up here",
+      "loginToSeeRewards": "Log in to see your Rewards",
+      "finishedRafflesEmpty": "Finished raffles will show up here",
+      "disclaimerLabel": "Disclaimer:",
+      "disclaimer": "Unclaimed Rewards Will Be Redrawn. Winners have 2 weeks to claim their rewards. If not claimed within this period, the rewards will be redrawn and given to another participant.",
+      "youWon": "You won",
+      "youReceived": "You received",
+      "voucher": "Voucher",
+      "youWonExclamation": "You won!",
+      "luckyWinners": "lucky winner",
+      "luckyWinnersPlural": "lucky winners",
+      "won": "won",
+      "claim": "Claim",
+      "details": "Details"
+    },
+    "tasks": {
+      "title": "Your Tasks",
+      "activeTitle": "Active Tasks",
+      "completedTitle": "Completed Tasks",
+      "boostIntro": "You have staked",
+      "boostOutro": "locked lingo worth ${usd}.",
+      "boostLabel": "Your Boost",
+      "boostSteps": {
+        "free": "Free",
+        "holdAny": "Hold any LINGO",
+        "stake100": "Stake $100+",
+        "stake500": "Stake $500+"
+      },
+      "powerMiles": "Power Miles",
+      "youWillReceivePrefix": "You will receive",
+      "youReceivedPrefix": "You received",
+      "withYourBoost": "with your boost",
+      "claimed": "Claimed",
+      "emptyActive": "No active tasks yet",
+      "emptyCompleted": "No completed tasks yet",
+      "loginRequired": "Log in to see your tasks.",
+      "discordRequired": "Connect your Discord account to see available tasks.",
+      "connectDiscord": "Connect Discord",
+      "actions": {
+        "claim": "Claim",
+        "follow": "Follow",
+        "connect": "Connect",
+        "getNow": "Get Now"
+      }
+    },
+    "airdropsWrapper": {
+      "airdropHistory": "Airdrops History",
+      "yourAirdropsAllocations": "Your Airdrops Allocations",
+      "allocationsEmpty": "Your airdrops allocations will show up here",
+      "finishedAirdropsEmpty": "Finished Airdrops will show up here",
+      "comingSoon": "Coming Soon",
+      "readyToClaim": "Ready to Claim",
+      "registrationOpen": "Registration Open",
+      "pendingAllocation": "Pending Allocation",
+      "details": "Details",
+      "claim": "Claim",
+      "userEligible": "user is eligible",
+      "usersEligible": "users are eligible",
+      "toReceive": "to receive a total allocation of"
+    },
+    "progressModal": {
+      "title": "Processing Your Stake",
+      "description": "Please wait while we process your stake. This may take a few moments.",
+      "step1": "Step 1: Validating your stake amount",
+      "step2": "Step 2: Processing transaction",
+      "step3": "Step 3: Confirming on blockchain",
+      "step4": "Step 4: Finalizing your stake",
+      "processing": "Processing...",
+      "completed": "Completed",
+      "pending": "Pending",
+      "confirmWithWallet": "Confirm with Wallet",
+      "processingAction": "Processing Action",
+      "justAMoment": "Just a moment...",
+      "approveContractToStake": "Approve contract to stake",
+      "confirmStaking": "Confirm staking",
+      "confirmClaiming": "Confirm claiming",
+      "claimAPY": "Claim APY",
+      "claim": "Claim",
+      "claimAndStake": "Claim & Stake",
+      "claimAndStakeAPY": "Claim & Stake APY"
+    },
+    "copyLink": {
+      "text": "Copy Link"
+    },
+    "upgradeStake": {
+      "title": "Upgrade to Boost Your Power",
+      "confirmTitle": "Confirm LINGO stake"
+    },
+    "rewardsWrapper": {
+      "title": "Your Reward History",
+      "emptyText": "Your rewards history will show up here"
+    },
+    "elementsWidget": {
+      "earnedElements": "Earned Elements",
+      "sixthElement": "6th x {count}"
+    },
+    "elementsSheet": {
+      "yourElements": "Your Elements"
+    },
+    "badgesWidget": {
+      "yourBadges": "Your Badges"
+    },
+    "placeholderCard": {
+      "thisSpot": "This Spot",
+      "waitingForContent": "is waiting for content!"
+    },
+    "elementsList": {
+      "collectElementsDescription": "Collect Elements 1–5 to unlock <span class=\"text-light1 font-medium\">Element 6</span> and get exclusive perks: Up to 💰30% APY on your stake,<br class=\"max-[800px]:hidden\"> 🎁 a share of 30% in 3 airdrops of your choice, 🚗 a ticket for a luxury car giveaway at year's end!",
+      "element": "Element {number}",
+      "element6": "Element 6"
+    },
+    "experienceClaimForm": {
+      "congratulations": "Congratulations!",
+      "detailsEmailed": "Details will be emailed to you shortly",
+      "enterEmail": "Enter your email to claim this experience",
+      "emailPlaceholder": "Enter your email address",
+      "claimNow": "Claim Now",
+      "outOfStock": "Out of Stock",
+      "outOfStockMessage": "This experience is currently out of stock",
+      "emailRequired": "Email is required",
+      "invalidEmail": "Please enter a valid email address",
+      "unexpectedError": "An unexpected error occurred. Please try again."
+    },
+    "testimonialsSlider": {
+      "title": "Real stories, Real rewards"
+    },
+    "claimStake": {
+      "title": "Now, confirm claiming LINGO",
+      "confirmTitle": "Now, confirm claiming LINGO"
+    },
+    "newStake": {
+      "title": "Stake LINGO for Big Rewards!",
+      "confirmTitle": "Now, confirm staking LINGO"
+    },
+    "emailSubmitModal": {
+      "title": "Don't Miss Out on Your Win!",
+      "description": "Enter your email to be notified if you win and to receive updates on upcoming raffles.",
+      "emailLabel": "Your email address",
+      "emailPlaceholder": "enter your email",
+      "submit": "Submit"
+    },
+    "claimHeader": {
+      "amount": "Amount",
+      "loginToSee": "Log in to see your LINGO allocation",
+      "noClaimableTokens": "You don't have any claimable tokens"
+    },
+    "claimInfoModal": {
+      "title": "Tokens Unlock Started!",
+      "titleWarning": "Warning, you might lose if unstake:",
+      "ratePerMonth": "Power Miles / Month",
+      "element6": "Element 6th",
+      "whaleBadge": "Whale Badge",
+      "enjoyerBadge": "Enjoyer Badge",
+      "powerBoost": "Power Boost",
+      "description": "Linear vesting has officially begun today, March 12th, on the smart contract.",
+      "importantNote": "Important Note",
+      "tokensNotAvailable": "Some tokens may not be available yet or might appear as 0.",
+      "claimableAmountReaches": "Once your claimable amount reaches at least",
+      "onePercentMinimum": "1% of your total token allocation and a minimum of 1 LINGO",
+      "willBeUpdated": "it will be updated on your dashboard, allowing you to claim it.",
+      "updateProcessMayTake": "The update process may take",
+      "twentyFourToFortyEightHours": "24 to 48 hours",
+      "dependingOnVesting": "depending on the vesting schedule.",
+      "gotIt": "Got it!"
+    },
+    "firstStakeModal": {
+      "title": "Give 50, Get 50 ⚡ - Invite friends for free power",
+      "copyLink": "Copy Link",
+      "copied": "Copied!",
+      "firstStep": "Invite a friend and you’ll both receive <span class=\"text-lavender\">50 free Power Miles</span> instantly.",
+      "secondStep": "Plus, you’ll keep earning <span class=\"text-lavender\">5% of your friend’s Power Miles</span> whenever they stake",
+      "thirdStep": "There is no limit! Invite as many friends as you want",
+      "yourReferralLink": "Your Referral Link"
+    },
+    "claimBalanceBoxes": {
+      "total": "Total",
+      "totalClaimed": "Total Claimed",
+      "totalLocked": "Total Locked"
+    },
+    "timerBlock": {
+      "validFor": "Valid for:"
+    },
+    "claimCard": {
+      "claimed": "Claimed",
+      "justNow": "just now",
+      "oneMinuteAgo": "1 minute ago",
+      "minutesAgo": "{minutes} minutes ago",
+      "oneHourAgo": "1 hour ago",
+      "hoursAgo": "{hours} hours ago",
+      "oneDayAgo": "1 day ago",
+      "daysAgo": "{days} days ago"
+    },
+    "rewardsWinners": {
+      "title": "Rewards Winners"
+    },
+    "featuredIn": {
+      "title": "Featured in"
+    },
+    "pageHero": {
+      "normalStaker": "You are a <br><strong>Normal</strong> Staker",
+      "youAre": "You are",
+      "articleAn": "an",
+      "articleA": "a",
+      "welcomeToLingoClub": "Welcome to Lingo club",
+      "welcomeToVIPClub": "Welcome to <strong>0.1%</strong> VIP club",
+      "holdings": "Holdings",
+      "memberSince": "Member since"
+    },
+    "errorMessageModal": {
+      "oops": "Oops!",
+      "somethingWentWrong": "Something went wrong",
+      "discordMessage": "Please join our Discord community for assistance or try again later.",
+      "retry": "Retry"
+    },
+    "stakeSuccess": {
+      "congrats": "Congrats!",
+      "lingoPassActive": "Your Lingo Pass\nis now active",
+      "accumulatingPowerMiles": "You are now accumulating points called Power Miles.",
+      "powerMilesDescription": "Once you hit 100 Power Miles, you can exchange it to a raffle entry. You are earning",
+      "powerMilesPerDay": "Power Miles / day.",
+      "thankYou": "Thank you!"
+    },
+    "stakeConfirm": {
+      "success": "Success!",
+      "activateLingoPass": "Now, activate your <br> Lingo Pass",
+      "oneStepToGo": "Just one step to go — activate your Lingo Pass! <br><br>",
+      "approveHolding": "Approve holding your LINGO with your wallet to activate your Lingo Pass and unlock rewards.",
+      "continueToActivate": "Continue to Activate"
+    },
+    "wheelContainer": {
+      "title": "Daily Free Smash",
+      "description": "Smash the asteroid to get free LINGO tokens!",
+      "alreadyClaimed": "already claimed",
+      "leftToday": "left today",
+      "claimStats": "<strong class=\"text-lavender\">{totalClaimed}</strong> already claimed<br>{only} <strong class=\"text-lavender\">{distribution}</strong> left today",
+      "smashButton": "SMASH!",
+      "noMoreSmash": "No more smash today!",
+      "comeBackTomorrow": "Come back tomorrow for more free tokens!",
+      "congratulations": "Congratulations!",
+      "youWon": "You won",
+      "lingoTokens": "LINGO tokens!",
+      "claimButton": "CLAIM",
+      "claiming": "Claiming...",
+      "claimed": "Claimed!",
+      "error": "Error",
+      "tryAgain": "Try again",
+      "insufficientBalance": "Insufficient balance",
+      "pleaseStake": "Please stake some LINGO to continue",
+      "onlyOneSpin": "Only <span class=\"text-lavender\">1</span> spin per day!",
+      "whatsNext": "What's next?",
+      "goodLuck": "Good luck!",
+      "claim": "Claim",
+      "orItExpires": "or it expires."
+    },
+    "thirdSection": {
+      "unlockElement6": "Unlock Element 6 & enter the exclusive club!",
+      "superchargedStaking": "💰 <span class=\"text-lavender\">Supercharged Staking</span> – Get up to 30% APY on your stake.",
+      "airdropKingStatus": "🎁 <span class=\"text-lavender\">Airdrop King Status</span> – Claim a share of 30% in 3 airdrops of your choice!",
+      "yearEndJackpot": "🚗 <span class=\"text-lavender\">Year-End Jackpot</span> – Secure an exclusive ticket for a luxury car giveaway!"
+    },
+    "selectAmountToBuy": {
+      "selectEntries": "Select how many entries you want",
+      "lingoPassDescription": "You will get Lingo Pass just by <span class=\"text-[#FFBC70]\">holding LINGO on your account</span>.",
+      "sellAfterUse": "You can easily sell your LINGO after using all entries.",
+      "entries": "entries",
+      "worthOfLingo": "worth of Lingo",
+      "forAmountReceive": "For ${amount} you will receive:",
+      "buyWithCreditCard": "Buy LINGO with credit card"
+    },
+    "claimRaffle": {
+      "titleForFree": "Claim Your First Raffle Ticket for Free",
+      "titleAndWin": "Claim Your First Raffle Ticket and Win",
+      "smashAsteroid": "Smash the Asteroid!"
+    },
+    "airdropClaimCardModal": {
+      "claimYourAirdrop": "Claim Your Airdrop!",
+      "airdropClaimInstructions": "Airdrop Claim Instructions",
+      "claimNow": "Claim Now"
+    },
+    "maintenanceModal": {
+      "title": "🚧 Maintenance In Progress",
+      "description": "We're currently performing some updates to improve your experience.",
+      "temporarilyUnavailable": "The app will be temporarily unavailable.",
+      "appreciatePatience": "We appreciate your patience and will be back online shortly."
+    },
+    "requestSignLoginModal": {
+      "oops": "Oops!",
+      "somethingWentWrong": "Something went wrong",
+      "oneStepAway": "You are 1 step away",
+      "fromClaimingPrize": "from claiming your prize",
+      "signQuickMessage": "Now, just sign a quick message to confirm it's really you.",
+      "welcome": "Welcome 🎉 Your<br>account is ready",
+      "discordCommunity": "Please join our <a href=\"https://discord.com/invite/lingo\" class=\"text-[#D4C5EB] cursor-pointer\" target=\"_blank\">Discord community</a> for assistance or try again later.",
+      "totallyFree": "Totally free, takes 2 sec.",
+      "needToLoginDifferently": "Need to log in differently? Just",
+      "disconnect": "disconnect",
+      "tryAgain": "Try Again",
+      "continueToSign": "Continue to Sign",
+      "signingIn": "Signing in..."
+    },
+    "afterFreeSmashModal": {
+      "title": "Get Lingo pass today and get <strong>{entries}</strong> extra chances to win.",
+      "joinFor10": "Join for <strong>$10</strong> today—get <strong>{entries}</strong> bonus entries on the spot",
+      "higherOdds": "<strong>{entries}×</strong> higher odds at dream prizes—cars, Rolexes, iPhones, more",
+      "autoRenewing": "Auto-renewing entries every month",
+      "passHoldersWin": "<strong>85%</strong> of pass-holders win at least one reward",
+      "getPassNow": "Get your pass now"
+    },
+    "playAndEarnNonstop": {
+      "title": "Play & Earn Nonstop",
+      "description": "Smash asteroids, collect all 5 elements, and unlock <strong>Element 6</strong> — your gateway to continuous LINGO rewards on every stake.",
+      "flexibleStaking": "With flexible staking, you earn <strong>5% APY</strong>. Want more? Stake for <strong>3 months</strong> to earn <strong>10%</strong>, <strong>6 months</strong> for <strong>20%</strong>, or <strong>12 months</strong> for a massive <strong>30% APY</strong>.",
+      "rewardsClaimable": "Rewards are claimable every <strong>3 months</strong>, sent straight to your wallet — no auto-staking. You can also choose <strong>\"Claim & Stake\"</strong> to keep compounding. Your earnings grow daily.",
+      "element6Boost": "The more <strong>Element 6</strong> you own, the more you boost your rewards. Own <strong>5</strong> for a <strong>5% boost</strong>, <strong>10</strong> for a <strong>10% boost</strong>, and <strong>15</strong> for a <strong>15% boost</strong>. Just note: if you unstake, your booster is removed and all Element 6 are burned except one. Each Element 6 lasts <strong>12 months</strong>."
+    },
+    "raffleEnterForm": {
+      "unlockElement": "Unlock an element",
+      "enterNow": "Enter now",
+      "buyFor": "Buy for {amount}",
+      "enterFor": "Enter for {amount}"
+    },
+    "confirmClaim": {
+      "lockPeriod": "Lock Period",
+      "flexible": "Flexible",
+      "months": "months",
+      "until": "until",
+      "youWillReceive": "You will receive",
+      "perDay": "Per Day",
+      "powerMiles": "Power Miles",
+      "missingRewards": "You are missing on rewards by claiming LINGO.",
+      "canGetUpTo": "You can get up to",
+      "rewards": "rewards",
+      "perMonth": "per month",
+      "getRewards": "Get Rewards",
+      "claim": "Claim",
+      "confirm": "Confirm"
+    },
+    "requireBadgeBlock": {
+      "becomeA": "Get the",
+      "toParticipate": "badge to participate",
+      "requires": "Requires",
+      "stakeLingo": "Stake LINGO",
+      "openDiscord": "Open Discord"
+    },
+    "experienceEligibleStatus": {
+      "reach": "Reach",
+      "level": "Level",
+      "orStake": "or stake",
+      "lingoToClaim": "LINGO to claim",
+      "stakeLingo": "Stake LINGO"
+    },
+    "raffleEnterStatus": {
+      "congrats": "Congrats!",
+      "share": "Share",
+      "successfullyEntered": "You successfully <span class=\"text-green1\">entered</span> the raffle. Good luck!",
+      "youGotEntries": "You've got <span class=\"text-green1\">{entries}</span>. Good luck!",
+      "xYourChances": "{count}x your chances",
+      "getMore": "Get more",
+      "notEnoughPowerMiles": "You don't have enough <strong>Power Miles</strong> to buy tickets!",
+      "closeIn": "Close in",
+      "needAtLeast": "You need at least",
+      "powerMile": "Power Mile",
+      "powerMiles": "Power Miles",
+      "toBuyTicket": "to buy a ticket!",
+      "incorrectCode": "The raffle code is <strong>incorrect</strong>. Please try again",
+      "invalidEmail": "The email is <strong>invalid</strong>. Please try again",
+      "onlyBuyMax": "You can only buy <strong>{max}</strong> tickets max"
+    },
+    "extraTicketsModal": {
+      "step1": {
+        "text1": "Hold <span class=\"text-lavender font-semibold\">{amount} LINGO</span> (${price}) and unlock:",
+        "text2": "✨ Up to {tickets}x more chances to win this iPhones",
+        "text3": "✨ Access to more raffles including (Rolexes, $20k Dream Prizes, Vacations and more)",
+        "text4": "✨ Exclusive airdrops from top projects",
+        "text5": "No lock-in forever — cash out anytime after."
+      },
+      "dontMissOut": "Don't miss out!",
+      "getMoreChances": "Get {count}x more chances!",
+      "oneEntryOneChance": "1 entry = 1 chance to win",
+      "selectEntries": "Select how many entries you want",
+      "chooseEntriesAmount": "Choose your entries amount and staking period for <span class=\"text-lavender\">{amount} LINGO</span>, then confirm with your wallet!",
+      "holdForPeriod": "Hold for {period} & Get {entries} entries",
+      "congrats": "Congrats!",
+      "receivedExtraEntries": "You received {entries} extra entries!",
+      "goodLuck": "Good luck!",
+      "thankYou": "Thank you",
+      "continue": "Continue",
+      "buyLingoWithCard": "Buy LINGO with credit card",
+      "redirectedToKryptonim": "You'll be redirected to Kryptonim, our trusted partner, for a secure purchase.",
+      "holdLingoDescription": "<span class=\"text-lavender text-left tracking-[-0.8px] text-xl font-normal leading-5\">Hold <span class=\"text-lavender font-semibold\">{amount} LINGO</span> (${price}) and get<br>up to {tickets}x more chances to win a {prize}! <br> No lock-in forever — cash out anytime after.</span>"
+    },
+    "raffleEnterInput": {
+      "amount": "Amount",
+      "tickets": "Tickets",
+      "max": "Max"
+    },
+    "raffleEnterModal": {
+      "entries": "entries",
+      "logInToEnter": "Log in to enter"
+    },
+    "raffleWonModalPhysicalContent": {
+      "submitEmailToClaim": "Submit your email to claim",
+      "enterYourEmail": "enter your email",
+      "claim": "Claim",
+      "congratulations": "Congratulations!",
+      "detailsEmailedSoon": "Details on claiming your prize will be emailed soon",
+      "somethingWentWrong": "Something went wrong. Please try again later"
+    },
+    "raffleWinners": {
+      "allWinners": "All Winners"
+    },
+    "raffleWonModalVouchersContent": {
+      "yourVoucherCode": "Your voucher code",
+      "redeem": "Redeem"
+    },
+    "raffleWinnersModal": {
+      "entries": "Entries",
+      "raffleResult": "Raffle Result",
+      "participants": "Participants",
+      "winners": "Winners",
+      "youWon": "You Won {prize}!",
+      "youDidntWin": "You didn't win",
+      "youDidntParticipate": "You didn't participate",
+      "blockchainProof": "Blockchain proof",
+      "gotIt": "Got It"
+    },
+    "raffleWonCard": {
+      "congratulations": "Congratulations!",
+      "youWon": "You won {prize}",
+      "youReceived": "You received ${amount} Voucher",
+      "youWonExclamation": "You won!",
+      "claim": "Claim",
+      "viewDetails": "View details"
+    },
+    "raffleWonModal": {
+      "congratulations": "Congratulations!",
+      "share": "Share"
+    },
+    "rewardsPool": {
+      "title": "Rewards Pool",
+      "endingIn": "Ending in"
+    },
+    "badgeMintModal": {
+      "congratsUnlocked": "Congrats!",
+      "unlockedNewBadge": "You've unlocked new Badge",
+      "receivedBadge": "You received the badge.",
+      "mintAndGet": "Mint and get the badge",
+      "shareOnX": "Share on X"
+    },
+    "airdropCardModal": {
+      "dontMissOut": "Don't miss out!",
+      "walletsEligible": "{count} wallets eligible",
+      "description": "Description",
+      "loginToCheck": "Log in to check your eligibility"
+    },
+    "airdropEligibleStatus": {
+      "eligible": "Eligible",
+      "notEligible": "Not eligible",
+      "notified": "You'll be notified when the airdrop is ready to claim",
+      "stakeToQualify": "Stake {amount} LINGO {duration} to qualify",
+      "gotIt": "Got it",
+      "stakeLingo": "Stake LINGO"
+    },
+    "airdropsFinishedModal": {
+      "endedOn": "Ended on {date}",
+      "eligibilityCriteria": "Eligibility Criteria",
+      "walletsEligible": "{count} wallets eligible",
+      "eligibleWallets": "Eligible Wallets",
+      "elegibleWallet": "wallet eligible | wallets eligible",
+      "youQualified": "You qualified",
+      "youDidntQualify": "You didn't qualify",
+      "you": "You",
+      "gotIt": "Got It",
+      "comingSoon": "Coming Soon"
+    },
+    "experienceClaimModal": {
+      "firstInFirstOut": "First In - First Out!",
+      "loginToClaim": "Log in to Claim"
+    },
+    "experiencesFinishedModal": {
+      "endedOn": "Ended on {date}",
+      "details": "Details",
+      "walletsClaimed": "Wallets claimed",
+      "youClaimed": "You claimed",
+      "youWerentEligible": "You weren't eligible",
+      "youDidntClaim": "You didn't claim",
+      "you": "You",
+      "gotIt": "Got It",
+      "comingSoon": "Coming Soon"
+    },
+    "experienceClaimError": {
+      "closeIn": "Close in <span class=\"text-light1\">{time}...</span>"
+    },
+    "baseTimer": {
+      "smashIn": "Smash In",
+      "spinIn": "Spin In"
+    },
+    "badgeObject": {
+      "receive": "Receive"
+    },
+    "badgeProgressModal": {
+      "lingoStaked": "LINGO Staked",
+      "oops": "Oops!",
+      "somethingWentWrong": "Something went wrong",
+      "confirmMinting": "Confirm minting the badge with your wallet",
+      "retry": "Retry",
+      "confirmClaiming": "Confirm claiming",
+      "mintingInProgress": "Minting in progress"
+    },
+    "badgesSheet": {
+      "yourAchievementBadges": "Your Achievement Badges"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "superchargedStaking": {
+      "title": "How does Supercharged Staking work?",
+      "description": "Once you unlock Element 6, you will earn LINGO tokens continuously on all your stakes, and your earnings become claimable every <strong>3 months</strong>.",
+      "stakingOptions": "Your Staking Options & APY Rates",
+      "flexibleStaking": "Flexible Staking",
+      "lockedStaking": "Locked Staking",
+      "claimingRewards": "Claiming Your Rewards",
+      "claimEvery3Months": "You can <strong>claim your rewards every 3 months</strong>, and they go directly to your wallet—immediately accessible, not automatically staked.",
+      "claimAndStake": "You'll also have the option to <strong>Claim & Stake</strong> to keep growing your rewards.",
+      "earningsAccrueDaily": "Your earnings <strong>accrue daily</strong>, so your rewards increase over time.",
+      "boostingEarnings": "Boosting Your Earnings with Element 6",
+      "multipleElement6": "If you own multiple <strong>Element 6</strong>, you get extra staking rewards:",
+      "unstakingRules": "Unstaking & Element 6 Rules",
+      "unstakeLoseBooster": "If you <strong>unstake</strong>, you <strong>lose your booster</strong>—all your <strong>Element 6</strong> will be lost <strong>except one</strong>.",
+      "element6Expires": "Each <strong>Element 6</strong> expires <strong>one year</strong> after you acquire it."
+    },
+    "airdropKingStatus": {
+      "title": "How does Airdrop King Status work?",
+      "description": "We'll set aside <strong>30% of the total allocation</strong> exclusively for <strong>Element 6</strong> holders. If you own <strong>Element 6</strong>, you will be able to register for the airdrop directly within the product. The reserved amount will then be <strong>shared among all Element 6 users who apply</strong>."
+    },
+    "raffleWinners": {
+      "title": "How are raffle winners selected?",
+      "description": "To ensure a <strong>fair, transparent, and tamper-proof</strong> raffle, we use a combination of <strong>Chainlink VRF</strong> for generating verifiable randomness and <strong>seedrandom</strong> for deterministic winner selection. This process guarantees that no one can manipulate the results, and anyone can verify the outcome.",
+      "howItWorks": "How It Works:",
+      "fileHashing": "File Hashing – Tamper-Proof Identifier",
+      "fileHashingDesc": "The participant list (including ticket counts) is hashed to create a unique, tamper-proof identifier. This ensures that any changes to the list are easily detectable.",
+      "seedGeneration": "Seed Generation with Chainlink VRF – Verifiable Randomness",
+      "seedGenerationDesc": "The file hash and raffle ID are used as input to generate <strong>three large random numbers</strong> (a random seed) via <strong>Chainlink VRF</strong> (Verifiable Random Function). Chainlink VRF provides cryptographic proof of how the random values were generated, ensuring fairness and transparency. The proof is verified on-chain before being used, ensuring no manipulation by any party.",
+      "onChainRecording": "On-Chain Recording – Transparency and Immutability",
+      "onChainRecordingDesc": "The generated random seed and its associated cryptographic proof are recorded on the blockchain. This ensures the process is transparent, verifiable, and immutable, as the seed cannot be altered after being stored.",
+      "winnerSelection": "Winner Selection with seedrandom – Fair and Deterministic",
+      "verifiedSeed": "The verified <strong>random seed</strong> from Chainlink VRF is fed into the <strong>seedrandom</strong> library, which produces <strong>deterministic pseudo-random numbers</strong> based on the seed.",
+      "pseudoRandomNumbers": "These pseudo-random numbers are then used to fairly select winners from the participant list.",
+      "verifiableReproducible": "Since <strong>seedrandom</strong> generates numbers in a predictable yet fair way from the given seed, the process remains <strong>verifiable and reproducible</strong> by anyone using the same seed.",
+      "finishedRaffleDetails": "Finished Raffle Details – Blockchain Transparency",
+      "blockchainTransaction": "Once the raffle is complete, the blockchain transaction details can be checked in the <strong>finished raffle details</strong> accessible from the <strong>finished raffles list</strong>.",
+      "fullTransparency": "This ensures full transparency, allowing anyone to verify the winners by rerunning the selection process using the recorded seed and the <strong>seedrandom</strong> library."
+    },
+    "howItWorks": {
+      "title": "How does it work?",
+      "description": "Lingo Platform runs on Power Miles, which you earn by staking LINGO tokens. Use Power Miles to smash asteroids (100 Power Miles per smash) or join weekly raffles.",
+      "eachSmashUnlocks": "Each smash unlocks a reward Element:",
+      "uniqueElements": "There are 5 unique Elements, each with different rarity.",
+      "collectAll5": "Collect all 5 to unlock Element 6, which guarantees exclusive prizes—the more you have, the bigger the rewards.",
+      "everyElementGrants": "Every Element also grants a raffle ticket, with rarer Elements offering bigger prizes.",
+      "noLossesJustRewards": "If you don't win a raffle, 30% of your Power Miles are refunded, letting you smash again. No losses, just rewards!",
+      "buyRaffleTickets": "You can also buy raffle tickets with Power Miles—the more tickets, the higher your chances to win. Each raffle has a set ticket price. 🚀"
+    },
+    "whatRewards": {
+      "title": "What rewards can I win?",
+      "unlockingElement6": "Unlocking Element 6 guarantees you top-tier rewards:",
+      "superchargedStaking": "Supercharged Staking – Earn up to 30% APY on your stake.",
+      "airdropKingStatus": "Airdrop King Status – Get a share of 30% in three airdrops of your choice.",
+      "yearEndJackpot": "Year-End Jackpot – Secure a ticket for a luxury car giveaway.",
+      "additionalRewards": "Additionally, Lingo offers a variety of other exciting rewards, including:",
+      "prizeRaffles": "Prize raffles featuring gift cards, iPhones, laptops, vacations, PS5s, cars, and more. Unlike traditional raffles, active participants regularly win small or big prizes with Lingo!",
+      "partnerAirdrops": "Partner token airdrops – get free tokens from top projects.",
+      "nftBadges": "NFT badges to showcase your achievement (coming!)",
+      "exclusiveOffers": "Exclusive partner discounts & offers (coming!)"
+    },
+    "staking": {
+      "title": "How does staking work?",
+      "savingsAccount": "Staking works like a savings account—but instead of earning interest, you generate Power Miles to play & win prizes.",
+      "stakeLingo": "Stake LINGO tokens to start earning Power Miles automatically.",
+      "chooseBetween": "Choose between:",
+      "flexibleStaking": "Flexible staking – withdraw at any time.",
+      "fixedStaking": "Fixed staking (3, 6, or 12 months) – earns Power Miles faster with a boosted rate.",
+      "afterStakingPeriod": "After the staking period ends, you can either:",
+      "extendStake": "Extend your stake for another fixed period to keep earning faster.",
+      "withdrawTokens": "Withdraw your tokens—your Power Miles will keep accumulating, just without the boost.",
+      "baseBlockchain": "Staking happens on the Base blockchain for security & efficiency."
+    },
+    "powerMilesCalculation": {
+      "title": "How are Power Miles calculated?",
+      "moreLingoMoreMiles": "The more LINGO you stake, the more Power Miles you earn.",
+      "accumulateHourly": "Power Miles accumulate hourly based on your active staking positions.",
+      "balanceTiedToWallet": "Your Power Miles balance is directly tied to your wallet and updates in real time.",
+      "earningRates": "Earning rates:",
+      "flexibleStakingRate": "Flexible staking – 1 Power Mile per day for every 20 LINGO staked.",
+      "fixedStakingRate": "Fixed staking (3, 6, or 12 months) – provides a power boost, allowing you to accumulate Power Miles faster."
+    }
+  }
+} 

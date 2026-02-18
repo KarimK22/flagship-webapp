@@ -1,0 +1,13 @@
+export enum BADGE_ID {
+  LOYALTY = 1,
+  PRESALER = 2,
+  OG = 3,
+  MYTHICAL = 4,
+  EARLY = 5,
+  BELIEVER = 6,
+  HOLDER = 7,
+  ENJOYER = 8,
+  WHALE = 9,
+  PRIVATE_JET = 10,
+  RAFFLE_WINNER = 11,
+}

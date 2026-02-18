@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-P52GX49J');</script>
+		<!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lingo</title>
+    <script>
+      const pathRedirects = {
+        '/dashboard': '/claim',
+        '/claiming-dashboard': '/claim',
+        '/claiming-dashboard/claim': '/claim/wizard',
+        '/staking-dashboard': '/staking',
+        '/staking-dashboard/stake': '/staking/new',
+        '/staking-dashboard/stake-renew/:id': '/staking/upgrade/:id',
+        '/start-earning': '/',
+        '/connect': '/',
+        '/login': '/',
+        '/connect-wallet': '/',
+        '/terms-and-conditions': '/terms-of-service'
+      };
+
+      const currentPath = window.location.pathname;
+      if (pathRedirects[currentPath]) {
+        window.location.href = pathRedirects[currentPath];
+      }
+    </script>
+    <script async src="https://tally.so/widgets/embed.js"></script>
+  </head>
+  <body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52GX49J"
+											height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

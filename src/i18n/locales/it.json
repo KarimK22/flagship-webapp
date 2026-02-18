@@ -1,0 +1,1670 @@
+{
+  "header": {
+    "balance": {
+      "available": "LINGO Balance",
+      "availableDescription": "La quantità di token LINGO attualmente disponibili nel tuo portafoglio.",
+      "price": "Prezzo di LINGO",
+      "priceDescription": "Il prezzo attuale del token LINGO, incluso il suo cambiamento negli ultimi 24 ore.",
+      "powerMiles": "Power Miles Balance",
+      "powerMilesDescription": "Il tuo saldo attuale di Power Miles. Guadagna Power Miles mantenendo LINGO e utilizzali per partecipare a lotterie, airdrop e altro ancora."
+    }
+  },
+  "badgesDescription": {
+    "oldBeliever": "Più di 500 LINGO in staking & bloccato per almeno 3 mesi",
+    "oldHolder": "Più di 1,000 LINGO in staking & bloccato per almeno 3 mesi",
+    "oldEnjoyer": "Più di 10,000 LINGO in staking & bloccato per almeno 3 mesi",
+    "oldWhale": "Più di 50,000 LINGO in staking & bloccato per almeno 3 mesi",
+    "oldLoyalty": "Hai reclamato e fatto stake con un periodo di blocco di 3 mesi o più",
+    "believer": "Più di $50 in LINGO in staking & bloccato per almeno 6 mesi",
+    "holder": "Più di $100 in LINGO in staking & bloccato per almeno 6 mesi",
+    "enjoyer": "Più di $500 in LINGO in staking & bloccato per almeno 6 mesi",
+    "whale": "Più di $5,000 in LINGO in staking & bloccato per almeno 6 mesi",
+    "loyalty": "Hai reclamato e fatto stake con un periodo di blocco di 3 mesi o più",
+    "privateJet": "Private Jet nella comunità Discord di Lingo"
+  },
+  "compactElements": {
+    "smashToUnlock": "Distruggi l'asteroide per sbloccare",
+    "unlocked": "Hai sbloccato questo Elemento. Raccogli tutti e cinque per sbloccare l'Elemento 6.",
+    "notUnlocked": "Distruggi l'asteroide per sbloccare questo Elemento. Raccogli tutti e cinque per sbloccare l'Elemento 6.",
+    "collectAll": "Raccogli tutti e cinque gli Elementi per sbloccare l'Elemento 6 e iniziare a ricevere benefici VIP. Più Elementi 6 possiedi, maggiori sono i benefici."
+  },
+  "buyOrStakeLingo": {
+    "title": "Possiedi LINGO per Distruggere Asteroidi e Vincere Ricompense",
+    "description": "Possiedi token LINGO per guadagnare Power Miles—la tua chiave per distruggere asteroidi e partecipare alle estrazioni.<br>Con solo <strong class=\"text-[#FFBC70]\">$10 di valore in LINGO</strong>, ottieni <strong class=\"text-[#FFBC70]\">{entries} possibilità</strong> di vincere premi incredibili come auto di lusso, Rolex, iPhone e molto altro.",
+    "buy": "Compra LINGO",
+    "stake": "Fai Stake di LINGO"
+  },
+  "common": {
+    "3Months": "3 Mesi",
+    "6Months": "6 Mesi",
+    "12Months": "12 Mesi",
+    "small": "Piccolo",
+    "moreRewards": "Più ricompense",
+    "flexible": "Flexibile",
+    "amount": "Quantità",
+    "claimableIn": "Riscattabile in",
+    "generated": "Generato",
+    "rate": "Tasso",
+    "powerBoost": "Power Boost",
+    "action": "Azione",
+    "goIt": "Vai!",
+    "won": "vinto",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "cancel": "Annulla",
+    "confirm": "Conferma",
+    "save": "Salva",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "close": "Chiudi",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "submit": "Invia",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "sort": "Ordina",
+    "refresh": "Aggiorna",
+    "new": "Nuovo",
+    "retry": "Riprova",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "language": "Lingua",
+    "available": "Disponibile",
+    "comingSoon": "Prossimamente",
+    "finished": "Finito",
+    "enterNow": "Partecipa Ora",
+    "dontMissOut": "Non perdertelo!",
+    "checkEligibility": "Verifica Eleggibilità",
+    "endsIn": "Finisce tra",
+    "ended": "Finito",
+    "outOfStock": "Esaurito",
+    "claim": "Riscatta",
+    "copyLink": "Copia Link",
+    "enjoyYourExperience": "Goditi la tua Esperienza",
+    "congratsYouClaimedIt": "Congratulazioni! L'hai Riscattato",
+    "firstInFirstOut": "Prima Arriva, Prima Servito!",
+    "claimUntil": "Riscatta fino a",
+    "item": "articolo | articoli",
+    "winner": "vincitore | vincitori",
+    "day": "giorno | giorni",
+    "Days": "giorni",
+    "Hours": "ore",
+    "hour": "ora | ore",
+    "minute": "minuto | minuti",
+    "second": "secondo | secondi",
+    "only": "Solo",
+    "min": "Min",
+    "sec": "Sec",
+    "entries": "Partecipazioni",
+    "share": "Condividi",
+    "participants": "Partecipanti",
+    "myEntries": "Le mie Partecipazioni",
+    "total": "Totale",
+    "you": "Tu",
+    "openMenu": "Apri menu",
+    "nextSlide": "Prossima Diapositiva",
+    "previousSlide": "Diapositiva Precedente",
+    "opensIn": "Apre tra",
+    "logInSignUp": "Accedi / Registrati",
+    "typeHere": "scrivi qui ...",
+    "youHave": "Hai",
+    "stakingProfile": "Profilo di Staking",
+    "myStakingProfile": "Il mio profilo di staking",
+    "myPowerMiles": "I miei power miles",
+    "stakingPowerRate": "Tasso di potere di staking",
+    "perDay": "AL GIORNO",
+    "powerMilePerDay": "1 Power Mile al giorno",
+    "powerMilesPerDay": "Power Miles Al giorno",
+    "twentyLingoStaked": "20 Lingo in staking =",
+    "stakeLingoFor": "Fai stake di lingo per",
+    "andRewards": "e ricompense",
+    "stake": "Stake",
+    "wallet": "wallet",
+    "wallets": "wallet",
+    "connecting": "connessione in corso...",
+    "requestOpenInBrowser": {
+      "title": "✨ Sblocca il Meglio di Lingo<br>nel tuo Browser",
+      "description": "Lingo funziona meglio nel tuo browser — più fluido, più veloce e semplicemente migliore. Tocca sotto per copiare il link e continuare!",
+      "copyUrl": "Copia URL",
+      "copied": "Copiato!"
+    },
+    "connectSocials": {
+      "title": "Connetti i tuoi social per sbloccare benefici aggiuntivi"
+    },
+    "notifications": {
+      "badge": {
+        "title": "Congratulazioni! Hai sbloccato un badge...",
+        "button": "Ottieni il badge!"
+      },
+      "raffle": {
+        "title": "Congratulazioni! Hai vinto {prize}",
+        "button": "Riscatta Ora",
+        "youWon": "Hai vinto",
+        "youWonGeneric": "Hai vinto!",
+        "youReceived": "Hai ricevuto"
+      },
+      "airdrop": {
+        "title": "L'airdrop {name} è pronto per essere riscattato",
+        "button": "Riscatta Ora"
+      }
+    },
+    "activityHistory": {
+      "purchaseRaffleTicket": "Ha usato {powerAmount} _POWER_ È entrato in una lotteria per \"{raffleName}\" con {ticketsCount} {ticketsLabel}",
+      "receiveExtraTicket": "Ha ricevuto 1 biglietto extra per la lotteria",
+      "winRafflePrize": "Hai vinto {prizeName}",
+      "smashAsteroidStake": "Ha usato 100 _POWER_ Ha distrutto un asteroide",
+      "smashAsteroidElement": "Hai vinto Elemento {elementId} {rafflePrize}",
+      "autoSmashed": "(Auto-Smash)",
+      "smashAsteroidPowerMiles": "Hai vinto {amount} Power Miles",
+      "stake": "Nuovo holding aggiunto: {amount} LINGO (${totalFiat}) {lockDuration}",
+      "unstake": "Holding riscattato: {amount} LINGO",
+      "ticket": "biglietto",
+      "tickets": "biglietti",
+      "andRaffleTicket": "e un biglietto per la lotteria \"{raffleName}\""
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Lingo. Tutti i diritti riservati.",
+    "howItWorks": "Come funziona?",
+    "faq": "FAQ",
+    "termsOfService": "Termini di Servizio",
+    "privacyPolicy": "Politica sulla Privacy"
+  },
+  "navigation": {
+    "play": "Gioca",
+    "claim": "Riscatta",
+    "staking": "Staking",
+    "rewards": "Ricompense",
+    "referrals": "Referral",
+    "membership": "Membri",
+    "buy": "Compra",
+    "bridge": "Bridge",
+    "openWallet": "Apri Wallet",
+    "logOut": "Esci",
+    "logInSignUp": "Accedi / Registrati",
+    "email": "Email",
+    "walletAddress": "Indirizzo wallet"
+  },
+  "home": {
+    "learnMore": "Scopri di più",
+    "dataDisclaimer": "Non invieremo mai spam di marketing.",
+    "whyTrustUs": {
+      "title": "Perché fidarti di noi?",
+      "step1": {
+        "title": "Fidato dai utenti"
+      },
+      "step2": {
+        "title": "followers su X",
+        "cta": "Vedi su X"
+      },
+      "step3": {
+        "title": "su Instagram",
+        "cta": "Vedi su Instagram"
+      }
+    },
+    "spinTheWheel": {
+      "title": "Unisciti alla nostra comunità in crescita e riscatta il tuo premio oggi!",
+      "cta": "Gira la Ruota"
+    },
+    "howItWorks": {
+      "title": "Come funziona?",
+      "subtitle": "Il pass Lingo ti dà accesso a ricompense a vita.\nUnisciti per infinite opportunità di ricompense.",
+      "step1": {
+        "title": "Unisciti a Lingo",
+        "description": "Il pass Lingo è il tuo biglietto unico per lotterie infinite."
+      },
+      "step2": {
+        "title": "Raccogli Punti",
+        "description": "Il tuo Lingo genera punti per te 24/7"
+      },
+      "step3": {
+        "title": "Unisciti, Vinci e Ripeti",
+        "description": "Usa i tuoi punti per scegliere ricompense e unirti alle lotterie. I tuoi punti continuano ad accumularsi."
+      }
+    },
+    "hero": {
+      "title": "Benvenuto su Lingo",
+      "subtitle": "La tua porta d'accesso a ricompense e opportunità infinite"
+    },
+    "elements": {
+      "collectAll": "Raccogli tutti gli Elementi per sbloccare Grandi Premi!",
+      "stepsAway": "Ti mancano {steps} passo{plural} per i Grandi Premi!",
+      "smashingHistory": "La tua Cronologia di Distruzione",
+      "historyEmpty": "La tua cronologia di distruzione apparirà qui",
+      "loginToSee": "Accedi per vedere i tuoi premi"
+    },
+    "asteroid": {
+      "title": "Distruggi Asteroidi - Vinci\nPremi di Lusso",
+      "joinLingo": "Unisciti a Lingo e guadagna punti",
+      "automatically": "automaticamente",
+      "swapPoints": "Scambia punti per opportunità di vincere Rolex, iPhone, vacanze e altro.",
+      "cost": "COSTO",
+      "powerMiles": "Power Miles",
+      "howItWorks": "Come funziona?",
+      "smashFirstAsteroid": "Distruggi il Primo Asteroide Gratis",
+      "getStarted": "Inizia",
+      "extraPowerOrReward": "Puoi ottenere Potere extra o un Elemento di Ricompensa per entrare in una Lotteria",
+      "congratsElement": "Congratulazioni! Hai vinto l'Elemento {elementId}\n{raffleTicket}",
+      "congratsPowerMiles": "Congratulazioni!\nHai vinto {amount} Power Miles",
+      "andRaffleTicket": "e biglietto lotteria {title}",
+      "autoSmash": {
+        "locked": "Auto-Smash bloccato",
+        "on": "Auto-Smash ATTIVO",
+        "off": "Auto-Smash DISATTIVO",
+        "autoSmash": "Auto-Smash",
+        "description": "Stanco di premere continuamente il pulsante Smash? Ora puoi sbloccare Auto-Smash e lasciare che il sistema distrugga gli asteroidi per te — automaticamente, senza interruzioni.",
+        "finger": "Niente più tocchi",
+        "ticket": "Partecipazioni continue alle estrazioni",
+        "helperText": "Premi il pulsante qui sotto per abbonarti ad Auto-Smash.",
+        "buy": "Abbonati ad Auto-Smash ({lingoAmount} ≈ {usdAmount}$)",
+        "confirming": "Conferma in corso"
+      }
+    },
+    "dynamicHome": {
+      "variants": {
+        "asteroid": {
+          "title": "Distruggi l'Asteroide - Vinci Premi di Lusso",
+          "cta": "Distruggi l'Asteroide Gratis"
+        },
+        "mysteryBox": {
+          "title": "Apri la Scatola Misteriosa - Vinci Premi di Lusso",
+          "cta": "Apri la Scatola Gratis"
+        },
+        "wheel": {
+          "title": "Gira la Ruota - Vinci Premi di Lusso",
+          "cta": "Gira ORA"
+        },
+        "wheelIphone": {
+          "title": "Gira la Ruota - Vinci un iPhone",
+          "cta": "Gira ORA"
+        },
+        "wheelRolex": {
+          "title": "Gira la Ruota - Vinci un Rolex",
+          "cta": "Gira ORA"
+        },
+        "wheelLong": {
+          "title": "Gira la Ruota - Vinci Premi di Lusso",
+          "cta": "Gira ORA"
+        },
+        "wheelNotifyMe": {
+          "title": "Gira la Ruota - Vinci Premi di Lusso",
+          "cta": "Gira ORA"
+        },
+        "wheel10x": {
+          "title": "Gira la Ruota - Vinci Premi di Lusso",
+          "cta": "Gira ORA"
+        },
+        "wheelLn": {
+          "title": "Gira la Ruota - Vinci Premi di Lusso",
+          "cta": "Gira ORA"
+        }
+      },
+      "prizes": {
+        "iphone": {
+          "name": "un biglietto per il sorteggio iPhone",
+          "claimedText": "Il biglietto per il sorteggio iPhone è tuo!",
+          "actionText": "Riscatta il tuo premio o expira.",
+          "cta": "Registrati per Riscattare"
+        },
+        "rolex": {
+          "name": "un biglietto per il sorteggio Rolex",
+          "claimedText": "Il biglietto per il sorteggio Rolex è tuo!",
+          "actionText": "Riscatta il tuo premio o expira.",
+          "cta": "Registrati per Riscattare"
+        },
+        "mysteryBox": {
+          "name": "una Scatola Misteriosa",
+          "claimedText": "La Scatola Misteriosa è tua!",
+          "actionText": "Aprila o expira.",
+          "cta": "Registrati per Aprire"
+        }
+      },
+      "prizeTexts": {
+        "wheelNotifyMe": {
+          "actionText": "Necessitiamo la tua email per dirti se hai vinto",
+          "subText": "Non perdere la tua opportunità — ti contatteremo solo se vinci!",
+          "cta": "Notificami Se Vinci"
+        },
+        "wheel10x": {
+          "actionText": "10x Le Tue Possibilità Di Vincere",
+          "subText": "Conferma la tua email per aumentare di 10 volte le tue possibilità.\nNon lasciartelo sfuggire!",
+          "cta": "Ottieni 10x Più Possibilità"
+        },
+        "default": {
+          "subText": "Oltre 13.000 persone hanno già reclamato il loro premio.\nNon perdere il tuo!"
+        }
+      }
+    }
+  },
+  "staking": {
+    "title": "Staking",
+    "apyLabel": "APY",
+    "totalStaked": "Totale in Stake",
+    "yourStake": "Il tuo Stake",
+    "rewards": "Ricompense",
+    "stake": "Stake",
+    "unstake": "Unstake",
+    "claim": "Riscatta",
+    "lockPeriod": "Periodo di Blocco",
+    "dailyEarnings": "Guadagni Giornalieri",
+    "holdingHistory": "Cronologia Holding",
+    "showMore": "Mostra di più",
+    "holdingActivitiesEmpty": "Le tue attività di holding appariranno qui",
+    "activeHoldingsEmpty": "I tuoi holding LINGO attivi appariranno qui",
+    "level": {
+      "loginToSee": "Accedi per vedere i dettagli dei tuoi Holding e i Power Miles guadagnati",
+      "stakeToEarn": "Fai stake di LINGO per guadagnare Power Miles e raggiungere il livello massimo 1",
+      "earnPowerMiles": "Guadagna almeno 100 Power Miles per ottenere il Livello 5",
+      "logIn": "Accedi",
+      "getMorePower": "Ottieni Più Potere",
+      "stakeNow": "Fai Stake Ora",
+      "betterThan": "Sei migliore del",
+      "ofAllUsers": "di tutti gli altri utenti"
+    },
+    "apyDetails": {
+      "earningsDetails": "I dettagli dei tuoi\nguadagni Elemento 6",
+      "totalLingoEarned": "Totale Lingo\nGuadagnato",
+      "sinceLastClaim": "Dall'Ultimo\nRiscatto",
+      "currentAverageAPY": "APY Medio\nAttuale",
+      "claim": "Riscatta",
+      "claimInDays": "Riscatta tra {days} giorni",
+      "getMore": "Ottieni di più",
+      "unlockElement6": "Sblocca Elemento 6",
+      "earnUpToAPY": "e Guadagna fino al 30% APY sui tuoi Stake"
+    },
+    "tokens": {
+      "powerMiles": "Power Miles",
+      "holdingTotal": "Totale Holding"
+    },
+    "activities": {
+      "powerMilesUsageHistory": "Cronologia\nUso Power Miles",
+      "showMore": "Mostra di più",
+      "emptyText": "I tuoi power miles usati appariranno qui"
+    },
+    "holdings": {
+      "title": "I dettagli dei tuoi\nholding LINGO",
+      "totalActiveHoldings": "Totale Holding\nAttivi",
+      "totalPowerRate": "Tasso di Potere\nTotale",
+      "extraPowerBoost": "Boost Potere\nExtra",
+      "powerMilesPerDay": "power miles/giorno",
+      "until": "fino al {date}"
+    },
+    "table": {
+      "now": "Ora",
+      "perDay": "Al Giorno",
+      "powerMiles": "power miles",
+      "showDetails": "Show details",
+      "upgrade": "Aggiorna",
+      "claim": "Riscatta",
+      "detailsTitle": "{lockDuration} details"
+    },
+    "stakingFlow": {
+      "confirmStake": {
+        "lockPeriod": "Periodo di Blocco",
+        "flexible": "Flessibile",
+        "warning": "Avviso: Il riscatto ridurrà la tua generazione di Power Miles e brucerà tutti i tuoi Elemento 6 tranne uno.",
+        "youWillReceive": "Riceverai",
+        "perDay": "Al Giorno",
+        "powerMiles": "Power Miles",
+        "upgradeToGetMore": "Aggiorna per ottenere Più Potere",
+        "confirm": "Conferma",
+        "claim": "Riscatta"
+      },
+      "formStakeBase": {
+        "lockPeriod": "Periodo di Blocco",
+        "youWillReceive": "Riceverai",
+        "for1Month": "Per 1 Mese",
+        "powerMiles": "Power Miles",
+        "enoughToUnlock": "Sufficiente per sbloccare",
+        "rewards": "Ricompense",
+        "buyLingo": "Compra LINGO",
+        "stakeLingo": "Fai Stake di LINGO"
+      },
+      "resultModal": {
+        "congrats": "Congratulazioni!",
+        "oops": "Ops!",
+        "somethingWentWrong": "Qualcosa è andato storto",
+        "share": "Condividi",
+        "continueToDashboard": "Continua alla Dashboard",
+        "retry": "Riprova",
+        "discordMessage": "Unisciti alla nostra community Discord per assistenza o riprova più tardi.",
+        "lingoRenewed": "LINGO Rinnovato",
+        "lingoUnstaked": "LINGO Unstaked",
+        "lingoStaked": "LINGO in Stake",
+        "lingoClaimed": "LINGO Riscattato",
+        "lingoClaimedAndStaked": "LINGO Riscattato e in Stake",
+        "transactionSuccessful": "Transazione riuscita"
+      }
+    }
+  },
+  "rewards": {
+    "title": "Ricompense",
+    "available": "Ricompense Disponibili",
+    "claimed": "Ricompense Riscattate",
+    "raffles": "Lotterie",
+    "badges": "Badge",
+    "experiences": "Esperienze",
+    "airdrops": "Airdrop",
+    "carousel": {
+      "rafflesEmpty": "Le lotterie appariranno qui",
+      "rewardsEmpty": "Le tue ricompense appariranno qui",
+      "rewardsEmptyNotLogged": "Accedi per vedere le tue Ricompense",
+      "airdropsEmpty": "Gli airdrop appariranno qui",
+      "experiencesEmpty": "Le esperienze appariranno qui"
+    },
+    "history": {
+      "showMore": "Mostra di più"
+    },
+    "wheel": {
+      "spinNow": "Girare Ora",
+      "logInSignUp": "Accedi per girare",
+      "getMore": "Ottieni di Più",
+      "yourSpins": "I Tuoi Giros",
+      "spinAndWinEveryMonth": "Gira e Vinci Ogni Mese",
+      "description": "Ottieni 1 giro per ogni ${amount} LINGO in staking per almeno {months} mesi, ogni mese. Ottieni un premio garantito con ogni giro.",
+      "noSpinsYet": "Non hai ancora girato la ruota",
+      "loginToSeeYourSpins": "Accedi per vedere i tuoi giri"
+    },
+    "tieredStaking": {
+      "title": "Metti in stake per sbloccare una nuova ruota!",
+      "subtitle": "Hai messo in stake {current}. Metti in stake altri {remaining} per sbloccare la ruota {tier}",
+      "subtitleUnlocked": "Hai messo in stake {current}. Ruota {tier} sbloccata.",
+      "stakeNow": "Metti in stake ora",
+      "expectedValue": "Valore atteso:",
+      "expectedValueTitle": "Valore atteso (EV):",
+      "expectedValueDescription": "Rappresenta il rendimento medio delle rotazioni nel tempo, in base alla probabilità e al valore di ogni premio possibile.",
+      "tierRewardsDescription": "Ricompense:\n{rewards}",
+      "spinsTooltipTitle": "Dettagli dei giri",
+      "spinsTooltip": "I tuoi giri mensili dipendono da quanto metti in stake e per quanto tempo lo blocchi.\n\n🔒 Blocchi più lunghi = più peso\n💰 Più stake = più giri\n\nCalcoliamo una media ponderata dei tuoi stake. Bloccare i token più a lungo aumenta le tue possibilità senza dover aggiungere più token.\n\n🔄 I tuoi giri si resettono ogni mese, quindi ricevi un nuovo numero di giri in base alla tua configurazione di staking attuale.",
+      "lockMultipliersTitle": "Moltiplicatori di blocco",
+      "lockDurations": {
+        "noLock": "Senza blocco",
+        "oneMonth": "1 mese",
+        "threeMonths": "3 mesi",
+        "sixMonths": "6 mesi",
+        "twelveMonths": "12 mesi"
+      },
+      "wheelSpins": " ruota - hai {spins} giri",
+      "spinNow": "Gira ora",
+      "spinning": "Sto girando..."
+    },
+      "tradingGacha": {
+        "title": "La Ruota è attualmente vuota.",
+        "subtitle": "Il volume di trading non viene conteggiato al momento, resta sintonizzato per gli aggiornamenti una volta rifornita.",
+      "yourPulls": "I tuoi giri",
+      "yourTradingVolume": "Il tuo volume di trading:",
+      "yourTradingVolumeDescription": "Questo è il tuo volume scambiato dall'inizio della campagna.",
+      "pullCta": "Gira",
+      "pulling": "Girando...",
+      "logInSignUp": "Accedi per girare",
+      "noPullsYet": "Nessun giro ancora",
+      "loginToSeeYourPulls": "Accedi per vedere i tuoi giri",
+      "historyTitle": "Cronologia dei giri",
+      "unknownPrize": "Premio sconosciuto",
+      "transactionProcessing": "La transazione è in elaborazione",
+      "pleaseWait": "Attendi qualche secondo",
+      "transactionDelayed": "Ancora in corso",
+      "transactionDelayedBody": "Potrebbe volerci qualche minuto. Riprova a breve.",
+      "transactionError": "Stato della transazione non disponibile",
+      "transactionErrorBody": "Non possiamo caricare la transazione al momento. Riprova.",
+      "transactionConfirmed": "Transazione confermata",
+      "hash": "Hash",
+      "viewOnExplorer": "Vedi nell'explorer",
+      "yourLeftSpins": "Ti restano",
+      "untilUnlock": "giri per sbloccare",
+      "unlockedTier": "Congratulazioni! Hai sbloccato "
+    },
+    "stakingWheel": {
+      "title": "Metti in staking LINGO. Gira la ruota. Vinci premi.",
+      "subtitle": "Ottieni giri mettendo in staking $Lingo per almeno 3 mesi.",
+      "historyTitle": "Cronologia dei giri",
+      "spinning": "In rotazione...",
+      "tooltip": {
+        "title": "Metti in staking LINGO. Gira la ruota. Vinci premi.",
+        "sections": {
+          "pickWheel": {
+            "title": "Scegli la tua ruota",
+            "items": [
+              { "label": "🥈 Silver", "detail": "3 mesi", "prizes": "Apple Watch, AirPods Pro" },
+              { "label": "🥇 Gold", "detail": "6 mesi", "prizes": "iPhone 16 Pro, Apple Watch Ultra" },
+              { "label": "💎 Diamond", "detail": "12 mesi", "prizes": "Rolex, PS5 Pro, iPhone 16 Pro Max" }
+            ]
+          },
+          "spins": {
+            "title": "Quanti giri?",
+            "rule": "1 giro ogni $100 messi in staking",
+            "bonusTitle": "Più staking, più giri bonus:",
+            "bonus": [
+              { "range": "$250–$499", "bonus": "+20%" },
+              { "range": "$500–$999", "bonus": "+40%" },
+              { "range": "$1,000–$2,499", "bonus": "+50%" },
+              { "range": "$2,500–$4,999", "bonus": "+60%" },
+              { "range": "$5,000–$9,999", "bonus": "+70%" },
+              { "range": "$10,000–$24,999", "bonus": "+80%" },
+              { "range": "$25,000+", "bonus": "+100%" }
+            ]
+          },
+          "examples": {
+            "title": "Esempi rapidi",
+            "headers": {
+              "stake": "Staking",
+              "lock": "Blocco",
+              "wheel": "Ruota",
+              "spins": "Giri"
+            },
+            "rows": [
+              { "stake": "$100", "lock": "3 mesi", "wheel": "🥈 Silver", "spins": "1" },
+              { "stake": "$500", "lock": "6 mesi", "wheel": "🥇 Gold", "spins": "7" },
+              { "stake": "$1,000", "lock": "12 mesi", "wheel": "💎 Diamond", "spins": "15" },
+              { "stake": "$10,000", "lock": "12 mesi", "wheel": "💎 Diamond", "spins": "180" }
+            ]
+          }
+        }
+      }
+    },
+    "PTScore": {
+      "title": "Il tuo PT Score {tier}",
+      "percentage": "Percentuale PTB -",
+      "guaranteedReward": "Ricompensa garantita con punteggio {score}",
+      "tierLabel": "Premi del livello {tier}: ",
+      "tierText": "{prizeName}: probabilità {baseProbability}% → {boostedProbability}% (probabilità aumentata)"
+    },
+    "leaderboard": {
+      "prizesHistory": {
+        "title": "Storico dei premi",
+        "noPrizesYet": "Nessun premio al momento",
+        "viewPrize": "Dettagli",
+        "loginToSeeYourPrizes": "Accedi per vedere i tuoi premi"
+      }
+    }
+  },
+  "wallet": {
+    "connect": "Connetti Wallet",
+    "disconnect": "Disconnetti",
+    "connecting": "Connessione in corso...",
+    "connected": "Connesso",
+    "notConnected": "Non Connesso",
+    "switchNetwork": "Cambia Rete",
+    "wrongNetwork": "Rete Errata"
+  },
+  "auth": {
+    "signIn": "Accedi",
+    "signOut": "Esci",
+    "signMessage": "Firma Messaggio",
+    "signing": "Firma in corso...",
+    "signed": "Firmato",
+    "signatureRequired": "Firma Richiesta"
+  },
+  "modals": {
+    "info": "Informazione",
+    "warning": "Avviso",
+    "error": "Errore",
+    "success": "Successo",
+    "confirmation": "Conferma",
+    "howItWorks": {
+      "title": "Cos'è Lingo?",
+      "howItWorks": "Come funziona?",
+      "description": "Lingo è una piattaforma di ricompense dove guadagni punti, giri la ruota per vincere premi reali, partecipa alle lotterie e sblocca esperienze VIP",
+      "users": "1.2M utenti",
+      "x": "632.7K su X",
+      "instagram": "87.3K su Instagram",
+      "tryItForFree": "Provalo Gratis",
+      "privacyFirst": "Privacy Prima",
+      "getALingoPass": "1. Ottieni un Lingo Pass",
+      "collectPoints": "2. Raccogli Punti",
+      "spinAndWin": "3. Gira e Vinci",
+      "getYourFirstSpin": "Ottieni la tua prima rotazione lasciando la tua email — senza carta di credito o acquisto richiesto.",
+      "weNeverSpamOrSellYourData": "Non ti inviamo mai spam o vendiamo i tuoi dati. Mai.",
+      "yourPassEarnsPoints": "Il tuo pass guadagna punti per te automaticamente, 24/7.",
+      "startsAtJust": "Inizia per solo 10$, e puoi vendere il tuo pass in qualsiasi momento.",
+      "useYourPoints": "Usa i tuoi punti per girare la ruota e vincere premi reali.",
+      "claimThePrize": "Riscatta il Premio"
+    },
+    "infoModal": {
+      "title": "Come funziona?",
+      "letsGo": "Iniziamo!",
+      "generatePower": "1. Genera Potere",
+      "playAndEarn": "2. Gioca e Guadagna",
+      "winBigPrizes": "3. Vinci Grandi Premi",
+      "firstSection": {
+        "platformRuns": "La piattaforma Lingo funziona con Power Miles. Fai stake di LINGO per guadagnare Power Miles—più fai stake, più guadagni!",
+        "newToCrypto": "Nuovo nel crypto?",
+        "stakingExplanation": "Il staking è come mettere soldi in un conto di risparmio—ma invece di guadagnare interessi, ottieni Power Miles per giocare e vincere premi!"
+      },
+      "secondSection": {
+        "smashAsteroids": "Distruggi asteroidi",
+        "asteroids": "asteroidi",
+        "withPowerMiles": "con Power Miles per raccogliere",
+        "rareElements": "elementi rari",
+        "andRaffleTicket": "e biglietti per le lotterie.",
+        "collectAll": "Raccogli tutti i 5 Elementi per premi VIP garantiti!",
+        "combinedText": "Distruggi <span class=\"text-lavender contents\">asteroidi</span> con Power Miles per raccogliere <span class=\"text-lavender contents\">elementi rari</span> e biglietti per le lotterie.<br><span>Raccogli tutti i 5 Elementi per premi VIP garantiti!</span>"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "whyStaking": "Perché fare Staking di Lingo?",
+      "whyStakingAnswer": "Fare stake di LINGO è la tua porta d'accesso per guadagnare Power Miles, che puoi usare per distruggere asteroidi e partecipare alle lotterie per premi reali come iPhone, Rolex e altro. Più fai stake, più Power Miles guadagni e migliori sono le tue possibilità di vincere!",
+      "whatArePowerMiles": "Cosa sono i Power Miles?",
+      "whatArePowerMilesAnswer": "I Power Miles sono punti che guadagni facendo stake di token LINGO. Guadagni 1 Power Mile al giorno per ogni 20 LINGO in stake. Usa 100 Power Miles per distruggere un asteroide e sbloccare Elementi + biglietti per le lotterie. Raccogli tutti i 5 Elementi per premi VIP garantiti!"
+    },
+    "discord": {
+      "oops": "Ops!",
+      "somethingWentWrong": "Qualcosa è andato storto",
+      "connecting": "Connessione del tuo account Discord...",
+      "successfullyConnected": "Hai connesso Discord con successo!",
+      "close": "Chiudi",
+      "gotIt": "Capito!",
+      "joinLingoOnDiscord": "Unisciti a Lingo su Discord",
+      "connected": "Connesso",
+      "inProgress": "In corso...",
+      "joinCommunity": "Unisciti alla community Discord di Lingo e guadagna fino a",
+      "powerMilesPerDay": "400 Power Miles al giorno",
+      "dependingOnRoles": "a seconda dei tuoi ruoli!",
+      "youllEarn": "Ora guadagnerai",
+      "powerMilesDaily": "Power Miles al giorno",
+      "basedOnRoles": "basato sui tuoi ruoli Discord.",
+      "wantEvenMore": "Vuoi ancora di più? Ottieni i",
+      "rolesToEarn": "ruoli per guadagnare un extra di",
+      "powerMilesDailyExtra": "Power Miles al giorno!",
+      "holdAnyRoles": "Possiedi uno di questi ruoli su Discord per iniziare a guadagnare",
+      "powerMilesPerRole": "100 Power Miles al giorno",
+      "perRole": "per ruolo:",
+      "validFor": "Valido per:",
+      "min": "Min",
+      "sec": "Sec"
+    },
+    "freePowerMiles": {
+      "instantAsteroidsBonus": "Bonus Istantaneo di 5 Asteroidi",
+      "stakeToClaim": "Fai Stake per Riscattare Asteroidi Gratis",
+      "get5EntriesInstantly": "Ottieni 5 Partecipazioni Istantaneamente",
+      "upgradeAnd5xChances": "Aggiorna e 5x Probabilità",
+      "stakeFor6Months": "Fai stake",
+      "inLingo": "in LINGO",
+      "for6Months": "per 6 mesi e",
+      "skipTheWait": "salta l'attesa - prendi",
+      "freeAsteroids": "5 Asteroidi gratis",
+      "instantly": "istantaneamente.",
+      "getPowerMiles": "ottieni",
+      "powerMiles": "500 Power Miles",
+      "instantlyToBoost": "istantaneamente per aumentare le tue probabilità di lotteria.",
+      "important": "IMPORTANTE: Potrebbero volerci fino a 10 minuti per l'allocazione del tuo bonus."
+    },
+    "helpModal": {
+      "gotIt": "Capito!",
+      "wheelInfo": {
+        "title": "Gira e Gana ogni Mese",
+        "description": "Ottieni giri sulla Ruota in base al <strong>valore USD di LINGO in staking</strong>. Il prezzo di LINGO è bloccato al momento del staking per calcolare la tua allocazione di giri. I giri sono distribuiti <strong>all'inizio di ogni mese</strong>, ma il tuo numero di giri viene <strong>aggiustato immediatamente</strong> quando fai staking o sblocchi.",
+        "note": "Nota: <strong>I giri non utilizzati scadono</strong> quando vengono assegnati nuovi giri, quindi assicurati di usarli prima della fine del mese!"
+      },
+      "tieredWheelInfo": {
+        "title": "Dettagli dei giri",
+        "description": "I tuoi giri mensili dipendono da quanto metti in stake e per quanto tempo lo blocchi.\n\n🔒 Blocchi più lunghi = più peso\n💰 Più stake = più giri\n\nCalcoliamo una media ponderata dei tuoi stake. Bloccare i token più a lungo aumenta le tue possibilità senza dover aggiungere più token.\n\n🔄 I tuoi giri si resettono ogni mese, quindi ricevi un nuovo numero di giri in base alla tua configurazione di staking attuale.",
+        "lockMultipliersTitle": "Moltiplicatori di blocco",
+        "lockDurations": {
+          "noLock": "Senza blocco",
+          "threeMonths": "3 mesi",
+          "sixMonths": "6 mesi",
+          "twelveMonths": "12 mesi"
+        }
+      },
+      "whatIsAPY": {
+        "title": "Cos'è l'APY\nMedio?",
+        "description": "Il tuo <strong>APY Medio (Rendimento Percentuale Annuo)</strong> è il tasso combinato che stai guadagnando su tutti gli stake attivi, considerando i tuoi termini di staking e qualsiasi boost di Elemento 6 che hai sbloccato.",
+        "flexibleStaking": "Il staking flessibile guadagna 5% APY. Il staking bloccato offre 10% APY per 3 mesi, 20% APY per 6 mesi e 30% APY per 12 mesi.",
+        "element6Boost": "Se possiedi Elemento 6, ottieni un boost aggiuntivo: possedere 5 aggiunge 5%, possedere 10 aggiunge 10% e possedere 15 aggiunge 15% alle tue ricompense di staking.",
+        "reflection": "Il tuo APY Medio riflette tutti questi fattori e si aggiorna in base alla tua configurazione di staking attuale."
+      },
+      "elements": {
+        "title": "Raccogli tutti gli Elementi — Ottieni Benefici VIP",
+        "description": "Raccogli Elementi 1–5 per sbloccare l'Elemento 6 e ricevere:",
+        "upTo30APY": "Fino al 30% APY sugli stake",
+        "shareInAirdrops": "Un 30% in 3 airdrop a tua scelta",
+        "luxuryCarTicket": "Un biglietto per il sorteggio auto di lusso di fine anno"
+      },
+      "howPowerMilesWork": {
+        "title": "Come\nFunzionano i Power Miles",
+        "description": "Fai stake di LINGO per guadagnare Power Miles, usati per distruggere asteroidi e partecipare alle lotterie per premi reali.",
+        "earning": "Guadagno:",
+        "earningDetails": "20 LINGO = 1 Power Mile/giorno (guadagnato ogni ora)",
+        "rewards": "Ricompense:",
+        "rewardsDetails": "100 Power Miles = 1 distruzione, sblocca un Elemento + biglietto lotteria. Vinci una lotteria o raccogli tutti i 5 Elementi per un premio garantito.",
+        "boost": "Boost:",
+        "boostDetails": "Fai stake più a lungo per fino al 180% in più di Power Miles!",
+        "conclusion": "Più stake = guadagni più veloci = maggiori possibilità di vincere!"
+      },
+      "boostYourAPY": {
+        "title": "Aumenta il tuo\nAPY Medio",
+        "intro": "Vuoi aumentare le tue ricompense? Ecco come:",
+        "lockStakes": "Blocca i tuoi stake per periodi più lunghi per guadagnare un APY base più alto — 10% per 3 mesi, 20% per 6 mesi e 30% per 12 mesi.",
+        "element6Boost": "Poi, aumenta ancora di più sbloccando Elemento 6 aggiuntivi. Più Elemento 6 possiedi, più alto è il tuo bonus: 5 Elemento 6 = +5%, 10 = +10%, 15 = +15%.",
+        "conclusion": "Più a lungo fai stake e più Elemento 6 possiedi, più cresce il tuo APY Medio."
+      },
+      "myLevel": {
+        "title": "Il Mio Livello",
+        "description": "I livelli sono basati sul tuo saldo di Power Miles rispetto agli altri"
+      }
+    }
+  },
+  "errors": {
+    "networkError": "Errore di Rete",
+    "userRejected": "L'utente ha rifiutato la transazione",
+    "insufficientBalance": "Saldo insufficiente",
+    "transactionFailed": "Transazione fallita",
+    "unknownError": "Si è verificato un errore sconosciuto"
+  },
+  "membership": {
+    "joinDiscord": "Unisciti alla nostra community Discord",
+    "joinNow": "Unisciti ora!",
+    "exploreBenefits": "Esplora i tuoi Benefici",
+    "whale": "Whale",
+    "benefitsTable": {
+      "powerMiles": "Power Miles",
+      "normalStaker": {
+        "title": "Staker\nNormale",
+        "description": "Qualsiasi importo in stake"
+      },
+      "silverStaker": {
+        "title": "Enjoyer\nMin $500 LINGO",
+        "description": "In stake per 6+ mesi"
+      },
+      "goldStaker": {
+        "title": "Min $5000 LINGO",
+        "description": "In stake per 6+ mesi"
+      },
+      "benefits": {
+        "earnPowerMiles": "Guadagna Power Miles per lotterie giornaliere",
+        "bonusPowerMiles": "500 Power Miles bonus/settimana (+5 biglietti lotteria)",
+        "powerMilesBoost": "Boost Power Miles: +10% partecipazioni bonus",
+        "raffleAccess": "Accesso alle Lotterie",
+        "enterDailyRaffles": "Partecipa alle lotterie giornaliere per premi di lusso",
+        "premiumRaffles": "Accesso alle lotterie premium",
+        "whaleRaffles": "Lotterie esclusive per Whale per articoli di lusso",
+        "airdropAccess": "Accesso agli Airdrop",
+        "someAirdrops": "Alcuni airdrop (tramite lotterie)",
+        "guaranteedAirdrops": "Accesso garantito agli airdrop",
+        "whaleAirdropPool": "10% Pool Airdrop Esclusivo per Whale",
+        "element6Benefits": "Benefici Elemento 6",
+        "upTo45APY": "Fino al 45% APY",
+        "shareInAirdrops": "Quota del 30% in 3 airdrop a tua scelta",
+        "luxuryCarTicket": "1 biglietto per il sorteggio auto di lusso di fine anno",
+        "discordBenefits": "Benefici Discord",
+        "exclusiveRole": "Ruolo esclusivo + canale",
+        "whaleBadge": "Badge Whale su Discord",
+        "privateChannel": "Canale Whale Privato",
+        "vipExclusives": "Esclusive VIP",
+        "irlEvents": "Inviti a eventi IRL / virtuali",
+        "bidOnItems": "Offri su articoli speciali usando Power Miles",
+        "voteOnRewards": "Vota sui prossimi premi principali"
+      }
+    }
+  },
+  "buy": {
+    "title": "Compra",
+    "description": "Acquista token qui"
+  },
+  "claim": {
+    "title": "Riscatta i tuoi LINGO",
+    "readyToClaim": "Pronto per Riscattare",
+    "buyNow": "Compra Ora",
+    "claim": "Riscatta",
+    "allocationDetails": "Dettagli della tua allocazione LINGO",
+    "description": "Descrizione",
+    "totalAmount": "Importo Totale",
+    "loginToSee": "Accedi per vedere la tua allocazione LINGO",
+    "noTokensYet": "Non hai ancora token LINGO?",
+    "importantNotice": "Importante: I tuoi token bloccati si stanno sbloccando dal 12 marzo. Puoi riscattarli una volta che raggiungono l'1% della tua allocazione totale e almeno 1 LINGO. Quando idoneo, il tuo importo riscattabile si aggiornerà sulla tua dashboard."
+  },
+  "referrals": {
+    "title": "Riferisci e Guadagna Power Miles",
+    "loginToStart": "Accedi per iniziare a invitare amici e vedere i tuoi referral",
+    "logIn": "Accedi",
+    "referFriends": "Riferisci i tuoi amici e ottieni {percentage}% dei loro Power Miles a vita",
+    "yourReferralLink": "Il tuo Link di Referral",
+    "copyLink": "Copia Link",
+    "copied": "Copiato!",
+    "shareOnX": "Condividi su X",
+    "sharedOnX": "Condiviso su X!",
+    "shareOnTelegram": "Condividi su Telegram",
+    "sharedOnTelegram": "Condiviso su Telegram!",
+    "stakeToEarn": "Assicurati di fare stake per iniziare a guadagnare Power Miles dai tuoi referral!",
+    "yourReferral": "I tuoi Referral",
+    "shareTexts": [
+      "Sblocca ricompense esclusive con Lingo! Registrati usando il mio link e inizia a guadagnare oggi",
+      "Ehi amici! Ho guadagnato ricompense fantastiche con Lingo, e puoi farlo anche tu! Registrati con il mio link",
+      "Non perdere ricompense incredibili! Unisciti a Lingo ora con il mio link di referral e inizia a guadagnare vantaggi istantaneamente"
+    ]
+  },
+  "otherComponents": {
+    "discordConnect": {
+      "loading": "Caricamento...",
+      "connectedToDiscord": "Connesso a Discord",
+      "connecting": "Connessione in corso...",
+      "connectToDiscord": "Connetti a Discord",
+      "disconnectFromDiscord": "Disconnetti da Discord",
+      "role": "Ruolo:",
+      "moreRoles": "più ruoli",
+      "getRolesToEarn": "Ottieni questi ruoli {roles} per guadagnare Power Miles giornalieri basati sui tuoi ruoli posseduti",
+      "powerMilesDaily": "Ricevi {amount} Power Miles giornalieri basati sul tuo ruolo",
+      "joinDiscord": "Unisciti alla nostra <a href='https://discord.com/invite/lingo' class='text-[#FF9D5C] cursor-pointer underline' target='_blank'>community Discord</a> per iniziare a guadagnare Power Miles"
+    },
+    "referralStats": {
+      "totalReferrals": "Totale Referral",
+      "activeReferrals": "Referral Attivi",
+      "totalPowerMiles": "Totale Power Miles"
+    },
+    "claimForm": {
+      "selectLockPeriod": "Seleziona Periodo di Blocco",
+      "youWillReceive": "Riceverai",
+      "for1Month": "Per 1 Mese",
+      "powerMiles": "Power Miles",
+      "enoughToUnlock": "Sufficiente per sbloccare",
+      "rewards": "Ricompense",
+      "stakeLingo": "Fai Stake di LINGO"
+    }
+  },
+  "views": {
+    "claimWizardView": {
+      "title": "Scegli il tuo\nTipo di Riscatto",
+      "claimExtra": "Riscatta Extra",
+      "claimInstantly": "Riscatta Istantaneamente",
+      "instant": "Istantaneo",
+      "extra": "Extra",
+      "claimButton": "Riscatta {type}",
+      "rewardsDescription": "Fino a 🎁 {rewards} ricompense / mese",
+      "rewardsDescriptionFallback": "Ricompense fantastiche ogni settimana",
+      "extraDescription": [
+        "Fino al 30% APY sugli stake se giochi",
+        "Accesso ad airdrop esclusivi dei partner",
+        "👑 Community VIP Lingo"
+      ],
+      "instantDescription": [
+        "Nessuna ricompensa o accesso ai vantaggi della community Lingo"
+      ],
+      "recommended": "Raccomandato"
+    },
+    "stakingView": {
+      "warningTitle": "Avviso! La tua ultima transazione di riscatto APY è fallita.",
+      "retry": "Riprova"
+    },
+    "rewardsView": {
+      "title": "Raccogli le tue Ricompense",
+      "raffles": "Lotterie",
+      "airdrops": "Airdrop",
+      "experiences": "Esperienze",
+      "spins": "Giros",
+      "wheels": "Wheels",
+      "whaleWheel": "Whale Wheel",
+      "whaleWheelDesc": "Diventa whale staker per accedere alla Whale Wheel.",
+      "stakingWheels": "Staking Wheels",
+      "stakingWheelsDesc": "Metti in stake $LINGO per almeno 3 mesi e gira la ruota.",
+      "tieredStakingWheels": "Tiered Staking Wheels",
+      "tieredStakingWheelsDesc": "Metti in stake più $LINGO per accedere a ruote di livello diverso.",
+      "staking": "Staking",
+      "pulls": "Trading",
+      "tasks": "Attività",
+      "backToWheels": "Back to Wheels"
+    },
+    "bridge": {
+      "title": "Bridge",
+      "description": "Fai bridge dei tuoi token tra catene"
+    },
+    "claimConfirm": {
+      "confirmStaking": "Ora, conferma il staking di LINGO",
+      "confirmClaiming": "Ora, conferma il riscatto di LINGO",
+      "claimAndStake": "Riscatta e Fai Stake per Ottenere Extra"
+    },
+    "admin": {
+      "giftCards": {
+        "token": "Token",
+        "save": "Salva",
+        "summary": "Riepilogo",
+        "whatToDo": "Cosa vuoi fare?",
+        "add": "Aggiungi",
+        "generateCsv": "Genera csv",
+        "count": "Conteggio",
+        "usedFor": "Usato per",
+        "generateCsvButton": "Genera CSV",
+        "filesGenerated": "File generato",
+        "filesGeneratedPlural": "File generati"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "howDoesItWork": {
+        "title": "Come funziona?",
+        "description": "La piattaforma Lingo funziona con Power Miles, che guadagni facendo stake di token LINGO. Usa Power Miles per distruggere asteroidi (100 Power Miles per distruzione) o partecipa alle lotterie settimanali.",
+        "elementsDescription": "Ogni distruzione sblocca un Elemento di ricompensa:",
+        "elementsList": [
+          "Ci sono 5 Elementi unici, ognuno con rarità diversa.",
+          "Raccogli tutti i 5 per sbloccare Elemento 6, che garantisce premi esclusivi—più ne hai, più grandi sono le ricompense.",
+          "Ogni Elemento concede anche un biglietto per la lotteria, con Elementi più rari che offrono premi più grandi."
+        ],
+        "refundInfo": "Se non vinci una lotteria, il 30% dei tuoi Power Miles viene rimborsato, permettendoti di distruggere di nuovo. Nessuna perdita, solo ricompense!",
+        "ticketInfo": "Puoi anche comprare biglietti per le lotterie con Power Miles—più biglietti, maggiori le tue possibilità di vincere. Ogni lotteria ha un prezzo fisso per biglietto. 🚀"
+      },
+      "whatRewards": {
+        "title": "Che ricompense posso vincere?",
+        "element6Description": "Sbloccare Elemento 6 ti garantisce ricompense di livello superiore:",
+        "element6List": [
+          "Staking Supercaricato – Guadagna fino al 30% APY sul tuo stake.",
+          "Status Airdrop King – Ottieni una quota del 30% in tre airdrop a tua scelta.",
+          "Jackpot di Fine Anno – Assicurati un biglietto per il sorteggio di un'auto di lusso."
+        ],
+        "additionalDescription": "Inoltre, Lingo offre una varietà di altre ricompense entusiasmanti, inclusi:",
+        "additionalList": [
+          "Lotterie con premi che includono gift card, iPhone, laptop, vacanze, PS5, auto e altro. A differenza delle lotterie tradizionali, i partecipanti attivi vincono regolarmente premi piccoli o grandi con Lingo!",
+          "Airdrop di token partner – ottieni token gratuiti da progetti di punta.",
+          "Badge NFT per mostrare i tuoi successi (in arrivo!)",
+          "Sconti e offerte esclusive dei partner (in arrivo!)"
+        ]
+      },
+      "staking": {
+        "title": "Come funziona il staking?",
+        "description": [
+          "Il staking funziona come un conto di risparmio—ma invece di guadagnare interessi, generi Power Miles per giocare e vincere premi.",
+          "Fai stake di token LINGO per iniziare a guadagnare Power Miles automaticamente.",
+          "Scegli tra:",
+          "Dopo che il periodo di staking termina, puoi:",
+          "Il staking avviene sulla blockchain Base per sicurezza ed efficienza."
+        ],
+        "options": {
+          "flexible": "Staking flessibile – preleva in qualsiasi momento.",
+          "fixed": "Staking fisso (3, 6 o 12 mesi) – guadagna Power Miles più velocemente con un tasso potenziato."
+        },
+        "afterPeriod": [
+          "Estendi il tuo stake per un altro periodo fisso per continuare a guadagnare più velocemente.",
+          "Preleva i tuoi token—i tuoi Power Miles continueranno ad accumularsi, solo senza il boost."
+        ]
+      },
+      "powerMiles": {
+        "title": "Come vengono calcolati i Power Miles?",
+        "description": [
+          "Più LINGO fai in stake, più Power Miles guadagni.",
+          "I Power Miles si accumulano ogni ora in base alle tue posizioni di staking attive.",
+          "Il tuo saldo di Power Miles è direttamente collegato al tuo wallet e si aggiorna in tempo reale."
+        ],
+        "rates": "Tassi di guadagno:",
+        "flexible": "Staking flessibile – 1 Power Mile al giorno per ogni 20 LINGO in stake.",
+        "fixed": "Staking fisso (3, 6 o 12 mesi) – fornisce un boost di potere, permettendoti di accumulare Power Miles più velocemente."
+      },
+      "superchargedStaking": {
+        "title": "Come funziona il Staking Supercaricato?",
+        "description": "Una volta che sblocchi Elemento 6, guadagnerai token LINGO continuamente su tutti i tuoi stake, e i tuoi guadagni diventano riscattabili ogni 3 mesi.",
+        "optionsTitle": "Le tue Opzioni di Staking e Tassi APY",
+        "flexible": "Staking Flessibile → 5% APY",
+        "locked": "Staking Bloccato:",
+        "lockedOptions": [
+          "3 mesi → 10% APY",
+          "6 mesi → 20% APY",
+          "12 mesi → 30% APY"
+        ],
+        "claimingTitle": "Riscattare le tue Ricompense",
+        "claimingList": [
+          "Puoi riscattare le tue ricompense ogni 3 mesi, e vanno direttamente al tuo wallet—accessibili immediatamente, non automaticamente in stake.",
+          "Avrai anche l'opzione di Riscatta e Fai Stake per continuare a far crescere le tue ricompense.",
+          "I tuoi guadagni si accumulano giornalmente, quindi le tue ricompense aumentano nel tempo."
+        ],
+        "boostingTitle": "Aumentare i tuoi Guadagni con Elemento 6",
+        "boostingDescription": "Se possiedi più Elemento 6, ottieni ricompense di staking extra:",
+        "boosts": ["5 → +5% boost", "10 → +10% boost", "15 → +15% boost"],
+        "rulesTitle": "Regole di Unstaking e Elemento 6",
+        "rules": [
+          "Se fai unstake, perdi il tuo booster—tutti i tuoi Elemento 6 andranno persi tranne uno.",
+          "Ogni Elemento 6 scade un anno dopo averlo acquisito."
+        ]
+      },
+      "airdropKing": {
+        "title": "Come funziona lo Status Airdrop King?",
+        "description": "Metteremo da parte il 30% dell'allocazione totale esclusivamente per i possessori di Elemento 6. Se possiedi Elemento 6, potrai registrarti per l'airdrop direttamente all'interno del prodotto. L'importo riservato sarà poi condiviso tra tutti gli utenti Elemento 6 che si candidano."
+      },
+      "raffleWinners": {
+        "title": "Come vengono selezionati i vincitori delle lotterie?",
+        "description": "Per garantire una lotteria equa, trasparente e a prova di manomissione, utilizziamo una combinazione di Chainlink VRF per generare casualità verificabile e seedrandom per la selezione deterministica dei vincitori. Questo processo garantisce che nessuno possa manipolare i risultati e chiunque possa verificare l'esito.",
+        "howItWorks": "Come Funziona:"
+      },
+      "whatRewardsCanIWin": {
+        "title": "Che Ricompense Posso Vincere?",
+        "rafflesDescription": "Partecipa alle lotterie per premi del mondo reale come <span class=\"text-lavender\">gift card, iPhone, laptop, vacanze e persino auto!</span>",
+        "elementsDescription": "Oppure raccogli tutti i 5 Elementi per <span class=\"text-lavender\">premi VIP garantiti:</span>",
+        "apyReward": "💰 <span class=\"text-lavender\">Fino al 30% APY</span> sul tuo stake",
+        "airdropReward": "🎁 una quota del <span class=\"text-lavender\">30% in 3 airdrop</span> a tua scelta!",
+        "carReward": "🚗 un biglietto per il <span class=\"text-lavender\">sorteggio di un'auto di lusso</span> a fine anno"
+      }
+    }
+  },
+  "components": {
+    "miniAppBanner": {
+      "title": "Vinci un Rolex a una \n frazione del costo.",
+      "button": "Gioca Ora!"
+    },
+    "miniAppPromoModal": {
+      "title": "Prova la Mini App Lingo su Farcaster!",
+      "description": "Abbiamo lanciato la nostra <strong class=\"text-lavender\">Mini App Lingo</strong> su <strong class=\"text-lavender\">Farcaster:</strong>",
+      "item1": "Sblocca box di regali quotidiani con <strong class=\"text-lavender\">Tickets, Lingo Tokens</strong> o <strong class=\"text-lavender\">USDC</strong>",
+      "item2": "Usa <strong class=\"text-lavender\">Tickets</strong> nella lotteria settimanale per competere per <strong class=\"text-lavender\">premi superiori</strong>",
+      "item3": "Riferisci amici e sali sul leaderboard per guadagnare ricompense garantite in <strong class=\"text-lavender\">USDC</strong>",
+      "item4": "Usa il codice di riferimento qui sotto per reclamare 5 tickets gratuiti e inizia oggi stesso!",
+      "button": "🚀 Inizia a Giocare Ora!"
+    },
+    "celebsSupport": {
+      "title": "Supportato da Celebrità"
+    },
+    "recentClaimsSlider": {
+      "title": "Riscatti Recenti"
+    },
+    "interactiveAsteroid": {
+      "speedUp": "Accelera",
+      "tryAgain": "Riprova!"
+    },
+    "experiencesWrapper": {
+      "comingSoon": "Non è possibile acquistare, le esperienze arrivano presto",
+      "yourExperiences": "Le Tue Esperienze",
+      "finishedExperiences": "Esperienze Terminate",
+      "finishedExperiencesEmpty": "Le esperienze terminate appariranno qui",
+      "yourExperiencesEmpty": "Le tue esperienze riscattate appariranno qui",
+      "loginToSeeExperiences": "Accedi per vedere le esperienze disponibili"
+    },
+    "rafflesWrapper": {
+      "finishedRaffles": "Lotterie Terminate",
+      "yourRafflePrizes": "I Tuoi Premi della Lotteria",
+      "rewardsEmpty": "I tuoi premi appariranno qui",
+      "loginToSeeRewards": "Accedi per vedere i tuoi Premi",
+      "finishedRafflesEmpty": "Le lotterie terminate appariranno qui",
+      "disclaimerLabel": "Disclaimer:",
+      "disclaimer": "I Premi Non Riscattati Saranno Ridisegnati. I vincitori hanno 2 settimane per riscattare i loro premi. Se non riscattati entro questo periodo, i premi saranno ridisegnati e dati a un altro partecipante.",
+      "youWon": "Hai vinto",
+      "youReceived": "Hai ricevuto",
+      "voucher": "Voucher",
+      "youWonExclamation": "Hai vinto!",
+      "luckyWinners": "vincitore fortunato",
+      "luckyWinnersPlural": "vincitori fortunati",
+      "won": "ha vinto",
+      "claim": "Riscatta",
+      "details": "Dettagli"
+    },
+    "tasks": {
+      "title": "Le tue Attività",
+      "activeTitle": "Attività Attive",
+      "completedTitle": "Attività Completate",
+      "boostIntro": "Hai messo in stake",
+      "boostOutro": "lingo bloccato per un valore di ${usd}.",
+      "boostLabel": "Il tuo Boost",
+      "boostSteps": {
+        "free": "Gratis",
+        "holdAny": "Detieni LINGO",
+        "stake100": "Stake $100+",
+        "stake500": "Stake $500+"
+      },
+      "powerMiles": "Power Miles",
+      "youWillReceivePrefix": "Riceverai",
+      "youReceivedPrefix": "Hai ricevuto",
+      "withYourBoost": "con il tuo boost",
+      "claimed": "Riscattato",
+      "emptyActive": "Nessuna attività attiva",
+      "emptyCompleted": "Nessuna attività completata",
+      "loginRequired": "Accedi per vedere le tue attività.",
+      "discordRequired": "Connetti il tuo account Discord per vedere le attività disponibili.",
+      "connectDiscord": "Connetti Discord",
+      "actions": {
+        "claim": "Riscatta",
+        "follow": "Segui",
+        "connect": "Connetti",
+        "getNow": "Ottieni"
+      }
+    },
+    "airdropsWrapper": {
+      "airdropHistory": "Cronologia Airdrop",
+      "yourAirdropsAllocations": "Le Tue Allocazioni Airdrop",
+      "allocationsEmpty": "Le tue allocazioni airdrop appariranno qui",
+      "finishedAirdropsEmpty": "Gli Airdrop terminati appariranno qui",
+      "comingSoon": "Prossimamente",
+      "readyToClaim": "Pronto per il Riscatto",
+      "registrationOpen": "Registrazione Aperta",
+      "pendingAllocation": "Allocazione in Attesa",
+      "details": "Dettagli",
+      "claim": "Riscatta",
+      "userEligible": "utente è idoneo",
+      "usersEligible": "utenti sono idonei",
+      "toReceive": "per ricevere un'allocazione totale di"
+    },
+    "progressModal": {
+      "title": "Elaborazione del Tuo Stake",
+      "description": "Attendi mentre elaboriamo il tuo stake. Potrebbe richiedere alcuni momenti.",
+      "step1": "Passo 1: Validazione dell'importo dello stake",
+      "step2": "Passo 2: Elaborazione della transazione",
+      "step3": "Passo 3: Conferma sulla blockchain",
+      "step4": "Passo 4: Finalizzazione del tuo stake",
+      "processing": "Elaborazione...",
+      "completed": "Completato",
+      "pending": "In Attesa",
+      "confirmWithWallet": "Conferma con il Portafoglio",
+      "processingAction": "Elaborazione Azione",
+      "justAMoment": "Solo un momento...",
+      "approveContractToStake": "Approva il contratto per fare stake",
+      "confirmStaking": "Conferma staking",
+      "confirmClaiming": "Conferma riscatto",
+      "claimAPY": "Riscatta APY",
+      "claim": "Riscatta",
+      "claimAndStake": "Riscatta e Fai Stake",
+      "claimAndStakeAPY": "Riscatta e Fai Stake APY"
+    },
+    "copyLink": {
+      "text": "Copia Link"
+    },
+    "upgradeStake": {
+      "title": "Aggiorna per Potenziare la Tua Potenza",
+      "confirmTitle": "Conferma stake LINGO"
+    },
+    "rewardsWrapper": {
+      "title": "La Tua Cronologia Premi",
+      "emptyText": "La tua cronologia premi apparirà qui"
+    },
+    "elementsWidget": {
+      "earnedElements": "Elementi Guadagnati",
+      "sixthElement": "6° x {count}"
+    },
+    "elementsSheet": {
+      "yourElements": "I Tuoi Elementi"
+    },
+    "badgesWidget": {
+      "yourBadges": "I Tuoi Badge"
+    },
+    "placeholderCard": {
+      "thisSpot": "Questo Posto",
+      "waitingForContent": "sta aspettando contenuto!"
+    },
+    "elementsList": {
+      "collectElementsDescription": "Raccogli gli Elementi 1-5 per sbloccare <span class=\"text-light1 font-medium\">Elemento 6</span> e ottenere vantaggi esclusivi: Fino al 💰30% APY sul tuo stake,<br class=\"max-[800px]:hidden\"> 🎁 una quota del 30% in 3 airdrop a tua scelta, 🚗 un biglietto per un giveaway di auto di lusso a fine anno!",
+      "element": "Elemento {number}",
+      "element6": "Elemento 6"
+    },
+    "experienceClaimForm": {
+      "congratulations": "Congratulazioni!",
+      "detailsEmailed": "I dettagli ti saranno inviati via email a breve",
+      "enterEmail": "Inserisci la tua email per riscattare questa esperienza",
+      "emailPlaceholder": "Inserisci il tuo indirizzo email",
+      "claimNow": "Riscatta Ora",
+      "outOfStock": "Esaurito",
+      "outOfStockMessage": "Questa esperienza è attualmente esaurita",
+      "emailRequired": "L'email è obbligatoria",
+      "invalidEmail": "Inserisci un indirizzo email valido",
+      "unexpectedError": "Si è verificato un errore imprevisto. Riprova."
+    },
+    "testimonialsSlider": {
+      "title": "Storie vere, Premi veri"
+    },
+    "claimStake": {
+      "title": "Ora, conferma il riscatto di LINGO",
+      "confirmTitle": "Ora, conferma il riscatto di LINGO"
+    },
+    "newStake": {
+      "title": "Fai Stake di LINGO per Grandi Premi!",
+      "confirmTitle": "Ora, conferma lo staking di LINGO"
+    },
+    "emailSubmitModal": {
+      "title": "Non Perdere la Tua Vittoria!",
+      "description": "Inserisci la tua email per essere notificato se vinci e per ricevere aggiornamenti sulle prossime lotterie.",
+      "emailLabel": "Il tuo indirizzo email",
+      "emailPlaceholder": "inserisci la tua email",
+      "submit": "Invia"
+    },
+    "claimHeader": {
+      "amount": "Importo",
+      "loginToSee": "Accedi per vedere la tua allocazione LINGO",
+      "noClaimableTokens": "Non hai token riscattabili"
+    },
+    "claimInfoModal": {
+      "titleWarning": "Avviso, potresti perdere se unstake:",
+      "ratePerMonth": "Power Miles / Mese",
+      "element6": "6° Elemento",
+      "whaleBadge": "Whale Badge",
+      "enjoyerBadge": "Enjoyer Badge",
+      "powerBoost": "Power Boost",
+      "title": "Sblocco Token Iniziato!",
+      "description": "Il vesting lineare è ufficialmente iniziato oggi, 12 marzo, sul contratto intelligente.",
+      "importantNote": "Nota Importante",
+      "tokensNotAvailable": "Alcuni token potrebbero non essere ancora disponibili o apparire come 0.",
+      "claimableAmountReaches": "Una volta che il tuo importo riscattabile raggiunge almeno",
+      "onePercentMinimum": "1% della tua allocazione totale di token e un minimo di 1 LINGO",
+      "willBeUpdated": "sarà aggiornato sulla tua dashboard, permettendoti di riscattarlo.",
+      "updateProcessMayTake": "Il processo di aggiornamento potrebbe richiedere",
+      "twentyFourToFortyEightHours": "24-48 ore",
+      "dependingOnVesting": "a seconda del programma di vesting.",
+      "gotIt": "Capito!"
+    },
+    "firstStakeModal": {
+      "title": "Dai 50, Ottieni 50 ⚡ - Invita amici per potenza gratis",
+      "copyLink": "Copia Link",
+      "copied": "Copiato!",
+      "firstStep": "Invita un amico e riceverai <span class=\"text-lavender\">50 Power Miles gratis</span> istantaneamente.",
+      "secondStep": "Inoltre, continuerai a guadagnare <span class=\"text-lavender\">5% dei Power Miles di tuo amico</span> ogni volta che fanno staking",
+      "thirdStep": "Non c'è limite! Invita quanti amici vuoi",
+      "yourReferralLink": "Il Tuo Link di Invito"
+    },
+    "claimBalanceBoxes": {
+      "total": "Totale",
+      "totalClaimed": "Totale Riscattato",
+      "totalLocked": "Totale Bloccato"
+    },
+    "timerBlock": {
+      "validFor": "Valido per:"
+    },
+    "claimCard": {
+      "claimed": "Riscattato",
+      "justNow": "proprio ora",
+      "oneMinuteAgo": "1 minuto fa",
+      "minutesAgo": "{minutes} minuti fa",
+      "oneHourAgo": "1 ora fa",
+      "hoursAgo": "{hours} ore fa",
+      "oneDayAgo": "1 giorno fa",
+      "daysAgo": "{days} giorni fa"
+    },
+    "rewardsWinners": {
+      "title": "Vincitori dei Premi"
+    },
+    "featuredIn": {
+      "title": "Presentato in"
+    },
+    "pageHero": {
+      "normalStaker": "Sei un <br><strong>Normale</strong> Staker",
+      "youAre": "Sei",
+      "articleAn": "un",
+      "articleA": "una",
+      "welcomeToLingoClub": "Benvenuto nel club Lingo",
+      "welcomeToVIPClub": "Benvenuto nel club VIP <strong>0.1%</strong>",
+      "holdings": "Possedimenti",
+      "memberSince": "Membro dal"
+    },
+    "errorMessageModal": {
+      "oops": "Ops!",
+      "somethingWentWrong": "Qualcosa è andato storto",
+      "discordMessage": "Unisciti alla nostra community Discord per assistenza o riprova più tardi.",
+      "retry": "Riprova"
+    },
+    "stakeSuccess": {
+      "congrats": "Congratulazioni!",
+      "lingoPassActive": "Il tuo Lingo Pass\nè ora attivo",
+      "accumulatingPowerMiles": "Ora stai accumulando punti chiamati Power Miles.",
+      "powerMilesDescription": "Una volta raggiunti 100 Power Miles, puoi scambiarli per un'iscrizione alla lotteria. Stai guadagnando",
+      "powerMilesPerDay": "Power Miles / giorno.",
+      "thankYou": "Grazie!"
+    },
+    "stakeConfirm": {
+      "success": "Successo!",
+      "activateLingoPass": "Ora, attiva il tuo <br> Lingo Pass",
+      "oneStepToGo": "Solo un passo da fare — attiva il tuo Lingo Pass! <br><br>",
+      "approveHolding": "Approva il possesso dei tuoi LINGO con il tuo portafoglio per attivare il tuo Lingo Pass e sbloccare i premi.",
+      "continueToActivate": "Continua ad Attivare"
+    },
+    "wheelContainer": {
+      "title": "Smash Gratuito Giornaliero",
+      "description": "Smash l'asteroide per ottenere token LINGO gratuiti!",
+      "alreadyClaimed": "già riscattato",
+      "leftToday": "rimasti oggi",
+      "claimStats": "<strong class=\"text-lavender\">{totalClaimed}</strong> già riscattati<br>{only} <strong class=\"text-lavender\">{distribution}</strong> rimasti oggi",
+      "smashButton": "SMASH!",
+      "noMoreSmash": "Niente più smash oggi!",
+      "comeBackTomorrow": "Torna domani per più token gratuiti!",
+      "congratulations": "Congratulazioni!",
+      "youWon": "Hai vinto",
+      "lingoTokens": "token LINGO!",
+      "claimButton": "RISCATTA",
+      "claiming": "Riscattando...",
+      "claimed": "Riscattato!",
+      "error": "Errore",
+      "tryAgain": "Riprova",
+      "insufficientBalance": "Saldo insufficiente",
+      "pleaseStake": "Fai stake di alcuni LINGO per continuare",
+      "onlyOneSpin": "Solo <span class=\"text-lavender\">1</span> giro al giorno!",
+      "whatsNext": "E ora?",
+      "goodLuck": "Buona fortuna!",
+      "claim": "Riscatta",
+      "orItExpires": "o scade."
+    },
+    "thirdSection": {
+      "unlockElement6": "Sblocca Elemento 6 ed entra nel club esclusivo!",
+      "superchargedStaking": "💰 <span class=\"text-lavender\">Staking Superpotenziato</span> – Ottieni fino al 30% APY sul tuo stake.",
+      "airdropKingStatus": "🎁 <span class=\"text-lavender\">Status Re degli Airdrop</span> – Riscatta una quota del 30% in 3 airdrop a tua scelta!",
+      "yearEndJackpot": "🚗 <span class=\"text-lavender\">Jackpot di Fine Anno</span> – Assicurati un biglietto esclusivo per un giveaway di auto di lusso!"
+    },
+    "selectAmountToBuy": {
+      "selectEntries": "Seleziona quante iscrizioni vuoi",
+      "lingoPassDescription": "Otterrai il Lingo Pass semplicemente <span class=\"text-[#FFBC70]\">tenendo LINGO sul tuo account</span>.",
+      "sellAfterUse": "Puoi facilmente vendere i tuoi LINGO dopo aver usato tutte le iscrizioni.",
+      "entries": "iscrizioni",
+      "worthOfLingo": "valore di Lingo",
+      "forAmountReceive": "Per ${amount} riceverai:",
+      "buyWithCreditCard": "Compra LINGO con carta di credito"
+    },
+    "claimRaffle": {
+      "titleForFree": "Riscatta il Tuo Primo Biglietto della Lotteria Gratuitamente",
+      "titleAndWin": "Riscatta il Tuo Primo Biglietto della Lotteria e Vinci",
+      "smashAsteroid": "Smash l'Asteroide!"
+    },
+    "airdropClaimCardModal": {
+      "claimYourAirdrop": "Riscatta il Tuo Airdrop!",
+      "airdropClaimInstructions": "Istruzioni Riscatto Airdrop",
+      "claimNow": "Riscatta Ora"
+    },
+    "maintenanceModal": {
+      "title": "🚧 Manutenzione in Corso",
+      "description": "Stiamo attualmente eseguendo alcuni aggiornamenti per migliorare la tua esperienza.",
+      "temporarilyUnavailable": "L'app sarà temporaneamente non disponibile.",
+      "appreciatePatience": "Apprezziamo la tua pazienza e torneremo online a breve."
+    },
+    "requestSignLoginModal": {
+      "oops": "Ops!",
+      "somethingWentWrong": "Qualcosa è andato storto",
+      "oneStepAway": "Sei a 1 passo",
+      "fromClaimingPrize": "dal riscattare il tuo premio",
+      "signQuickMessage": "Ora, firma solo un messaggio veloce per confermare che sei davvero tu.",
+      "welcome": "Benvenuto 🎉 Il tuo<br>account è pronto",
+      "discordCommunity": "Unisciti alla nostra <a href=\"https://discord.com/invite/lingo\" class=\"text-[#D4C5EB] cursor-pointer\" target=\"_blank\">community Discord</a> per assistenza o riprova più tardi.",
+      "totallyFree": "Totalmente gratuito, ci vogliono 2 sec.",
+      "needToLoginDifferently": "Devi accedere diversamente? Basta",
+      "disconnect": "disconnettersi",
+      "tryAgain": "Riprova",
+      "continueToSign": "Continua a Firmare",
+      "signingIn": "Accesso in corso..."
+    },
+    "afterFreeSmashModal": {
+      "title": "Ottieni il pass Lingo oggi e ottieni <strong>{entries}</strong> possibilità extra di vincere.",
+      "joinFor10": "Unisciti per <strong>$10</strong> oggi—ottieni <strong>{entries}</strong> iscrizioni bonus subito",
+      "higherOdds": "<strong>{entries}×</strong> probabilità più alte per premi da sogno—auto, Rolex, iPhone, altro",
+      "autoRenewing": "Iscrizioni che si rinnovano automaticamente ogni mese",
+      "passHoldersWin": "<strong>85%</strong> dei possessori di pass vincono almeno un premio",
+      "getPassNow": "Ottieni il tuo pass ora"
+    },
+    "playAndEarnNonstop": {
+      "title": "Gioca e Guadagna Senza Sosta",
+      "description": "Smash asteroidi, raccogli tutti i 5 elementi e sblocca <strong>Elemento 6</strong> — la tua porta d'accesso a ricompense LINGO continue su ogni stake.",
+      "flexibleStaking": "Con lo staking flessibile, guadagni <strong>5% APY</strong>. Vuoi di più? Fai stake per <strong>3 mesi</strong> per guadagnare <strong>10%</strong>, <strong>6 mesi</strong> per <strong>20%</strong>, o <strong>12 mesi</strong> per un massiccio <strong>30% APY</strong>.",
+      "rewardsClaimable": "Le ricompense sono riscattabili ogni <strong>3 mesi</strong>, inviate direttamente al tuo portafoglio — niente auto-staking. Puoi anche scegliere <strong>\"Riscatta e Fai Stake\"</strong> per continuare a comporre. I tuoi guadagni crescono quotidianamente.",
+      "element6Boost": "Più <strong>Elemento 6</strong> possiedi, più potenzi le tue ricompense. Possiedi <strong>5</strong> per un <strong>potenziamento del 5%</strong>, <strong>10</strong> per un <strong>potenziamento del 10%</strong>, e <strong>15</strong> per un <strong>potenziamento del 15%</strong>. Nota: se fai unstake, il tuo potenziatore viene rimosso e tutti gli Elemento 6 vengono bruciati tranne uno. Ogni Elemento 6 dura <strong>12 mesi</strong>."
+    },
+    "raffleEnterForm": {
+      "unlockElement": "Sblocca un elemento",
+      "enterNow": "Iscriviti ora",
+      "buyFor": "Compra per {amount}",
+      "enterFor": "Iscriviti per {amount}"
+    },
+    "confirmClaim": {
+      "lockPeriod": "Periodo di Blocco",
+      "flexible": "Flessibile",
+      "months": "mesi",
+      "until": "fino a",
+      "youWillReceive": "Riceverai",
+      "perDay": "Al Giorno",
+      "powerMiles": "Power Miles",
+      "missingRewards": "Stai perdendo ricompense riscattando LINGO.",
+      "canGetUpTo": "Puoi ottenere fino a",
+      "rewards": "ricompense",
+      "perMonth": "al mese",
+      "getRewards": "Ottieni Ricompense",
+      "claim": "Riscatta",
+      "confirm": "Conferma"
+    },
+    "requireBadgeBlock": {
+      "becomeA": "Ottieni il",
+      "toParticipate": "badge per partecipare",
+      "requires": "Richiede",
+      "stakeLingo": "Fai Stake di LINGO",
+      "openDiscord": "Apri Discord"
+    },
+    "experienceEligibleStatus": {
+      "reach": "Raggiungi",
+      "level": "Livello",
+      "orStake": "o fai stake di",
+      "lingoToClaim": "LINGO per riscattare",
+      "stakeLingo": "Fai Stake di LINGO"
+    },
+    "raffleEnterStatus": {
+      "congrats": "Congratulazioni!",
+      "share": "Condividi",
+      "successfullyEntered": "Hai <span class=\"text-green1\">partecipato</span> con successo alla lotteria. Buona fortuna!",
+      "youGotEntries": "Hai ottenuto <span class=\"text-green1\">{entries}</span>. Buona fortuna!",
+      "xYourChances": "{count}x le tue possibilità",
+      "getMore": "Ottieni di più",
+      "notEnoughPowerMiles": "Non hai abbastanza <strong>Power Miles</strong> per comprare biglietti!",
+      "closeIn": "Chiude tra",
+      "needAtLeast": "Hai bisogno di almeno",
+      "powerMile": "Power Mile",
+      "powerMiles": "Power Miles",
+      "toBuyTicket": "per comprare un biglietto!",
+      "incorrectCode": "Il codice della lotteria è <strong>incorretto</strong>. Riprova",
+      "invalidEmail": "L'email è <strong>non valida</strong>. Riprova",
+      "onlyBuyMax": "Puoi comprare solo <strong>{max}</strong> biglietti massimo"
+    },
+    "extraTicketsModal": {
+      "step1": {
+        "text1": "Tieni <span class=\"text-lavender font-semibold\">{amount} LINGO</span> (${price}) e sblocca:",
+        "text2": "✨ {tickets}x più possibilità di vincere un {prize}!",
+        "text3": "✨ Accesso a più lotterie incluso (Rolexes, $20k Dream Prizes, Vacanze e altro)",
+        "text4": "✨ Airdrop esclusivi da progetti top",
+        "text5": "Nessun vincolo per sempre — incassa quando vuoi dopo."
+      },
+      "dontMissOut": "Non perdere l'occasione!",
+      "getMoreChances": "Ottieni {count}x più possibilità!",
+      "oneEntryOneChance": "1 iscrizione = 1 possibilità di vincere",
+      "selectEntries": "Seleziona quante iscrizioni vuoi",
+      "chooseEntriesAmount": "Scegli la quantità di iscrizioni e il periodo di staking per <span class=\"text-lavender\">{amount} LINGO</span>, poi conferma con il tuo portafoglio!",
+      "holdForPeriod": "Tieni per {period} e Ottieni {entries} iscrizioni",
+      "congrats": "Congratulazioni!",
+      "receivedExtraEntries": "Hai ricevuto {entries} iscrizioni extra!",
+      "goodLuck": "Buona fortuna!",
+      "thankYou": "Grazie",
+      "continue": "Continua",
+      "buyLingoWithCard": "Compra LINGO con carta di credito",
+      "redirectedToKryptonim": "Sarai reindirizzato a Kryptonim, il nostro partner fidato, per un acquisto sicuro.",
+      "holdLingoDescription": "<span class=\"text-lavender text-left tracking-[-0.8px] text-xl font-normal leading-5\">Tieni <span class=\"text-lavender font-semibold\">{amount} LINGO</span> (${price}) e ottieni<br> {tickets}x più possibilità di vincere un {prize}! <br> Nessun vincolo per sempre — incassa quando vuoi dopo.</span>"
+    },
+    "raffleEnterInput": {
+      "amount": "Importo",
+      "tickets": "Biglietti",
+      "max": "Max"
+    },
+    "raffleEnterModal": {
+      "entries": "iscrizioni",
+      "logInToEnter": "Accedi per partecipare"
+    },
+    "raffleWonModalPhysicalContent": {
+      "submitEmailToClaim": "Invia la tua email per riscattare",
+      "enterYourEmail": "inserisci la tua email",
+      "claim": "Riscatta",
+      "congratulations": "Congratulazioni!",
+      "detailsEmailedSoon": "I dettagli per riscattare il tuo premio ti saranno inviati via email a breve",
+      "somethingWentWrong": "Qualcosa è andato storto. Riprova più tardi"
+    },
+    "raffleWinners": {
+      "allWinners": "Tutti i Vincitori"
+    },
+    "raffleWonModalVouchersContent": {
+      "yourVoucherCode": "Il tuo codice voucher",
+      "redeem": "Riscatta"
+    },
+    "raffleWinnersModal": {
+      "entries": "Iscrizioni",
+      "raffleResult": "Risultato Lotteria",
+      "participants": "Partecipanti",
+      "winners": "Vincitori",
+      "youWon": "Hai Vinto {prize}!",
+      "youDidntWin": "Non hai vinto",
+      "youDidntParticipate": "Non hai partecipato",
+      "blockchainProof": "Prova blockchain",
+      "gotIt": "Capito"
+    },
+    "raffleWonCard": {
+      "congratulations": "Congratulazioni!",
+      "youWon": "Hai vinto {prize}",
+      "youReceived": "Hai ricevuto ${amount} Voucher",
+      "youWonExclamation": "Hai vinto!",
+      "claim": "Riscatta",
+      "viewDetails": "Vedi dettagli"
+    },
+    "raffleWonModal": {
+      "congratulations": "Congratulazioni!",
+      "share": "Condividi"
+    },
+    "rewardsPool": {
+      "title": "Pool di Premi",
+      "endingIn": "Termina tra"
+    },
+    "badgeMintModal": {
+      "congratsUnlocked": "Congratulazioni!",
+      "unlockedNewBadge": "Hai sbloccato un nuovo Badge",
+      "receivedBadge": "Hai ricevuto il badge.",
+      "mintAndGet": "Mint e ottieni il badge",
+      "shareOnX": "Condividi su X"
+    },
+    "airdropCardModal": {
+      "dontMissOut": "Non perdere l'occasione!",
+      "walletsEligible": "{count} portafogli idonei",
+      "description": "Descrizione",
+      "loginToCheck": "Accedi per controllare la tua idoneità"
+    },
+    "airdropEligibleStatus": {
+      "eligible": "Idoneo",
+      "notEligible": "Non idoneo",
+      "notified": "Sarai notificato quando l'airdrop sarà pronto per il riscatto",
+      "stakeToQualify": "Fai stake di {amount} LINGO {duration} per qualificarti",
+      "gotIt": "Capito",
+      "stakeLingo": "Fai Stake di LINGO"
+    },
+    "airdropsFinishedModal": {
+      "endedOn": "Terminato il {date}",
+      "eligibilityCriteria": "Criteri di Idoneità",
+      "walletsEligible": "{count} portafogli idonei",
+      "eligibleWallets": "Portafogli Idonei",
+      "elegibleWallet": "wallet idoneo | wallets idonei",
+      "youQualified": "Ti sei qualificato",
+      "youDidntQualify": "Non ti sei qualificato",
+      "you": "Tu",
+      "gotIt": "Capito",
+      "comingSoon": "Prossimamente"
+    },
+    "experienceClaimModal": {
+      "firstInFirstOut": "Primo Arrivato - Primo Servito!",
+      "loginToClaim": "Accedi per Riscattare"
+    },
+    "experiencesFinishedModal": {
+      "endedOn": "Terminato il {date}",
+      "details": "Dettagli",
+      "walletsClaimed": "Portafogli che hanno riscattato",
+      "youClaimed": "Hai riscattato",
+      "youWerentEligible": "Non eri idoneo",
+      "youDidntClaim": "Non hai riscattato",
+      "you": "Tu",
+      "gotIt": "Capito",
+      "comingSoon": "Prossimamente"
+    },
+    "experienceClaimError": {
+      "closeIn": "Chiude tra <span class=\"text-light1\">{time}...</span>"
+    },
+    "baseTimer": {
+      "smashIn": "Smash Tra",
+      "spinIn": "Gira tra"
+    },
+    "badgeObject": {
+      "receive": "Ricevi"
+    },
+    "badgeProgressModal": {
+      "lingoStaked": "LINGO in Stake",
+      "oops": "Ops!",
+      "somethingWentWrong": "Qualcosa è andato storto",
+      "confirmMinting": "Conferma il minting del badge con il tuo portafoglio",
+      "retry": "Riprova",
+      "confirmClaiming": "Conferma riscatto",
+      "mintingInProgress": "Minting in corso"
+    },
+    "badgesSheet": {
+      "yourAchievementBadges": "I Tuoi Badge di Realizzazione"
+    }
+  },
+  "faq": {
+    "title": "Domande Frequenti",
+    "superchargedStaking": {
+      "title": "Come funziona lo Staking Superpotenziato?",
+      "description": "Una volta sbloccato Elemento 6, guadagnerai token LINGO continuamente su tutti i tuoi stake, e i tuoi guadagni diventano riscattabili ogni <strong>3 mesi</strong>.",
+      "stakingOptions": "Le Tue Opzioni di Staking e Tassi APY",
+      "flexibleStaking": "Staking Flessibile",
+      "lockedStaking": "Staking Bloccato",
+      "claimingRewards": "Riscattare le Tue Ricompense",
+      "claimEvery3Months": "Puoi <strong>riscattare le tue ricompense ogni 3 mesi</strong>, e vanno direttamente al tuo portafoglio—immediatamente accessibili, non automaticamente stakate.",
+      "claimAndStake": "Avrai anche l'opzione di <strong>Riscattare e Fare Stake</strong> per continuare a far crescere le tue ricompense.",
+      "earningsAccrueDaily": "I tuoi guadagni <strong>si accumulano quotidianamente</strong>, quindi le tue ricompense aumentano nel tempo.",
+      "boostingEarnings": "Potenziare i Tuoi Guadagni con Elemento 6",
+      "multipleElement6": "Se possiedi più <strong>Elemento 6</strong>, ottieni ricompense di staking extra:",
+      "unstakingRules": "Regole di Unstaking e Elemento 6",
+      "unstakeLoseBooster": "Se fai <strong>unstake</strong>, <strong>perdi il tuo potenziatore</strong>—tutti i tuoi <strong>Elemento 6</strong> andranno persi <strong>tranne uno</strong>.",
+      "element6Expires": "Ogni <strong>Elemento 6</strong> scade <strong>un anno</strong> dopo averlo acquisito."
+    },
+    "airdropKingStatus": {
+      "title": "Come funziona lo Status Re degli Airdrop?",
+      "description": "Metteremo da parte <strong>30% dell'allocazione totale</strong> esclusivamente per i possessori di <strong>Elemento 6</strong>. Se possiedi <strong>Elemento 6</strong>, potrai registrarti per l'airdrop direttamente all'interno del prodotto. L'importo riservato sarà poi <strong>condiviso tra tutti gli utenti Elemento 6 che si candidano</strong>."
+    },
+    "raffleWinners": {
+      "title": "Come vengono selezionati i vincitori delle lotterie?",
+      "description": "Per garantire una lotteria <strong>equa, trasparente e a prova di manomissione</strong>, utilizziamo una combinazione di <strong>Chainlink VRF</strong> per generare casualità verificabile e <strong>seedrandom</strong> per la selezione deterministica dei vincitori. Questo processo garantisce che nessuno possa manipolare i risultati e chiunque possa verificare l'esito.",
+      "howItWorks": "Come Funziona:",
+      "fileHashing": "Hashing del File – Identificatore a Prova di Manomissione",
+      "fileHashingDesc": "La lista dei partecipanti (inclusi i conteggi dei biglietti) viene sottoposta a hash per creare un identificatore unico a prova di manomissione. Questo assicura che qualsiasi modifica alla lista sia facilmente rilevabile.",
+      "seedGeneration": "Generazione del Seed con Chainlink VRF – Casualità Verificabile",
+      "seedGenerationDesc": "L'hash del file e l'ID della lotteria vengono utilizzati come input per generare <strong>tre grandi numeri casuali</strong> (un seed casuale) tramite <strong>Chainlink VRF</strong> (Verifiable Random Function). Chainlink VRF fornisce una prova crittografica di come i valori casuali sono stati generati, garantendo equità e trasparenza. La prova viene verificata on-chain prima dell'uso, assicurando che nessuna parte possa manipolare.",
+      "onChainRecording": "Registrazione On-Chain – Trasparenza e Immutabilità",
+      "onChainRecordingDesc": "Il seed casuale generato e la sua prova crittografica associata vengono registrati sulla blockchain. Questo assicura che il processo sia trasparente, verificabile e immutabile, poiché il seed non può essere alterato dopo essere stato memorizzato.",
+      "winnerSelection": "Selezione dei Vincitori con seedrandom – Equa e Deterministica",
+      "verifiedSeed": "Il <strong>seed casuale verificato</strong> da Chainlink VRF viene inserito nella libreria <strong>seedrandom</strong>, che produce <strong>numeri pseudo-casuali deterministici</strong> basati sul seed.",
+      "pseudoRandomNumbers": "Questi numeri pseudo-casuali vengono poi utilizzati per selezionare equamente i vincitori dalla lista dei partecipanti.",
+      "verifiableReproducible": "Poiché <strong>seedrandom</strong> genera numeri in modo prevedibile ma equo dal seed dato, il processo rimane <strong>verificabile e riproducibile</strong> da chiunque utilizzi lo stesso seed.",
+      "finishedRaffleDetails": "Dettagli Lotteria Terminata – Trasparenza Blockchain",
+      "blockchainTransaction": "Una volta completata la lotteria, i dettagli della transazione blockchain possono essere controllati nei <strong>dettagli della lotteria terminata</strong> accessibili dalla <strong>lista delle lotterie terminate</strong>.",
+      "fullTransparency": "Questo assicura piena trasparenza, permettendo a chiunque di verificare i vincitori rieseguendo il processo di selezione utilizzando il seed registrato e la libreria <strong>seedrandom</strong>."
+    },
+    "howItWorks": {
+      "title": "Come funziona?",
+      "description": "La Piattaforma Lingo funziona con Power Miles, che guadagni facendo stake di token LINGO. Usa Power Miles per smashare asteroidi (100 Power Miles per smash) o partecipare a lotterie settimanali.",
+      "eachSmashUnlocks": "Ogni smash sblocca un Elemento ricompensa:",
+      "uniqueElements": "Ci sono 5 Elementi unici, ognuno con rarità diversa.",
+      "collectAll5": "Raccogli tutti i 5 per sbloccare Elemento 6, che garantisce premi esclusivi—più ne hai, più grandi sono le ricompense.",
+      "everyElementGrants": "Ogni Elemento concede anche un biglietto della lotteria, con Elementi più rari che offrono premi più grandi.",
+      "noLossesJustRewards": "Se non vinci una lotteria, il 30% dei tuoi Power Miles viene rimborsato, permettendoti di smashare di nuovo. Nessuna perdita, solo ricompense!",
+      "buyRaffleTickets": "Puoi anche comprare biglietti della lotteria con Power Miles—più biglietti, più alte le tue possibilità di vincere. Ogni lotteria ha un prezzo fisso del biglietto. 🚀"
+    },
+    "whatRewards": {
+      "title": "Che premi posso vincere?",
+      "unlockingElement6": "Sbloccare Elemento 6 ti garantisce premi di livello superiore:",
+      "superchargedStaking": "Staking Superpotenziato – Guadagna fino al 30% APY sul tuo stake.",
+      "airdropKingStatus": "Status Re degli Airdrop – Ottieni una quota del 30% in tre airdrop a tua scelta.",
+      "yearEndJackpot": "Jackpot di Fine Anno – Assicurati un biglietto per un giveaway di auto di lusso.",
+      "additionalRewards": "Inoltre, Lingo offre una varietà di altre ricompense emozionanti, inclusi:",
+      "prizeRaffles": "Lotterie di premi con gift card, iPhone, laptop, vacanze, PS5, auto e altro. A differenza delle lotterie tradizionali, i partecipanti attivi vincono regolarmente premi piccoli o grandi con Lingo!",
+      "partnerAirdrops": "Airdrop di token partner – ottieni token gratuiti da progetti di punta.",
+      "nftBadges": "Badge NFT per mostrare i tuoi successi (in arrivo!)",
+      "exclusiveOffers": "Sconti e offerte partner esclusive (in arrivo!)"
+    },
+    "staking": {
+      "title": "Come funziona lo staking?",
+      "savingsAccount": "Lo staking funziona come un conto di risparmio—ma invece di guadagnare interessi, generi Power Miles per giocare e vincere premi.",
+      "stakeLingo": "Fai stake di token LINGO per iniziare a guadagnare Power Miles automaticamente.",
+      "chooseBetween": "Scegli tra:",
+      "flexibleStaking": "Staking flessibile – preleva in qualsiasi momento.",
+      "fixedStaking": "Staking fisso (3, 6 o 12 mesi) – guadagna Power Miles più velocemente con un tasso potenziato.",
+      "afterStakingPeriod": "Dopo che il periodo di staking termina, puoi:",
+      "extendStake": "Estendere il tuo stake per un altro periodo fisso per continuare a guadagnare più velocemente.",
+      "withdrawTokens": "Prelevare i tuoi token—i tuoi Power Miles continueranno ad accumularsi, solo senza il potenziamento.",
+      "baseBlockchain": "Lo staking avviene sulla blockchain Base per sicurezza ed efficienza."
+    },
+    "powerMilesCalculation": {
+      "title": "Come vengono calcolati i Power Miles?",
+      "moreLingoMoreMiles": "Più LINGO fai stake, più Power Miles guadagni.",
+      "accumulateHourly": "I Power Miles si accumulano orariamente in base alle tue posizioni di staking attive.",
+      "balanceTiedToWallet": "Il tuo saldo Power Miles è direttamente collegato al tuo portafoglio e si aggiorna in tempo reale.",
+      "earningRates": "Tassi di guadagno:",
+      "flexibleStakingRate": "Staking flessibile – 1 Power Mile al giorno per ogni 20 LINGO stakati.",
+      "fixedStakingRate": "Staking fisso (3, 6 o 12 mesi) – fornisce un potenziamento, permettendoti di accumulare Power Miles più velocemente."
+    }
+  }
+}
