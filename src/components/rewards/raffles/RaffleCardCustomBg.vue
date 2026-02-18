@@ -82,7 +82,7 @@ import bgGlow from '@/assets/images/raffles/raffle-card-bg-glow.svg'
 import overlay from '@/assets/images/raffles/raffle-card-overlay.svg'
 import prizeImage from '@/assets/images/raffles/raffle-car-prize.png'
 
-const { t } = useTranslation()
+const { t: _t } = useTranslation()
 
 const props = defineProps<{
   raffle: Raffle
@@ -100,14 +100,8 @@ const { isConnected } = useGetMe()
 const showModal = ref(route.query.raffleId === props.raffle.id || false)
 const showExtraTicketsModal = ref(false)
 const haveExtraTicketsOption = computed(() => Boolean(props.raffle.metadata.extraTickets?.onStake))
-const { isFuture } = useRaffles()
-const { totalPowerMiles } = useStakes()
-
-const hasEnoughTickets = computed(() => {
-  if (!isConnected.value) return false
-  if (props.raffle.ticketPrice === 0) return true
-  return Number(totalPowerMiles.value) >= props.raffle.ticketPrice
-})
+const { isFuture: _isFuture } = useRaffles()
+useStakes()
 
 const purchaseSuccessId = ref<string>(route.query.purchaseSuccessId as string)
 
@@ -117,10 +111,6 @@ watch(purchaseSuccessId, (value) => {
     router.replace({ query: { ...route.query, purchaseSuccessId: undefined } })
   }
 }, { immediate: true })
-
-const handleEnter = () => {
-  showModal.value = true
-}
 
 onMounted(() => {
   if (route.query.raffleId === props.raffle.id) {

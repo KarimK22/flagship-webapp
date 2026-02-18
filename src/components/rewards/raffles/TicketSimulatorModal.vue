@@ -227,7 +227,7 @@ import { formatNumberToUS } from '@/composables/helpers'
 import { useLingoPrice } from '@/composables/contracts/lingo-price'
 import { LingoRouteName } from '@/router/routes'
 
-const props = defineProps<{
+defineProps<{
   modelValue: boolean
 }>()
 
