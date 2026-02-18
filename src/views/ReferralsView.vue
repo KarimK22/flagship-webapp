@@ -10,7 +10,7 @@ import telegramGradientIcon from '@/assets/icons/gradient-telegram.svg'
 
 import { useGetMyReferrals } from '@/composables/get-my-referrals'
 import { EButtonColor } from '@/types/shared/button'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import IconButtonWrapper from '@/components/IconButtonWrapper.vue'
 import mixpanel from 'mixpanel-browser'
 import { useGetMe } from '@/composables/get-me'
@@ -23,7 +23,18 @@ const { isConnected } = useGetMe()
 const { connect } = useWalletConnect()
 const { data } = useGetMyReferrals()
 const { t } = useTranslation()
-const { referralProgress } = useRaffleReferralProgress()
+const { referralProgress: _referralProgress } = useRaffleReferralProgress()
+
+// TODO: Remove mock data — temporary preview for development
+const referralProgress = ref({
+  referredCount: 3,
+  milestones: [
+    { count: 1, tickets: 5, achieved: true },
+    { count: 5, tickets: 30, achieved: false },
+    { count: 10, tickets: 100, achieved: false },
+  ],
+  nextMilestone: { count: 5, tickets: 30, achieved: false },
+})
 
 const referralLink = computed(() => {
   const origin = window.location.origin
