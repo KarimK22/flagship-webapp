@@ -19,6 +19,7 @@ import { useStaking } from '@/composables/contracts/staking'
 import { useBalance } from '@/composables/contracts/balance'
 import ResultModal from '@/components/staking-view/stake-flow/ResultModal.vue'
 import ProgressModal from '@/components/staking-view/stake-flow/ProgressModal.vue'
+import NoLingoModal from '@/components/staking-view/stake-flow/NoLingoModal.vue'
 import { status } from '@/composables/contracts/status'
 import GlowButton from '@/components/ui/button/GlowButton.vue'
 import { EButtonColor } from '@/types/shared/button'
@@ -63,8 +64,9 @@ const { lockConfig } = useConfig()
 const { oneLingoBaseDailyPower, refetchMyStakes, hasStakes } = useStakes()
 const { setCurrentAccountValue } = useFirstStakeModal()
 
-const { refetchTokenBalance, tokenBalanceAsString: userBalance } = useBalance()
+const { refetchTokenBalance, tokenBalanceAsString: userBalance, tokenBalance } = useBalance()
 const smashPowerMilesCost = 100
+const showNoLingoModal = ref<boolean>(false)
 const selectedPeriod = ref<LOCK_DURATION_ID>(LOCK_DURATION_ID.TWELVE_MONTHS)
 const amount = ref<string>('0')
 const isConfirm = ref<boolean>(false)
@@ -92,6 +94,20 @@ onMounted(() => {
     loading: false,
   }
 })
+
+// Show modal when user has no LINGO and is trying to stake
+const noLingoModalShown = ref(false)
+watch(tokenBalance, (balance) => {
+  if (
+    props.transactionType === TRANSACTION_TYPE.STAKE
+    && balance === 0
+    && accountAddress.value
+    && !noLingoModalShown.value
+  ) {
+    showNoLingoModal.value = true
+    noLingoModalShown.value = true
+  }
+}, { immediate: true })
 
 watch(() => props.stake, (stake) => {
   if (stake?.id) {
@@ -326,6 +342,10 @@ const buyLingo = () => {
       v-model="showResultModalRef"
       :transaction-type="transactionType"
       @retry-transaction="handleOnConfirm"
+    />
+    <NoLingoModal
+      v-model="showNoLingoModal"
+      @buy-lingo="buyLingo"
     />
   </div>
   <div class="flex flex-col">
