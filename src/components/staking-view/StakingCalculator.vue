@@ -16,7 +16,6 @@ import checkIcon from '@/assets/images/staking/check-period.svg'
 import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import starIcon from '@/assets/icons/star.svg'
-import stakeInfoBg from '@/assets/images/staking/stake-info-bg.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
@@ -319,13 +318,8 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </Transition>
 
-    <!-- 4. Stats Row (CSS glow background) -->
+    <!-- 4. Stats Row -->
     <div class="stats-row">
-      <img
-        :src="stakeInfoBg"
-        alt=""
-        class="absolute inset-0 w-full h-full object-cover pointer-events-none"
-      >
       <div class="stat">
         <InlineSvg
           :src="powerMilesIcon"
@@ -524,24 +518,22 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 /* Selected border glow */
 .selected-border {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  border-radius: 18px;
-  background: linear-gradient(#0b0b1300, #0b0b13) padding-box, linear-gradient(to top, #5858F5, transparent 76%) border-box;
-  border: 1px solid transparent;
-  z-index: -1;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.selected-border-active {
-  opacity: 1;
   top: -2px;
   left: -2px;
   width: calc(100% + 4px);
   height: calc(100% + 4px);
+  border-radius: 18px;
+  background: linear-gradient(#0b0b1300, #0b0b13) padding-box, linear-gradient(to top, #5858F5, #5858F580) border-box;
+  border: 2px solid transparent;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s;
+  box-shadow: 0 0 0 0 rgba(88, 88, 245, 0);
+}
+
+.selected-border-active {
+  opacity: 1;
+  box-shadow: 0 0 16px 0 rgba(88, 88, 245, 0.35), 0 0 40px -4px rgba(88, 88, 245, 0.15);
 }
 
 /* === Reward Cards === */
