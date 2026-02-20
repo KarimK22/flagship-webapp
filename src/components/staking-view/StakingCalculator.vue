@@ -23,6 +23,8 @@ import giftBoxImg from '@/assets/images/gift-box.png'
 import starIcon from '@/assets/icons/star.svg'
 import powerIcon from '@/assets/images/game/power.svg'
 import lockRewardsBg from '@/assets/images/staking/lock-rewards-bg.png'
+import raffleCardBgGlow from '@/assets/images/raffles/raffle-card-bg-glow.svg'
+import stakeInfoBg from '@/assets/images/staking/stake-info-bg.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
@@ -297,7 +299,13 @@ const tierPrizes: Partial<Record<LockId, string>> = {
     <div class="reward-row">
       <!-- Welcome Wheel -->
       <div class="reward-card reward-card--welcome">
-        <div class="reward-card-glow reward-card-glow--blue" />
+        <div class="absolute inset-0 pointer-events-none">
+          <InlineSvg
+            :src="raffleCardBgGlow"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] max-w-none"
+            unique-ids="reward-bg-welcome"
+          />
+        </div>
         <span class="reward-tag reward-tag--welcome">One-time</span>
         <img :src="giftBoxImg" alt="" class="reward-card-icon size-8">
         <span class="reward-label">Welcome Wheel</span>
@@ -312,7 +320,13 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 
       <!-- Staking Wheel -->
       <div class="reward-card reward-card--staking">
-        <div class="reward-card-glow reward-card-glow--purple" />
+        <div class="absolute inset-0 pointer-events-none" style="transform: rotate(180deg)">
+          <InlineSvg
+            :src="raffleCardBgGlow"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] max-w-none"
+            unique-ids="reward-bg-staking"
+          />
+        </div>
         <span class="reward-tag reward-tag--staking">Monthly</span>
         <InlineSvg
           :src="starIcon"
@@ -332,7 +346,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 
     <!-- 4. Stats Row (CSS glow background) -->
     <div class="stats-row">
-      <div class="stats-row-glow" />
+      <img
+        :src="stakeInfoBg"
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      >
       <div class="stat">
         <InlineSvg
           :src="powerMilesIcon"
@@ -636,73 +654,6 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* CSS glow orbs (matching PriceInput.vue .lights pattern) */
-.reward-card-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.reward-card-glow--blue::after {
-  content: "";
-  position: absolute;
-  top: -20px;
-  right: -40px;
-  width: 160px;
-  height: 120px;
-  background: #5858F5;
-  border-radius: 50%;
-  opacity: 0.12;
-  mix-blend-mode: screen;
-  filter: blur(40px);
-}
-
-.reward-card-glow--blue::before {
-  content: "";
-  position: absolute;
-  bottom: -30px;
-  left: -20px;
-  width: 120px;
-  height: 100px;
-  background: #3333ff;
-  border-radius: 50%;
-  opacity: 0.08;
-  mix-blend-mode: screen;
-  filter: blur(36px);
-}
-
-.reward-card-glow--purple::after {
-  content: "";
-  position: absolute;
-  top: -20px;
-  left: -30px;
-  width: 140px;
-  height: 120px;
-  background: #C95CFF;
-  border-radius: 50%;
-  opacity: 0.1;
-  mix-blend-mode: screen;
-  filter: blur(40px);
-}
-
-.reward-card-glow--purple::before {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  right: -30px;
-  width: 120px;
-  height: 100px;
-  background: #5858F5;
-  border-radius: 50%;
-  opacity: 0.08;
-  mix-blend-mode: screen;
-  filter: blur(36px);
-}
-
 .reward-card-icon {
   z-index: 1;
   margin-bottom: 2px;
@@ -781,47 +732,6 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   position: relative;
   background: #0C0C14;
   border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* CSS glow for stats row (matching PriceInput.vue .lights) */
-.stats-row-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.stats-row-glow::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 300px;
-  height: 150px;
-  background: #c95cff;
-  border-radius: 50%;
-  opacity: 0.08;
-  mix-blend-mode: screen;
-  filter: blur(50px);
-  pointer-events: none;
-}
-
-.stats-row-glow::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 200px;
-  height: 120px;
-  background: #3333ff;
-  border-radius: 50%;
-  opacity: 0.1;
-  mix-blend-mode: screen;
-  filter: blur(44px);
-  pointer-events: none;
 }
 
 .stat {
