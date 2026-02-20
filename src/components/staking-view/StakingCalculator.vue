@@ -13,11 +13,9 @@ import dollarIcon from '@/assets/images/dollar-icon.svg'
 import boltIcon from '@/assets/images/bolt.svg'
 import checkIcon from '@/assets/images/staking/check-period.svg'
 import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
-import apyCardsBg from '@/assets/images/staking/apy-cards-bg.png'
-import holdingCardsBg from '@/assets/images/staking/holding-cards-bg.png'
-import starIcon from '@/assets/icons/star.svg'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import giftBoxImg from '@/assets/images/gift-box.png'
+import starIcon from '@/assets/icons/star.svg'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
@@ -204,7 +202,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </div>
 
-    <!-- 2. Lock Period Cards (matching LockPeriods/StakeOption design) -->
+    <!-- 2. Lock Period Cards -->
     <div class="lock-section">
       <span class="text-sm text-purple-gray tracking-[0.42px] font-semibold">Lock Period</span>
       <div class="lock-grid">
@@ -251,59 +249,53 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </div>
 
-    <!-- 3. Reward Cards (with apy-cards-bg backgrounds) -->
+    <!-- 3. Reward Cards (CSS glow backgrounds) -->
     <div class="reward-row">
       <!-- Welcome Wheel -->
-      <div
-        :style="{ backgroundImage: `url(${apyCardsBg})` }"
-        class="reward-card bg-cover bg-left"
-      >
+      <div class="reward-card reward-card--welcome">
+        <div class="reward-card-glow reward-card-glow--blue" />
         <span class="reward-tag reward-tag--welcome">One-time</span>
         <img :src="giftBoxImg" alt="" class="reward-card-icon size-8">
-        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px] z-1">Welcome Wheel</span>
+        <span class="reward-label">Welcome Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(welcomeSpins) }}</span>
           <span class="reward-unit">Spins</span>
         </div>
-        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4] z-1">
+        <span class="reward-meta">
           ~${{ formatNumberToUS(welcomeEstValue) }} est. value
         </span>
       </div>
 
       <!-- Staking Wheel -->
-      <div
-        :style="{ backgroundImage: `url(${apyCardsBg})` }"
-        class="reward-card bg-cover bg-right"
-      >
+      <div class="reward-card reward-card--staking">
+        <div class="reward-card-glow reward-card-glow--purple" />
         <span class="reward-tag reward-tag--staking">Monthly</span>
         <InlineSvg
           :src="starIcon"
           class="reward-card-icon size-7"
           unique-ids="calc-star-staking"
         />
-        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px] z-1">Staking Wheel</span>
+        <span class="reward-label">Staking Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(monthlySpins) }}</span>
           <span class="reward-unit">Spins/mo</span>
         </div>
-        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4] z-1">
+        <span class="reward-meta">
           {{ currentMonthlyBase?.name || '\u2014' }} tier &middot; ~${{ formatNumberToUS(monthlyEstValue) }}/mo
         </span>
       </div>
     </div>
 
-    <!-- 4. Stats Row (with holding-cards-bg background) -->
-    <div
-      :style="{ backgroundImage: `url(${holdingCardsBg})` }"
-      class="stats-row bg-cover bg-center"
-    >
+    <!-- 4. Stats Row (CSS glow background) -->
+    <div class="stats-row">
+      <div class="stats-row-glow" />
       <div class="stat">
         <InlineSvg
           :src="powerMilesIcon"
           class="size-10"
           unique-ids="calc-power-lg"
         />
-        <span class="text-[10px] font-semibold text-purple-gray uppercase tracking-[0.6px]">Power Miles</span>
+        <span class="stat-label">Power Miles</span>
         <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
           {{ displayPowerMiles }}
         </h2>
@@ -315,7 +307,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
           class="size-6"
           unique-ids="calc-dollar-stat"
         />
-        <span class="text-[10px] font-semibold text-purple-gray uppercase tracking-[0.6px]">Staked Value</span>
+        <span class="stat-label">Staked Value</span>
         <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
           ${{ formatNumberToUS(usdAmount) }}
         </h2>
@@ -400,7 +392,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   gap: 24px;
 }
 
-/* === Amount Input Section (PriceInput style) === */
+/* === Amount Input Section === */
 .amount-section {
   display: flex;
   flex-direction: column;
@@ -466,20 +458,16 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 .lock-card-pos-3 { background-position: -640px center; }
 
 @media (max-width: 560px) {
-  .lock-grid {
-    flex-wrap: wrap;
-  }
   .lock-card {
     min-width: calc(50% - 1px);
   }
 }
 
-/* Flare effect (from StakeOption.vue) */
+/* Flare effect */
 .flare {
   width: 100%;
   position: absolute;
   filter: blur(0px);
-  color: #fff;
   overflow: hidden;
   top: 0px;
   left: 0px;
@@ -498,7 +486,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   filter: blur(4px);
 }
 
-/* Selected border glow (from StakeOption.vue) */
+/* Selected border glow */
 .selected-border {
   position: absolute;
   top: 0px;
@@ -536,8 +524,77 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   gap: 2px;
   padding: 12px 14px 16px;
   border-radius: 16px;
+  background: #0C0C14;
   overflow: hidden;
   isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* CSS glow orbs (matching PriceInput.vue .lights pattern) */
+.reward-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.reward-card-glow--blue::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  width: 160px;
+  height: 120px;
+  background: #5858F5;
+  border-radius: 50%;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  filter: blur(40px);
+}
+
+.reward-card-glow--blue::before {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: -20px;
+  width: 120px;
+  height: 100px;
+  background: #3333ff;
+  border-radius: 50%;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  filter: blur(36px);
+}
+
+.reward-card-glow--purple::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  width: 140px;
+  height: 120px;
+  background: #C95CFF;
+  border-radius: 50%;
+  opacity: 0.1;
+  mix-blend-mode: screen;
+  filter: blur(40px);
+}
+
+.reward-card-glow--purple::before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -30px;
+  width: 120px;
+  height: 100px;
+  background: #5858F5;
+  border-radius: 50%;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  filter: blur(36px);
 }
 
 .reward-card-icon {
@@ -567,6 +624,15 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   color: #d490ff;
 }
 
+.reward-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-purple-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  z-index: 1;
+}
+
 .reward-hero {
   display: flex;
   align-items: baseline;
@@ -589,15 +655,67 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   color: var(--color-purple-gray);
 }
 
+.reward-meta {
+  font-size: 11px;
+  color: var(--color-purple-gray);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+  z-index: 1;
+}
+
 /* === Stats Row === */
 .stats-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 20px;
+  padding: 20px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
+  background: #0C0C14;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* CSS glow for stats row (matching PriceInput.vue .lights) */
+.stats-row-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stats-row-glow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 300px;
+  height: 150px;
+  background: #c95cff;
+  border-radius: 50%;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.stats-row-glow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 200px;
+  height: 120px;
+  background: #3333ff;
+  border-radius: 50%;
+  opacity: 0.1;
+  mix-blend-mode: screen;
+  filter: blur(44px);
+  pointer-events: none;
 }
 
 .stat {
@@ -606,6 +724,15 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  z-index: 1;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-purple-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .stat-divider {
@@ -614,6 +741,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   background: rgba(255, 255, 255, 0.08);
   margin: 0 16px;
   flex-shrink: 0;
+  z-index: 1;
 }
 
 /* === Loss Aversion Banner === */
