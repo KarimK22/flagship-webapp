@@ -2,12 +2,9 @@
 import { computed, ref } from 'vue'
 import { useLingoPrice } from '@/composables/contracts/lingo-price'
 import { formatNumberToUS } from '@/composables/helpers'
-import InlineSvg from 'vue-inline-svg'
-import lingoIcon from '@/assets/images/lingo-icon.svg'
-
 const { price } = useLingoPrice()
 
-const amount = ref<number>(1000)
+const usdAmount = ref<number>(1000)
 const selectedLock = ref<'3mo' | '6mo' | '12mo'>('12mo')
 
 const lockOptions = [
@@ -31,7 +28,10 @@ const bonusSpinTiers = [
   { min: 25000, max: Infinity, label: '$25K+', bonusPct: 150 },
 ]
 
-const fiatValue = computed(() => amount.value * price.value)
+const lingoEquivalent = computed(() => {
+  if (!price.value || price.value <= 0) return 0
+  return Math.floor(usdAmount.value / price.value)
+})
 
 function getBonusPct(usdValue: number): number {
   for (let i = bonusSpinTiers.length - 1; i >= 0; i--) {
@@ -42,9 +42,9 @@ function getBonusPct(usdValue: number): number {
   return 0
 }
 
-const baseSpins = computed(() => Math.floor(fiatValue.value / 100))
+const baseSpins = computed(() => Math.floor(usdAmount.value / 100))
 
-const bonusPct = computed(() => getBonusPct(fiatValue.value))
+const bonusPct = computed(() => getBonusPct(usdAmount.value))
 
 const bonusSpins = computed(() => Math.floor(baseSpins.value * (bonusPct.value / 100)))
 
@@ -52,12 +52,12 @@ const totalSpins = computed(() => baseSpins.value + bonusSpins.value)
 
 const currentWheel = computed(() => wheelTiers[selectedLock.value])
 
-const presetAmounts = [100, 500, 1000, 5000, 10000, 50000]
+const presetAmounts = [250, 500, 1000, 5000, 10000, 25000]
 
 const handleAmountInput = (event: Event) => {
   const input = event.target as HTMLInputElement
   const value = Number(input.value)
-  if (value >= 0) amount.value = value
+  if (value >= 0) usdAmount.value = value
 }
 
 const quickExamples = [
@@ -126,24 +126,20 @@ const quickExamples = [
       <!-- Amount Input -->
       <div class="mb-3">
         <div class="flex items-center justify-between mb-1.5">
-          <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Stake Amount</span>
+          <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Stake Value (USD)</span>
           <span class="text-xs text-purple-gray">
-            ~<span class="text-soft-gray">${{ formatNumberToUS(fiatValue) }}</span> USD
+            ~<span class="text-soft-gray">{{ formatNumberToUS(lingoEquivalent) }}</span> LINGO
           </span>
         </div>
         <div class="input-field">
-          <InlineSvg
-            :src="lingoIcon"
-            class="size-7 flex-shrink-0"
-            unique-ids="calc-lingo"
-          />
+          <span class="text-lavender text-2xl font-semibold flex-shrink-0">$</span>
           <input
             type="number"
             class="flex-1 text-lavender text-2xl sm:text-3xl tracking-[-1.2px] bg-transparent outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-            :value="amount"
+            :value="usdAmount"
             @input="handleAmountInput"
           >
-          <span class="text-purple-gray text-xs font-semibold">LINGO</span>
+          <span class="text-purple-gray text-xs font-semibold">USD</span>
         </div>
       </div>
 
@@ -153,10 +149,10 @@ const quickExamples = [
           v-for="val in presetAmounts"
           :key="val"
           class="preset-chip"
-          :class="{ 'preset-chip--active': amount === val }"
-          @click="amount = val"
+          :class="{ 'preset-chip--active': usdAmount === val }"
+          @click="usdAmount = val"
         >
-          {{ formatNumberToUS(val) }}
+          ${{ formatNumberToUS(val) }}
         </button>
       </div>
 
@@ -168,7 +164,7 @@ const quickExamples = [
             v-for="tier in bonusSpinTiers"
             :key="tier.min"
             class="bonus-tier-chip"
-            :class="{ 'bonus-tier-chip--active': fiatValue >= tier.min }"
+            :class="{ 'bonus-tier-chip--active': usdAmount >= tier.min }"
           >
             <span class="text-xs font-semibold">{{ tier.label }}</span>
             <span class="text-[10px] text-amber-soft">+{{ tier.bonusPct }}%</span>
