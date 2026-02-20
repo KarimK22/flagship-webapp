@@ -14,6 +14,12 @@ const { connect } = useWalletConnect()
 const selectedLock = ref<'3mo' | '6mo' | '12mo'>('12mo')
 const showWheelDetails = ref(false)
 
+// === Demo mode ===
+const demoMode = ref(false)
+const DEMO_USD = 2500
+const DEMO_LINGO = 100000
+const showAsConnected = computed(() => isConnected.value || demoMode.value)
+
 const lockOptions = [
   { id: '3mo' as const, label: '3 Months', short: '3M' },
   { id: '6mo' as const, label: '6 Months', short: '6M' },
@@ -35,10 +41,16 @@ const bonusSpinTiers = [
   { min: 25000, max: Infinity, label: '$25K+', bonusPct: 150 },
 ]
 
-// USD value derived from user's actual staked LINGO
+// USD value derived from user's actual staked LINGO (or demo data)
 const usdAmount = computed(() => {
+  if (demoMode.value) return DEMO_USD
   if (!price.value || price.value <= 0) return 0
   return Math.round(totalStakedLingo.value * price.value)
+})
+
+const displayLingo = computed(() => {
+  if (demoMode.value) return DEMO_LINGO
+  return Math.floor(totalStakedLingo.value)
 })
 
 function getBonusPct(usdValue: number): number {
@@ -170,9 +182,9 @@ const matchingExampleIndex = computed(() => {
       </h2>
     </div>
 
-    <!-- Not connected: Connect Wallet CTA -->
+    <!-- Not connected (and not in demo): Connect Wallet CTA -->
     <div
-      v-if="!isConnected"
+      v-if="!showAsConnected"
       class="connect-wallet-card mb-4"
     >
       <div class="flex flex-col items-center gap-3 py-6">
@@ -185,20 +197,42 @@ const matchingExampleIndex = computed(() => {
         <span class="text-purple-gray text-sm">
           Your staking position will determine your spins and prizes
         </span>
-        <button
-          class="connect-wallet-btn mt-2"
-          @click="connect()"
-        >
-          Connect Wallet
-        </button>
+        <div class="flex items-center gap-3 mt-2">
+          <button
+            class="connect-wallet-btn"
+            @click="connect()"
+          >
+            Connect Wallet
+          </button>
+          <button
+            class="demo-toggle-btn"
+            @click="demoMode = true"
+          >
+            Preview Demo
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Connected: Staked amount display + Buy LINGO -->
+    <!-- Connected (or demo): Staked amount display + Buy LINGO -->
     <div
       v-else
       class="stake-display mb-4"
     >
+      <!-- Demo banner -->
+      <div
+        v-if="demoMode"
+        class="demo-banner"
+      >
+        <span>Demo Preview</span>
+        <span class="text-purple-gray">Showing sample data for a ${{ formatNumberToUS(DEMO_USD) }} stake</span>
+        <button
+          class="demo-exit-btn"
+          @click="demoMode = false"
+        >
+          Exit Demo
+        </button>
+      </div>
       <div class="flex items-center justify-between">
         <div class="flex flex-col gap-0.5">
           <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Your Staked Value</span>
@@ -207,11 +241,12 @@ const matchingExampleIndex = computed(() => {
               ${{ formatNumberToUS(usdAmount) }}
             </span>
             <span class="text-purple-gray text-sm">
-              ~{{ formatNumberToUS(Math.floor(totalStakedLingo)) }} LINGO
+              ~{{ formatNumberToUS(displayLingo) }} LINGO
             </span>
           </div>
         </div>
         <button
+          v-if="!demoMode"
           class="buy-lingo-btn"
           @click="buyLingo"
         >
@@ -247,8 +282,8 @@ const matchingExampleIndex = computed(() => {
       </div>
     </div>
 
-    <!-- Connected-only: Reward Cards, details, summary -->
-    <template v-if="isConnected">
+    <!-- Connected (or demo): Reward Cards, details, summary -->
+    <template v-if="showAsConnected">
       <!-- Reward Cards -->
       <div class="reward-cards-row mb-2">
         <!-- Welcome Wheel (One-time) -->
@@ -592,6 +627,63 @@ const matchingExampleIndex = computed(() => {
 .connect-wallet-btn:hover {
   background: linear-gradient(135deg, #6868FF 0%, #8B6BFF 100%);
   box-shadow: 0 0 20px rgba(88, 88, 245, 0.25);
+}
+
+.demo-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-purple-gray);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.demo-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-lavender);
+}
+
+.demo-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  font-size: 12px;
+  font-weight: 600;
+  color: #fbbf24;
+}
+
+.demo-banner .text-purple-gray {
+  font-weight: 500;
+  flex: 1;
+}
+
+.demo-exit-btn {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.demo-exit-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
 }
 
 /* Staked Amount Display */
