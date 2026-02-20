@@ -15,7 +15,6 @@ import checkIcon from '@/assets/images/staking/check-period.svg'
 import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
 import apyCardsBg from '@/assets/images/staking/apy-cards-bg.png'
 import holdingCardsBg from '@/assets/images/staking/holding-cards-bg.png'
-import lingoIconLight from '@/assets/images/staking/lingo-icon-light.svg'
 import starIcon from '@/assets/icons/star.svg'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import giftBoxImg from '@/assets/images/gift-box.png'
@@ -259,19 +258,14 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         :style="{ backgroundImage: `url(${apyCardsBg})` }"
         class="reward-card bg-cover bg-left"
       >
-        <InlineSvg
-          :src="starIcon"
-          class="absolute top-2 left-2 !z-1 size-6 opacity-80"
-          unique-ids="calc-star-welcome"
-        />
-        <img :src="giftBoxImg" alt="" class="reward-card-icon size-10">
+        <img :src="giftBoxImg" alt="" class="reward-card-icon size-8">
         <span class="reward-tag reward-tag--welcome">One-time</span>
-        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px]">Welcome Wheel</span>
+        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px] z-1">Welcome Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(welcomeSpins) }}</span>
           <span class="reward-unit">Spins</span>
         </div>
-        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4]">
+        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4] z-1">
           ~${{ formatNumberToUS(welcomeEstValue) }} est. value
         </span>
       </div>
@@ -282,22 +276,17 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         class="reward-card bg-cover bg-right"
       >
         <InlineSvg
-          :src="lingoIconLight"
-          class="absolute top-0 left-0 !z-1"
-          unique-ids="calc-lingo-staking"
-        />
-        <InlineSvg
           :src="starIcon"
-          class="reward-card-icon size-10 opacity-90"
+          class="reward-card-icon size-7"
           unique-ids="calc-star-staking"
         />
         <span class="reward-tag reward-tag--staking">Monthly</span>
-        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px]">Staking Wheel</span>
+        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px] z-1">Staking Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(monthlySpins) }}</span>
           <span class="reward-unit">Spins/mo</span>
         </div>
-        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4]">
+        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4] z-1">
           {{ currentMonthlyBase?.name || '\u2014' }} tier &middot; ~${{ formatNumberToUS(monthlyEstValue) }}/mo
         </span>
       </div>
