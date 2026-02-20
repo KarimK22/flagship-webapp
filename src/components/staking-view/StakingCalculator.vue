@@ -73,7 +73,7 @@ const welcomeEstValue = computed(() => totalSpins.value * (welcomeValuePerSpin[s
 
 // === Monthly Staking Wheel ===
 const monthlyStakingTiers = [
-  { name: 'Bronze', color: '#EF8674', minStake: 500, dailySpins: 1, valuePerSpin: 5 },
+  { name: 'Bronze', color: '#EF8674', minStake: 250, dailySpins: 1, valuePerSpin: 5 },
   { name: 'Silver', color: '#8A9AC2', minStake: 2500, dailySpins: 2, valuePerSpin: 10 },
   { name: 'Gold', color: '#FFBC70', minStake: 10000, dailySpins: 3, valuePerSpin: 25 },
   { name: 'Diamond', color: '#A8D8FF', minStake: 50000, dailySpins: 5, valuePerSpin: 50 },
@@ -84,7 +84,7 @@ const currentMonthlyTier = computed(() => {
   for (const tier of monthlyStakingTiers) {
     if (usdAmount.value >= tier.minStake) matched = tier
   }
-  return usdAmount.value >= 500 ? matched : null
+  return usdAmount.value >= monthlyStakingTiers[0].minStake ? matched : null
 })
 
 const monthlySpins = computed(() => currentMonthlyTier.value ? currentMonthlyTier.value.dailySpins * 30 : 0)
@@ -155,7 +155,7 @@ const matchingExampleIndex = computed(() => {
       </h2>
     </div>
 
-    <!-- === Main Stake Input (top-level) === -->
+    <!-- Stake Input -->
     <div class="main-input-section mb-4">
       <div class="flex items-center justify-between mb-1.5">
         <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Stake Value (USD)</span>
@@ -175,13 +175,9 @@ const matchingExampleIndex = computed(() => {
       </div>
     </div>
 
-    <!-- === Section 1: Pick Your Wheel === -->
+    <!-- Lock Period / Wheel Selection -->
     <div class="section-card mb-4">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="section-number">1</span>
-        <h3 class="text-lavender text-lg font-semibold tracking-[-0.4px]">Pick Your Wheel</h3>
-      </div>
-
+      <h3 class="text-lavender text-sm font-semibold tracking-[0.42px] mb-3">Lock Period</h3>
       <div class="grid grid-cols-3 gap-2">
         <button
           v-for="opt in lockOptions"
@@ -206,37 +202,27 @@ const matchingExampleIndex = computed(() => {
       </div>
     </div>
 
-    <!-- === Section 2: Reward Summary === -->
-    <div class="section-card mb-4">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="section-number">2</span>
-        <h3 class="text-lavender text-lg font-semibold tracking-[-0.4px]">Reward Summary</h3>
+    <!-- Reward Cards -->
+    <div class="reward-cards-row mb-2">
+      <!-- Welcome Wheel (One-time) -->
+      <div class="reward-card reward-card--welcome">
+        <span class="reward-card-tag">One-time</span>
+        <span class="reward-card-label">Welcome Wheel</span>
+        <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
+        <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
       </div>
 
-      <p class="text-purple-gray text-sm mb-4 leading-5">
-        <span class="text-lavender font-semibold">1 spin per $100</span> staked value. Bigger stakes unlock <span class="text-amber-soft font-semibold">bonus %</span> extra spins!
-      </p>
-
-      <!-- === Two Reward Cards Side by Side === -->
-      <div class="reward-cards-row">
-        <!-- Welcome Wheel (One-time) -->
-        <div class="reward-card reward-card--welcome">
-          <span class="reward-card-tag">One-time</span>
-          <span class="reward-card-label">Welcome Wheel</span>
-          <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
-          <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
-        </div>
-
-        <!-- Monthly Staking Wheel -->
-        <div class="reward-card reward-card--monthly">
-          <span class="reward-card-tag">Recurring</span>
-          <span class="reward-card-label">Monthly Wheel</span>
-          <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
-          <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
-        </div>
+      <!-- Monthly Staking Wheel -->
+      <div class="reward-card reward-card--monthly">
+        <span class="reward-card-tag">Recurring</span>
+        <span class="reward-card-label">Monthly Wheel</span>
+        <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
+        <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
       </div>
+    </div>
 
-      <!-- === Collapsible: Show Wheel Details === -->
+    <!-- Collapsible: Show Wheel Details -->
+    <div class="mb-4">
       <button
         class="details-toggle"
         @click="showWheelDetails = !showWheelDetails"
@@ -357,7 +343,7 @@ const matchingExampleIndex = computed(() => {
       </span>
     </div>
 
-    <!-- === Sticky Summary Bar (Spin Results) === -->
+    <!-- Sticky Summary Bar -->
     <div class="results-card">
       <div class="flex items-center justify-between flex-wrap gap-4">
         <!-- Wheel Tier -->
@@ -403,12 +389,9 @@ const matchingExampleIndex = computed(() => {
       </div>
     </div>
 
-    <!-- === Section 3: Quick Examples === -->
+    <!-- Quick Examples -->
     <div class="section-card mt-4">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="section-number">3</span>
-        <h3 class="text-lavender text-lg font-semibold tracking-[-0.4px]">Quick Examples</h3>
-      </div>
+      <h3 class="text-lavender text-sm font-semibold tracking-[0.42px] mb-3">Quick Examples</h3>
 
       <!-- Table Header -->
       <div class="example-header">
@@ -484,21 +467,6 @@ const matchingExampleIndex = computed(() => {
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   padding: 20px;
-}
-
-.section-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 8px;
-  background: rgba(88, 88, 245, 0.15);
-  border: 1px solid rgba(88, 88, 245, 0.3);
-  color: #5858F5;
-  font-size: 12px;
-  font-weight: 700;
-  flex-shrink: 0;
 }
 
 /* Wheel Cards */
