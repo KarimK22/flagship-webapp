@@ -14,9 +14,9 @@ const lockOptions = [
 ]
 
 const wheelTiers = {
-  '3mo': { name: 'Silver', color: '#8A9AC2', prizes: 'Gift Cards & Merch' },
-  '6mo': { name: 'Gold', color: '#FFBC70', prizes: 'Tech & Travel' },
-  '12mo': { name: 'Diamond', color: '#F1E6FA', prizes: 'Luxury Watches, Supercars, LINGO Jackpots' },
+  '3mo': { name: 'Silver', color: '#8A9AC2', prizes: 'Gift Cards & Merch', multiplier: 1 },
+  '6mo': { name: 'Gold', color: '#FFBC70', prizes: 'Tech & Travel', multiplier: 2 },
+  '12mo': { name: 'Diamond', color: '#F1E6FA', prizes: 'Luxury Watches, Supercars, LINGO Jackpots', multiplier: 3 },
 }
 
 const bonusSpinTiers = [
@@ -61,12 +61,54 @@ const handleAmountInput = (event: Event) => {
 }
 
 const quickExamples = [
-  { stake: '$250', lock: '3mo' as const, spins: 3 },
-  { stake: '$1,000', lock: '6mo' as const, spins: 16 },
-  { stake: '$5,000', lock: '12mo' as const, spins: 90 },
-  { stake: '$10,000', lock: '12mo' as const, spins: 200 },
-  { stake: '$25,000', lock: '12mo' as const, spins: 625 },
+  { stake: '$250', stakeNum: 250, lock: '3mo' as const, spins: 3 },
+  { stake: '$1,000', stakeNum: 1000, lock: '6mo' as const, spins: 16 },
+  { stake: '$5,000', stakeNum: 5000, lock: '12mo' as const, spins: 90 },
+  { stake: '$10,000', stakeNum: 10000, lock: '12mo' as const, spins: 200 },
+  { stake: '$25,000', stakeNum: 25000, lock: '12mo' as const, spins: 625 },
 ]
+
+// === Feature 1: Live reward calculator ===
+const powerMiles = computed(() => usdAmount.value * currentWheel.value.multiplier)
+const rewardsUnlocked = computed(() => Math.floor(powerMiles.value / 100))
+
+// === Feature 2: Loss aversion banner ===
+const showLossAversion = computed(() => selectedLock.value !== '12mo')
+const diamondPowerMiles = computed(() => usdAmount.value * wheelTiers['12mo'].multiplier)
+const lossAmount = computed(() => {
+  const diff = diamondPowerMiles.value - powerMiles.value
+  return (diff * 0.11).toFixed(2)
+})
+
+const switchToDiamond = () => {
+  selectedLock.value = '12mo'
+}
+
+// === Feature 4: Highlight matching Quick Examples row ===
+const matchingExampleIndex = computed(() => {
+  let bestIdx = -1
+  let bestDist = Infinity
+  for (let i = 0; i < quickExamples.length; i++) {
+    const ex = quickExamples[i]
+    if (ex.lock !== selectedLock.value) continue
+    const dist = Math.abs(ex.stakeNum - usdAmount.value)
+    if (dist < bestDist) {
+      bestDist = dist
+      bestIdx = i
+    }
+  }
+  // If no match on same lock, find closest overall
+  if (bestIdx === -1) {
+    for (let i = 0; i < quickExamples.length; i++) {
+      const dist = Math.abs(quickExamples[i].stakeNum - usdAmount.value)
+      if (dist < bestDist) {
+        bestDist = dist
+        bestIdx = i
+      }
+    }
+  }
+  return bestIdx
+})
 </script>
 
 <template>
@@ -156,6 +198,18 @@ const quickExamples = [
         </button>
       </div>
 
+      <!-- Live Reward Calculator Cards -->
+      <div class="reward-cards-row">
+        <div class="reward-card">
+          <span class="reward-card-label">Power Miles</span>
+          <span class="reward-card-value">{{ formatNumberToUS(powerMiles) }}</span>
+        </div>
+        <div class="reward-card">
+          <span class="reward-card-label">Rewards Unlocked</span>
+          <span class="reward-card-value">{{ formatNumberToUS(rewardsUnlocked) }}</span>
+        </div>
+      </div>
+
       <!-- Bonus Tiers -->
       <div class="bonus-tiers-row">
         <span class="text-xs text-purple-gray font-semibold mb-2 block">Bonus Spin Tiers</span>
@@ -171,6 +225,20 @@ const quickExamples = [
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Loss Aversion Banner -->
+    <div
+      v-if="showLossAversion && usdAmount > 0"
+      class="loss-aversion-banner"
+    >
+      <span>
+        You're leaving ~${{ lossAmount }} on the table —
+        <a
+          class="loss-aversion-link"
+          @click.prevent="switchToDiamond"
+        >Switch to Diamond &rarr;</a>
+      </span>
     </div>
 
     <!-- === Spin Results === -->
@@ -239,7 +307,8 @@ const quickExamples = [
         v-for="(ex, i) in quickExamples"
         :key="i"
         class="example-row cursor-pointer"
-        @click="selectedLock = ex.lock"
+        :class="{ 'example-row--matched': i === matchingExampleIndex }"
+        @click="selectedLock = ex.lock; usdAmount = ex.stakeNum"
       >
         <span class="text-lavender font-semibold">{{ ex.stake }}</span>
         <span class="text-purple-gray">{{ lockOptions.find(l => l.id === ex.lock)?.label }}</span>
@@ -266,7 +335,6 @@ const quickExamples = [
   background: rgba(20, 20, 31, 0.88);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(88, 88, 245, 0.1);
-  overflow: hidden;
 }
 
 .calculator-outer::before {
@@ -423,12 +491,86 @@ const quickExamples = [
   color: var(--color-lavender);
 }
 
-/* Results Card */
+/* Reward Calculator Cards */
+.reward-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.reward-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  border-radius: 14px;
+  background: rgba(12, 12, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reward-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-purple-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.reward-card-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-lavender);
+  letter-spacing: -1.2px;
+  line-height: 1;
+}
+
+/* Loss Aversion Banner */
+.loss-aversion-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.loss-aversion-banner::before {
+  content: "\26A0";
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.loss-aversion-link {
+  color: #fbbf24;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.loss-aversion-link:hover {
+  color: #fde68a;
+}
+
+/* Results Card — Sticky */
 .results-card {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
   background: linear-gradient(135deg, rgba(88, 88, 245, 0.06) 0%, rgba(201, 92, 255, 0.04) 100%);
   border: 1px solid rgba(88, 88, 245, 0.15);
   border-radius: 18px;
   padding: 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .total-spins-highlight {
@@ -464,6 +606,16 @@ const quickExamples = [
 
 .example-row:hover {
   background: rgba(88, 88, 245, 0.06);
+}
+
+.example-row--matched {
+  border-left: 3px solid #FFBC70;
+  background: rgba(255, 188, 112, 0.06);
+  box-shadow: inset 0 0 20px rgba(255, 188, 112, 0.04), 0 0 12px rgba(255, 188, 112, 0.03);
+}
+
+.example-row--matched:hover {
+  background: rgba(255, 188, 112, 0.1);
 }
 
 .example-row:not(:last-child) {
