@@ -7,6 +7,11 @@ import { useStakes } from '@/composables/contracts/stakes'
 import { useBalance } from '@/composables/contracts/balance'
 import { formatNumberToUS } from '@/composables/helpers'
 import BalanceBadge from '@/components/user-balance/BalanceBadge.vue'
+import IconWrapper from '@/components/icon-wrapper/IconWrapper.vue'
+import GlowButton from '@/components/ui/button/GlowButton.vue'
+import { EButtonColor } from '@/types/shared/button'
+import { LOCK_DURATION_ID } from '@/types/staking'
+import { LockDurationToDays } from '@/types/lock-config'
 
 import lingoIcon from '@/assets/images/game/points-processed.svg'
 import dollarIcon from '@/assets/images/dollar-icon.svg'
@@ -16,12 +21,14 @@ import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import giftBoxImg from '@/assets/images/gift-box.png'
 import starIcon from '@/assets/icons/star.svg'
+import powerIcon from '@/assets/images/game/power.svg'
+import lockRewardsBg from '@/assets/images/staking/lock-rewards-bg.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
 const { price } = useLingoPrice()
 const { isConnected } = useGetMe()
-const { totalStakedLingo, totalPowerMiles } = useStakes()
+const { totalStakedLingo, totalPowerMiles, calculatePowerPerDay } = useStakes()
 const { tokenBalanceAsString: userBalance } = useBalance()
 
 // === Constants ===
@@ -90,6 +97,43 @@ const lockOptions = [
 ]
 
 const currentLock = computed(() => lockOptions.find(o => o.id === selectedLock.value)!)
+
+// Map calculator lock IDs to contract LOCK_DURATION_ID
+const lockIdToContractId: Record<LockId, LOCK_DURATION_ID> = {
+  flex: LOCK_DURATION_ID.NO_LOCK,
+  '3mo': LOCK_DURATION_ID.THREE_MONTHS,
+  '6mo': LOCK_DURATION_ID.SIX_MONTHS,
+  '12mo': LOCK_DURATION_ID.TWELVE_MONTHS,
+}
+
+const selectedContractLockId = computed(() => lockIdToContractId[selectedLock.value])
+
+// Lock duration description for the badge
+const lockDurationLabel = computed(() => {
+  const descriptions: Record<LockId, string> = {
+    flex: 'Flexible',
+    '3mo': 'For 3 Months',
+    '6mo': 'For 6 Months',
+    '12mo': 'For 12 Months',
+  }
+  return descriptions[selectedLock.value]
+})
+
+// Power Miles calculations (matching FormStakeBase.vue)
+const SMASH_POWER_MILES_COST = 100
+
+const powerMilesPerDay = computed(() => {
+  return calculatePowerPerDay(parsedAmount.value, selectedContractLockId.value)
+})
+
+const powerMilesRewards = computed(() => {
+  const lockDuration = LockDurationToDays[selectedContractLockId.value] || 30
+  return powerMilesPerDay.value * lockDuration
+})
+
+const smashCount = computed(() => {
+  return Math.floor(powerMilesRewards.value / SMASH_POWER_MILES_COST)
+})
 
 // Badge render functions (matching LockPeriods.vue pattern)
 const badgeClass = 'inline-block min-w-[24px] align-middle'
@@ -314,7 +358,69 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </div>
 
-    <!-- 5. Loss Aversion Banner -->
+    <!-- 5. You Will Receive + Enough to Unlock -->
+    <div
+      class="flex flex-wrap flex-col md:flex-row justify-between overflow-hidden gap-2 w-full min-h-[128px] rounded-2xl bg-cover bg-left p-1 bg-[#1c1c29e0] inset-shadow-[0px_0px_48px_-16px_#1C1C29]"
+    >
+      <div class="flex flex-col justify-between gap-4 p-3 md:min-w-[392px]">
+        <span class="flex gap-2 text-[14px] sm:text-[16px] text-lavender font-semibold">
+          You will receive
+          <BalanceBadge
+            color="#FF9D5C"
+            class="h-6 capitalize"
+          >
+            {{ lockDurationLabel }}
+          </BalanceBadge>
+        </span>
+        <div class="flex gap-2">
+          <IconWrapper
+            class="!z-0"
+            variant="orange"
+            :with-borders="false"
+          >
+            <InlineSvg
+              :src="powerIcon"
+              class="size-10"
+              unique-ids="calc-power-icon"
+            />
+          </IconWrapper>
+          <span class="text-lavender text-5xl leading-10 tracking-[-4.32px]">
+            {{ formatNumberToUS(powerMilesRewards) }}
+          </span>
+          <div class="flex flex-col justify-end gap-1">
+            <span class="text-purple-gray text-[20px] tracking-[-0.6px] leading-[22px]">Power Miles</span>
+          </div>
+        </div>
+      </div>
+      <div
+        :style="`background-image: url(${lockRewardsBg})`"
+        class="flex flex-col justify-between gap-2 h-[120px] w-full md:min-w-[280px] md:flex-1 rounded-2xl bg-[#14141F] bg-contain bg-right bg-no-repeat p-4"
+      >
+        <span class="flex gap-2 text-[16px] text-lavender font-semibold tracking-[0.16px]">
+          Enough to unlock
+        </span>
+        <div class="flex gap-2">
+          <span class="text-lavender text-5xl leading-10 tracking-[-3.84px]">
+            {{ smashCount }}
+          </span>
+          <div class="flex flex-col justify-end gap-1">
+            <span class="text-purple-gray text-[20px] tracking-[-0.6px] leading-[22px]">Rewards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Stake Button -->
+    <div class="w-full flex justify-center">
+      <GlowButton
+        class="flex items-center w-[224px] gap-2"
+        :color="EButtonColor.BLUE"
+      >
+        <span>Stake LINGO</span>
+      </GlowButton>
+    </div>
+
+    <!-- 7. Loss Aversion Banner -->
     <Transition
       enter-active-class="transition-all duration-300"
       leave-active-class="transition-all duration-200"
@@ -338,7 +444,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </Transition>
 
-    <!-- 6. Wheel Details Toggle -->
+    <!-- 8. Wheel Details Toggle -->
     <button class="details-toggle" @click="showWheelDetails = !showWheelDetails">
       <span>{{ showWheelDetails ? 'Hide' : 'Show' }} wheel details</span>
       <svg
