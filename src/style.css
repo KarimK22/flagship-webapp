@@ -205,6 +205,12 @@ body {
 	letter-spacing: 0.03em;
 }
 
+/* Hide Tally.so floating launcher button — popups are triggered programmatically */
+iframe[data-tally-src][style*="position: fixed"],
+div[data-tally-widget] {
+	display: none !important;
+}
+
 .tally-popup {
 	width: 600px !important;
 }

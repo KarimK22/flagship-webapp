@@ -48,20 +48,20 @@
           </div>
 
           <!-- Stats bar -->
-          <div class="flex flex-wrap items-center gap-6 lg:gap-10 justify-center lg:justify-start">
-            <div class="text-center lg:text-left">
+          <div class="inline-flex flex-wrap items-center gap-6 lg:gap-0 justify-center lg:justify-start bg-[rgba(14,14,26,0.6)] border border-[#262638] rounded-2xl px-2 py-3">
+            <div class="text-center px-5">
               <p class="text-2xl font-bold text-lavender">15,950+</p>
-              <p class="text-sm text-purple-gray">Active Stakers</p>
+              <p class="text-xs text-purple-gray mt-1">Active Stakers</p>
             </div>
-            <div class="w-px h-10 bg-[#262638] hidden sm:block" />
-            <div class="text-center lg:text-left">
+            <div class="w-px h-12 bg-[#3a3a5e] hidden sm:block" />
+            <div class="text-center px-5">
               <p class="text-2xl font-bold text-lavender">$127K+</p>
-              <p class="text-sm text-purple-gray">Prizes Awarded</p>
+              <p class="text-xs text-purple-gray mt-1">Prizes Awarded</p>
             </div>
-            <div class="w-px h-10 bg-[#262638] hidden sm:block" />
-            <div class="text-center lg:text-left">
+            <div class="w-px h-12 bg-[#3a3a5e] hidden sm:block" />
+            <div class="text-center px-5">
               <p class="text-2xl font-bold text-lavender">$2.4M+</p>
-              <p class="text-sm text-purple-gray">Total Staked</p>
+              <p class="text-xs text-purple-gray mt-1">Total Staked</p>
             </div>
           </div>
         </div>

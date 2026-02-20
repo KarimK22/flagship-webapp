@@ -11,7 +11,7 @@
 
       <!-- Steps -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
-        <!-- Step 1 -->
+        <!-- Step 1: Stake — Coin stack icon -->
         <div class="relative flex flex-col items-center text-center group">
           <div
             class="w-20 h-20 rounded-2xl bg-[rgba(14,14,26,0.8)] border border-[#262638] flex items-center justify-center mb-6 group-hover:border-[#FF7847]/40 transition-colors"
@@ -22,17 +22,11 @@
               viewBox="0 0 36 36"
               fill="none"
             >
-              <path
-                d="M18 3L22.5 13.5L33 18L22.5 22.5L18 33L13.5 22.5L3 18L13.5 13.5L18 3Z"
-                stroke="#FF7847"
-                stroke-width="2"
-                fill="none"
-              />
-              <path
-                d="M18 10L20.5 15.5L26 18L20.5 20.5L18 26L15.5 20.5L10 18L15.5 15.5L18 10Z"
-                fill="#FF7847"
-                opacity="0.3"
-              />
+              <ellipse cx="18" cy="26" rx="11" ry="4" stroke="#FF7847" stroke-width="2" fill="none" />
+              <ellipse cx="18" cy="20" rx="11" ry="4" stroke="#FF7847" stroke-width="2" fill="none" />
+              <ellipse cx="18" cy="14" rx="11" ry="4" stroke="#FF7847" stroke-width="2" fill="#FF7847" opacity="0.15" />
+              <line x1="7" y1="14" x2="7" y2="26" stroke="#FF7847" stroke-width="2" />
+              <line x1="29" y1="14" x2="29" y2="26" stroke="#FF7847" stroke-width="2" />
             </svg>
           </div>
           <span class="text-xs font-bold text-[#FF7847] uppercase tracking-widest mb-2">Step 1</span>
@@ -60,10 +54,10 @@
           </div>
         </div>
 
-        <!-- Step 2 -->
+        <!-- Step 2: Earn — Circular arrows/refresh icon -->
         <div class="relative flex flex-col items-center text-center group">
           <div
-            class="w-20 h-20 rounded-2xl bg-[rgba(14,14,26,0.8)] border border-[#262638] flex items-center justify-center mb-6 group-hover:border-[#C95CFF]/40 transition-colors"
+            class="w-20 h-20 rounded-2xl bg-[rgba(14,14,26,0.8)] border border-[#262638] flex items-center justify-center mb-6 group-hover:border-[#FF7847]/40 transition-colors"
           >
             <svg
               width="36"
@@ -71,59 +65,24 @@
               viewBox="0 0 36 36"
               fill="none"
             >
-              <circle
-                cx="18"
-                cy="18"
-                r="14"
-                stroke="#C95CFF"
-                stroke-width="2"
-              />
-              <circle
-                cx="18"
-                cy="18"
-                r="6"
-                fill="#C95CFF"
-                opacity="0.3"
-              />
-              <line
-                x1="18"
-                y1="4"
-                x2="18"
-                y2="10"
-                stroke="#C95CFF"
+              <path
+                d="M28 14A11 11 0 0 0 8.5 12.5"
+                stroke="#FF7847"
                 stroke-width="2"
                 stroke-linecap="round"
               />
-              <line
-                x1="18"
-                y1="26"
-                x2="18"
-                y2="32"
-                stroke="#C95CFF"
+              <path
+                d="M8 22A11 11 0 0 0 27.5 23.5"
+                stroke="#FF7847"
                 stroke-width="2"
                 stroke-linecap="round"
               />
-              <line
-                x1="4"
-                y1="18"
-                x2="10"
-                y2="18"
-                stroke="#C95CFF"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-              <line
-                x1="26"
-                y1="18"
-                x2="32"
-                y2="18"
-                stroke="#C95CFF"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
+              <polyline points="28,8 28,14 22,14" stroke="#FF7847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <polyline points="8,28 8,22 14,22" stroke="#FF7847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <circle cx="18" cy="18" r="4" fill="#FF7847" opacity="0.15" />
             </svg>
           </div>
-          <span class="text-xs font-bold text-[#C95CFF] uppercase tracking-widest mb-2">Step 2</span>
+          <span class="text-xs font-bold text-[#FF7847] uppercase tracking-widest mb-2">Step 2</span>
           <h3 class="text-xl font-bold text-lavender mb-2">Earn Spins & Entries</h3>
           <p class="text-purple-gray text-sm leading-relaxed max-w-[260px]">
             Get daily wheel spins and raffle entries automatically. Higher tiers earn more entries.
@@ -148,10 +107,10 @@
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- Step 3: Win — Trophy icon -->
         <div class="flex flex-col items-center text-center group">
           <div
-            class="w-20 h-20 rounded-2xl bg-[rgba(14,14,26,0.8)] border border-[#262638] flex items-center justify-center mb-6 group-hover:border-[#4CAF50]/40 transition-colors"
+            class="w-20 h-20 rounded-2xl bg-[rgba(14,14,26,0.8)] border border-[#262638] flex items-center justify-center mb-6 group-hover:border-[#FF7847]/40 transition-colors"
           >
             <svg
               width="36"
@@ -159,27 +118,14 @@
               viewBox="0 0 36 36"
               fill="none"
             >
-              <path
-                d="M8 18L14 24L28 10"
-                stroke="#4CAF50"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <rect
-                x="4"
-                y="4"
-                width="28"
-                height="28"
-                rx="6"
-                stroke="#4CAF50"
-                stroke-width="2"
-                fill="none"
-                opacity="0.3"
-              />
+              <path d="M12 8H24V18C24 21.3 21.3 24 18 24C14.7 24 12 21.3 12 18V8Z" stroke="#FF7847" stroke-width="2" fill="#FF7847" opacity="0.15" />
+              <path d="M12 12H8C8 12 7 12 7 14C7 16 8 17 10 17H12" stroke="#FF7847" stroke-width="2" stroke-linecap="round" fill="none" />
+              <path d="M24 12H28C28 12 29 12 29 14C29 16 28 17 26 17H24" stroke="#FF7847" stroke-width="2" stroke-linecap="round" fill="none" />
+              <line x1="18" y1="24" x2="18" y2="28" stroke="#FF7847" stroke-width="2" stroke-linecap="round" />
+              <line x1="14" y1="28" x2="22" y2="28" stroke="#FF7847" stroke-width="2" stroke-linecap="round" />
             </svg>
           </div>
-          <span class="text-xs font-bold text-[#4CAF50] uppercase tracking-widest mb-2">Step 3</span>
+          <span class="text-xs font-bold text-[#FF7847] uppercase tracking-widest mb-2">Step 3</span>
           <h3 class="text-xl font-bold text-lavender mb-2">Win Real Prizes</h3>
           <p class="text-purple-gray text-sm leading-relaxed max-w-[260px]">
             Win iPhones, Rolexes, gaming PCs, and more. Prizes ship worldwide to your door.
