@@ -69,8 +69,6 @@ const bonusSpins = computed(() => Math.floor(baseSpins.value * (bonusPct.value /
 
 const totalSpins = computed(() => baseSpins.value + bonusSpins.value)
 
-const currentWheel = computed(() => wheelTiers[selectedLock.value])
-
 // === Welcome Wheel (one-time) ===
 const welcomeValuePerSpin: Record<string, number> = { '3mo': 10, '6mo': 25, '12mo': 100 }
 const welcomeEstValue = computed(() => totalSpins.value * (welcomeValuePerSpin[selectedLock.value] ?? 10))
