@@ -422,6 +422,11 @@
         "buyLingo": "Comprar LINGO",
         "stakeLingo": "Stake LINGO"
       },
+      "noLingoModal": {
+        "title": "Você não tem $LINGO",
+        "description": "Você precisa de tokens $LINGO para começar o staking. Compre $LINGO com cartão de crédito e comece a ganhar recompensas instantaneamente.",
+        "buyLingo": "Comprar $LINGO"
+      },
       "resultModal": {
         "congrats": "Parabéns!",
         "oops": "Ops!",
