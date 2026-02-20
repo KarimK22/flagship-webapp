@@ -6,6 +6,7 @@ const { price } = useLingoPrice()
 
 const usdAmount = ref<number>(1000)
 const selectedLock = ref<'3mo' | '6mo' | '12mo'>('12mo')
+const showWheelDetails = ref(false)
 
 const lockOptions = [
   { id: '3mo' as const, label: '3 Months', short: '3M' },
@@ -68,13 +69,47 @@ const quickExamples = [
   { stake: '$25,000', stakeNum: 25000, lock: '12mo' as const, spins: 625 },
 ]
 
-// === Feature 1: Live reward calculator ===
-const powerMiles = computed(() => usdAmount.value * currentWheel.value.multiplier)
-const rewardsUnlocked = computed(() => Math.floor(powerMiles.value / 100))
+// === Welcome Wheel (one-time) ===
+const welcomeValuePerSpin: Record<string, number> = { '3mo': 10, '6mo': 25, '12mo': 100 }
+const welcomeEstValue = computed(() => totalSpins.value * (welcomeValuePerSpin[selectedLock.value] ?? 10))
 
-// === Feature 2: Loss aversion banner ===
+// === Monthly Staking Wheel ===
+const monthlyStakingTiers = [
+  { name: 'Bronze', color: '#EF8674', minStake: 500, dailySpins: 1, valuePerSpin: 5 },
+  { name: 'Silver', color: '#8A9AC2', minStake: 2500, dailySpins: 2, valuePerSpin: 10 },
+  { name: 'Gold', color: '#FFBC70', minStake: 10000, dailySpins: 3, valuePerSpin: 25 },
+  { name: 'Diamond', color: '#A8D8FF', minStake: 50000, dailySpins: 5, valuePerSpin: 50 },
+]
+
+const currentMonthlyTier = computed(() => {
+  let matched = monthlyStakingTiers[0]
+  for (const tier of monthlyStakingTiers) {
+    if (usdAmount.value >= tier.minStake) matched = tier
+  }
+  return usdAmount.value >= 500 ? matched : null
+})
+
+const monthlySpins = computed(() => currentMonthlyTier.value ? currentMonthlyTier.value.dailySpins * 30 : 0)
+const monthlyEstValue = computed(() => currentMonthlyTier.value ? monthlySpins.value * currentMonthlyTier.value.valuePerSpin : 0)
+
+// === Welcome Wheel detail tables ===
+const welcomeWheelTiers = [
+  { tier: 'Silver', lock: '3 Months', color: '#8A9AC2', valuePerSpin: '$10', prizes: 'Gift cards, merch' },
+  { tier: 'Gold', lock: '6 Months', color: '#FFBC70', valuePerSpin: '$25', prizes: 'Tech gadgets, travel vouchers' },
+  { tier: 'Diamond', lock: '12 Months', color: '#F1E6FA', valuePerSpin: '$100', prizes: 'Luxury watches, supercars, LINGO jackpots' },
+]
+
+// === Lock Multipliers ===
+const lockMultipliers = [
+  { lock: '3 Months', multiplier: '1x', wheel: 'Silver', color: '#8A9AC2' },
+  { lock: '6 Months', multiplier: '2x', wheel: 'Gold', color: '#FFBC70' },
+  { lock: '12 Months', multiplier: '3x', wheel: 'Diamond', color: '#F1E6FA' },
+]
+
+// === Loss aversion banner ===
 const showLossAversion = computed(() => selectedLock.value !== '12mo')
 const diamondPowerMiles = computed(() => usdAmount.value * wheelTiers['12mo'].multiplier)
+const powerMiles = computed(() => usdAmount.value * currentWheel.value.multiplier)
 const lossAmount = computed(() => {
   const diff = diamondPowerMiles.value - powerMiles.value
   return (diff * 0.11).toFixed(2)
@@ -84,7 +119,7 @@ const switchToDiamond = () => {
   selectedLock.value = '12mo'
 }
 
-// === Feature 4: Highlight matching Quick Examples row ===
+// === Highlight matching Quick Examples row ===
 const matchingExampleIndex = computed(() => {
   let bestIdx = -1
   let bestDist = Infinity
@@ -97,7 +132,6 @@ const matchingExampleIndex = computed(() => {
       bestIdx = i
     }
   }
-  // If no match on same lock, find closest overall
   if (bestIdx === -1) {
     for (let i = 0; i < quickExamples.length; i++) {
       const dist = Math.abs(quickExamples[i].stakeNum - usdAmount.value)
@@ -198,33 +232,130 @@ const matchingExampleIndex = computed(() => {
         </button>
       </div>
 
-      <!-- Live Reward Calculator Cards -->
+      <!-- === Two Reward Cards Side by Side === -->
       <div class="reward-cards-row">
-        <div class="reward-card">
-          <span class="reward-card-label">Power Miles</span>
-          <span class="reward-card-value">{{ formatNumberToUS(powerMiles) }}</span>
+        <!-- Welcome Wheel (One-time) -->
+        <div class="reward-card reward-card--welcome">
+          <span class="reward-card-tag">One-time</span>
+          <span class="reward-card-label">Welcome Wheel</span>
+          <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
+          <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
         </div>
-        <div class="reward-card">
-          <span class="reward-card-label">Rewards Unlocked</span>
-          <span class="reward-card-value">{{ formatNumberToUS(rewardsUnlocked) }}</span>
+
+        <!-- Monthly Staking Wheel -->
+        <div class="reward-card reward-card--monthly">
+          <span class="reward-card-tag">Recurring</span>
+          <span class="reward-card-label">Monthly Wheel</span>
+          <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
+          <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
         </div>
       </div>
 
-      <!-- Bonus Tiers -->
-      <div class="bonus-tiers-row">
-        <span class="text-xs text-purple-gray font-semibold mb-2 block">Bonus Spin Tiers</span>
-        <div class="flex flex-wrap gap-1.5">
-          <div
-            v-for="tier in bonusSpinTiers"
-            :key="tier.min"
-            class="bonus-tier-chip"
-            :class="{ 'bonus-tier-chip--active': usdAmount >= tier.min }"
-          >
-            <span class="text-xs font-semibold">{{ tier.label }}</span>
-            <span class="text-[10px] text-amber-soft">+{{ tier.bonusPct }}%</span>
+      <!-- === Collapsible: Show Wheel Details === -->
+      <button
+        class="details-toggle"
+        @click="showWheelDetails = !showWheelDetails"
+      >
+        <svg
+          class="details-toggle-icon"
+          :class="{ 'details-toggle-icon--open': showWheelDetails }"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        {{ showWheelDetails ? 'Hide wheel details' : 'Show wheel details' }}
+      </button>
+
+      <Transition name="details-expand">
+        <div
+          v-if="showWheelDetails"
+          class="details-panel"
+        >
+          <!-- Welcome Wheel Tier Table -->
+          <div class="detail-table-section">
+            <h4 class="detail-table-title">Welcome Wheel Tiers</h4>
+            <div class="detail-table-header detail-table-grid--welcome">
+              <span>Tier</span>
+              <span>Lock</span>
+              <span>$/Spin</span>
+              <span>Prize Examples</span>
+            </div>
+            <div
+              v-for="row in welcomeWheelTiers"
+              :key="row.tier"
+              class="detail-table-row detail-table-grid--welcome"
+            >
+              <span class="font-semibold" :style="{ color: row.color }">{{ row.tier }}</span>
+              <span class="text-purple-gray">{{ row.lock }}</span>
+              <span class="text-lavender font-semibold">{{ row.valuePerSpin }}</span>
+              <span class="text-purple-gray text-xs leading-tight">{{ row.prizes }}</span>
+            </div>
+          </div>
+
+          <!-- Monthly Staking Wheel Tier Table -->
+          <div class="detail-table-section">
+            <h4 class="detail-table-title">Monthly Staking Wheel Tiers</h4>
+            <div class="detail-table-header detail-table-grid--monthly">
+              <span>Tier</span>
+              <span>Stake Min</span>
+              <span>Spins/Mo</span>
+              <span>$/Spin</span>
+            </div>
+            <div
+              v-for="row in monthlyStakingTiers"
+              :key="row.name"
+              class="detail-table-row detail-table-grid--monthly"
+              :class="{ 'detail-table-row--active': currentMonthlyTier?.name === row.name }"
+            >
+              <span class="font-semibold" :style="{ color: row.color }">{{ row.name }}</span>
+              <span class="text-purple-gray">${{ formatNumberToUS(row.minStake) }}+</span>
+              <span class="text-lavender font-semibold">{{ row.dailySpins * 30 }}</span>
+              <span class="text-lavender">${{ row.valuePerSpin }}</span>
+            </div>
+          </div>
+
+          <!-- Bonus Spins Table -->
+          <div class="detail-table-section">
+            <h4 class="detail-table-title">Bonus Spins</h4>
+            <div class="detail-table-header detail-table-grid--bonus">
+              <span>Stake Amount</span>
+              <span>Bonus</span>
+            </div>
+            <div
+              v-for="tier in bonusSpinTiers"
+              :key="tier.min"
+              class="detail-table-row detail-table-grid--bonus"
+              :class="{ 'detail-table-row--active': usdAmount >= tier.min && (tier.max === Infinity || usdAmount <= tier.max) }"
+            >
+              <span class="text-lavender font-semibold">{{ tier.label }}</span>
+              <span class="text-amber-soft font-semibold">+{{ tier.bonusPct }}%</span>
+            </div>
+          </div>
+
+          <!-- Lock Multipliers Table -->
+          <div class="detail-table-section">
+            <h4 class="detail-table-title">Lock Multipliers</h4>
+            <div class="detail-table-header detail-table-grid--lock">
+              <span>Lock Period</span>
+              <span>Multiplier</span>
+              <span>Wheel</span>
+            </div>
+            <div
+              v-for="row in lockMultipliers"
+              :key="row.lock"
+              class="detail-table-row detail-table-grid--lock"
+              :class="{ 'detail-table-row--active': row.lock === lockOptions.find(l => l.id === selectedLock)?.label }"
+            >
+              <span class="text-purple-gray">{{ row.lock }}</span>
+              <span class="text-lavender font-bold">{{ row.multiplier }}</span>
+              <span class="font-semibold" :style="{ color: row.color }">{{ row.wheel }}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </Transition>
     </div>
 
     <!-- Loss Aversion Banner -->
@@ -241,7 +372,7 @@ const matchingExampleIndex = computed(() => {
       </span>
     </div>
 
-    <!-- === Spin Results === -->
+    <!-- === Sticky Summary Bar (Spin Results) === -->
     <div class="results-card">
       <div class="flex items-center justify-between flex-wrap gap-4">
         <!-- Wheel Tier -->
@@ -472,42 +603,51 @@ const matchingExampleIndex = computed(() => {
   color: var(--color-lavender);
 }
 
-/* Bonus Tiers */
-.bonus-tier-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6px 12px;
-  border-radius: 10px;
-  background: rgba(20, 20, 31, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--color-purple-gray);
-  transition: all 0.2s ease;
-}
-
-.bonus-tier-chip--active {
-  background: rgba(255, 157, 92, 0.08);
-  border-color: rgba(255, 157, 92, 0.2);
-  color: var(--color-lavender);
-}
-
-/* Reward Calculator Cards */
+/* === Reward Cards (Two side-by-side) === */
 .reward-cards-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .reward-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 16px 12px;
+  gap: 4px;
+  padding: 18px 12px 14px;
   border-radius: 14px;
   background: rgba(12, 12, 20, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reward-card--welcome {
+  border-color: rgba(88, 88, 245, 0.15);
+}
+
+.reward-card--monthly {
+  border-color: rgba(201, 92, 255, 0.15);
+}
+
+.reward-card-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(88, 88, 245, 0.12);
+  color: #7878ff;
+}
+
+.reward-card--monthly .reward-card-tag {
+  background: rgba(201, 92, 255, 0.12);
+  color: #d490ff;
 }
 
 .reward-card-label {
@@ -524,6 +664,141 @@ const matchingExampleIndex = computed(() => {
   color: var(--color-lavender);
   letter-spacing: -1.2px;
   line-height: 1;
+}
+
+.reward-card-unit {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-purple-gray);
+  letter-spacing: 0;
+}
+
+.reward-card-sub {
+  font-size: 12px;
+  color: var(--color-purple-gray);
+  font-weight: 500;
+}
+
+/* === Collapsible Details Toggle === */
+.details-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7878ff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.details-toggle:hover {
+  color: #9898ff;
+}
+
+.details-toggle-icon {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.details-toggle-icon--open {
+  transform: rotate(180deg);
+}
+
+/* === Details Panel === */
+.details-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.details-expand-enter-active,
+.details-expand-leave-active {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.details-expand-enter-from,
+.details-expand-leave-to {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-8px);
+}
+
+.details-expand-enter-to,
+.details-expand-leave-from {
+  opacity: 1;
+  max-height: 1200px;
+  transform: translateY(0);
+}
+
+/* === Detail Tables === */
+.detail-table-section {
+  background: rgba(12, 12, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.detail-table-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-purple-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.detail-table-header {
+  display: grid;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-bottom: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-purple-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  opacity: 0.7;
+}
+
+.detail-table-row {
+  display: grid;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  transition: background 0.15s ease;
+}
+
+.detail-table-row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.detail-table-row--active {
+  background: rgba(88, 88, 245, 0.06);
+  border-left: 2px solid #5858F5;
+}
+
+/* Grid variants for each table */
+.detail-table-grid--welcome {
+  grid-template-columns: 0.8fr 0.8fr 0.6fr 1.5fr;
+}
+
+.detail-table-grid--monthly {
+  grid-template-columns: 0.8fr 1fr 0.7fr 0.6fr;
+}
+
+.detail-table-grid--bonus {
+  grid-template-columns: 1fr 0.6fr;
+}
+
+.detail-table-grid--lock {
+  grid-template-columns: 1fr 0.8fr 0.8fr;
 }
 
 /* Loss Aversion Banner */
