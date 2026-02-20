@@ -15,7 +15,6 @@ import { LockDurationToDays } from '@/types/lock-config'
 
 import lingoIcon from '@/assets/images/game/points-processed.svg'
 import dollarIcon from '@/assets/images/dollar-icon.svg'
-import boltIcon from '@/assets/images/bolt.svg'
 import checkIcon from '@/assets/images/staking/check-period.svg'
 import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
@@ -23,7 +22,6 @@ import giftBoxImg from '@/assets/images/gift-box.png'
 import starIcon from '@/assets/icons/star.svg'
 import powerIcon from '@/assets/images/game/power.svg'
 import lockRewardsBg from '@/assets/images/staking/lock-rewards-bg.png'
-import raffleCardBgGlow from '@/assets/images/raffles/raffle-card-bg-glow.svg'
 import stakeInfoBg from '@/assets/images/staking/stake-info-bg.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
@@ -179,11 +177,25 @@ const monthlyEstValue = computed(() => {
   return monthlySpins.value * currentMonthlyBase.value.valuePerSpin
 })
 
+// Tier label based on lock period (not USD amount)
+const lockTierName: Record<LockId, string> = {
+  flex: 'Bronze',
+  '3mo': 'Silver',
+  '6mo': 'Gold',
+  '12mo': 'Diamond',
+}
+const currentTierName = computed(() => lockTierName[selectedLock.value])
+
 // === Secondary Stats ===
 const displayPowerMiles = computed(() => {
+  if (isEmpty.value) return '\u2014'
   if (props.demoMode) return formatNumberToUS(510_999)
   return formatNumberToUS(Math.round(totalPowerMiles.value))
 })
+
+// === Empty / Disconnected State ===
+const isEmpty = computed(() => !effectiveConnected.value || parsedAmount.value === 0)
+const showConnectPrompt = computed(() => !effectiveConnected.value)
 
 // === UI State ===
 const showWheelDetails = ref(false)
@@ -191,11 +203,14 @@ const showWheelDetails = ref(false)
 // === Loss Aversion ===
 const showLossAversion = computed(() => selectedLock.value !== '12mo' && usdAmount.value > 0)
 
-const vipWelcomeSpins = computed(() => {
-  const vipBonus = Math.floor(baseSpins.value * (180 / 100))
-  return baseSpins.value + vipBonus
+// Calculate $ left on the table vs 12-month Diamond
+const diamondMonthlyEstValue = computed(() => {
+  if (!currentMonthlyBase.value) return 0
+  const diamondLock = lockOptions.find(o => o.id === '12mo')!
+  const spins = currentMonthlyBase.value.dailySpins * 30 * diamondLock.monthlyMult
+  return spins * currentMonthlyBase.value.valuePerSpin
 })
-const missedWelcomeSpins = computed(() => vipWelcomeSpins.value - welcomeSpins.value)
+const missedMonthlyValue = computed(() => diamondMonthlyEstValue.value - monthlyEstValue.value)
 
 // === Wheel Detail Prizes ===
 const tierPrizes: Partial<Record<LockId, string>> = {
@@ -299,34 +314,20 @@ const tierPrizes: Partial<Record<LockId, string>> = {
     <div class="reward-row">
       <!-- Welcome Wheel -->
       <div class="reward-card reward-card--welcome">
-        <div class="absolute inset-0 pointer-events-none">
-          <InlineSvg
-            :src="raffleCardBgGlow"
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] max-w-none"
-            unique-ids="reward-bg-welcome"
-          />
-        </div>
         <span class="reward-tag reward-tag--welcome">One-time</span>
         <img :src="giftBoxImg" alt="" class="reward-card-icon size-8">
         <span class="reward-label">Welcome Wheel</span>
         <div class="reward-hero">
-          <span class="reward-number">{{ formatNumberToUS(welcomeSpins) }}</span>
+          <span class="reward-number">{{ isEmpty ? '\u2014' : formatNumberToUS(welcomeSpins) }}</span>
           <span class="reward-unit">Spins</span>
         </div>
         <span class="reward-meta">
-          ~${{ formatNumberToUS(welcomeEstValue) }} est. value
+          {{ isEmpty ? '\u2014' : `~$${formatNumberToUS(welcomeEstValue)} est. value` }}
         </span>
       </div>
 
       <!-- Staking Wheel -->
       <div class="reward-card reward-card--staking">
-        <div class="absolute inset-0 pointer-events-none" style="transform: rotate(180deg)">
-          <InlineSvg
-            :src="raffleCardBgGlow"
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] max-w-none"
-            unique-ids="reward-bg-staking"
-          />
-        </div>
         <span class="reward-tag reward-tag--staking">Monthly</span>
         <InlineSvg
           :src="starIcon"
@@ -335,14 +336,32 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         />
         <span class="reward-label">Staking Wheel</span>
         <div class="reward-hero">
-          <span class="reward-number">{{ formatNumberToUS(monthlySpins) }}</span>
+          <span class="reward-number">{{ isEmpty ? '\u2014' : formatNumberToUS(monthlySpins) }}</span>
           <span class="reward-unit">Spins/mo</span>
         </div>
         <span class="reward-meta">
-          {{ currentMonthlyBase?.name || '\u2014' }} tier &middot; ~${{ formatNumberToUS(monthlyEstValue) }}/mo
+          {{ isEmpty ? '\u2014' : `${currentTierName} tier \u00B7 ~$${formatNumberToUS(monthlyEstValue)}/mo` }}
         </span>
       </div>
     </div>
+
+    <!-- Loss Aversion Banner -->
+    <Transition
+      enter-active-class="transition-all duration-300"
+      leave-active-class="transition-all duration-200"
+      enter-from-class="opacity-0 translate-y-1"
+      leave-to-class="opacity-0 translate-y-1"
+    >
+      <div
+        v-if="showLossAversion"
+        class="loss-banner"
+      >
+        <span class="loss-text">
+          &#9888; You're leaving ~<strong>${{ formatNumberToUS(missedMonthlyValue) }}</strong> on the table &mdash;
+          <strong class="loss-cta" @click="selectedLock = '12mo'">Switch to 12 Months &rarr;</strong>
+        </span>
+      </div>
+    </Transition>
 
     <!-- 4. Stats Row (CSS glow background) -->
     <div class="stats-row">
@@ -354,7 +373,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       <div class="stat">
         <InlineSvg
           :src="powerMilesIcon"
-          class="size-10"
+          class="size-5"
           unique-ids="calc-power-lg"
         />
         <span class="stat-label">Power Miles</span>
@@ -366,14 +385,26 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       <div class="stat">
         <InlineSvg
           :src="dollarIcon"
-          class="size-6"
+          class="size-5"
           unique-ids="calc-dollar-stat"
         />
         <span class="stat-label">Staked Value</span>
         <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
-          ${{ formatNumberToUS(usdAmount) }}
+          {{ isEmpty ? '\u2014' : `$${formatNumberToUS(usdAmount)}` }}
         </h2>
       </div>
+    </div>
+
+    <!-- Connect wallet prompt -->
+    <div
+      v-if="showConnectPrompt"
+      class="connect-prompt"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+      <span>Connect wallet to see your actual rewards</span>
     </div>
 
     <!-- 5. You Will Receive + Enough to Unlock -->
@@ -403,7 +434,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
             />
           </IconWrapper>
           <span class="text-lavender text-5xl leading-10 tracking-[-4.32px]">
-            {{ formatNumberToUS(powerMilesRewards) }}
+            {{ isEmpty ? '\u2014' : formatNumberToUS(powerMilesRewards) }}
           </span>
           <div class="flex flex-col justify-end gap-1">
             <span class="text-purple-gray text-[20px] tracking-[-0.6px] leading-[22px]">Power Miles</span>
@@ -419,7 +450,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         </span>
         <div class="flex gap-2">
           <span class="text-lavender text-5xl leading-10 tracking-[-3.84px]">
-            {{ smashCount }}
+            {{ isEmpty ? '\u2014' : smashCount }}
           </span>
           <div class="flex flex-col justify-end gap-1">
             <span class="text-purple-gray text-[20px] tracking-[-0.6px] leading-[22px]">Rewards</span>
@@ -438,31 +469,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </GlowButton>
     </div>
 
-    <!-- 7. Loss Aversion Banner -->
-    <Transition
-      enter-active-class="transition-all duration-300"
-      leave-active-class="transition-all duration-200"
-      enter-from-class="opacity-0 translate-y-1"
-      leave-to-class="opacity-0 translate-y-1"
-    >
-      <div
-        v-if="showLossAversion"
-        class="loss-banner"
-      >
-        <InlineSvg
-          :src="boltIcon"
-          class="size-5 flex-shrink-0"
-          unique-ids="calc-bolt-loss"
-        />
-        <span class="loss-text">
-          Switch to <strong>12 Months VIP</strong> for
-          <strong>{{ formatNumberToUS(missedWelcomeSpins) }} more spins</strong>
-          + x5 monthly spins
-        </span>
-      </div>
-    </Transition>
-
-    <!-- 8. Wheel Details Toggle -->
+    <!-- 7. Wheel Details Toggle -->
     <button class="details-toggle" @click="showWheelDetails = !showWheelDetails">
       <span>{{ showWheelDetails ? 'Hide' : 'Show' }} wheel details</span>
       <svg
@@ -648,10 +655,19 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   gap: 2px;
   padding: 12px 14px 16px;
   border-radius: 16px;
-  background: #0C0C14;
+  background: #0D0D1A;
   overflow: hidden;
   isolation: isolate;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reward-card--welcome {
+  border: 1px solid rgba(88, 88, 245, 0.25);
+  box-shadow: 0 0 20px -4px rgba(88, 88, 245, 0.15), inset 0 0 20px -8px rgba(88, 88, 245, 0.06);
+}
+
+.reward-card--staking {
+  border: 1px solid rgba(201, 92, 255, 0.25);
+  box-shadow: 0 0 20px -4px rgba(201, 92, 255, 0.15), inset 0 0 20px -8px rgba(201, 92, 255, 0.06);
 }
 
 .reward-card-icon {
@@ -760,6 +776,18 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   z-index: 1;
 }
 
+/* === Connect Wallet Prompt === */
+.connect-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-purple-gray);
+  margin-top: -16px;
+}
+
 /* === Loss Aversion Banner === */
 .loss-banner {
   display: flex;
@@ -781,6 +809,12 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 .loss-text strong {
   color: #fbbf24;
   font-weight: 700;
+}
+
+.loss-cta {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* === Wheel Details Toggle === */
