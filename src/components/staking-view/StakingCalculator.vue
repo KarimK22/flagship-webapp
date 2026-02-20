@@ -53,8 +53,6 @@ const totalSpins = computed(() => baseSpins.value + bonusSpins.value)
 
 const currentWheel = computed(() => wheelTiers[selectedLock.value])
 
-const presetAmounts = [250, 500, 1000, 5000, 10000, 25000]
-
 const handleAmountInput = (event: Event) => {
   const input = event.target as HTMLInputElement
   const value = Number(input.value)
@@ -157,6 +155,26 @@ const matchingExampleIndex = computed(() => {
       </h2>
     </div>
 
+    <!-- === Main Stake Input (top-level) === -->
+    <div class="main-input-section mb-4">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Stake Value (USD)</span>
+        <span class="text-xs text-purple-gray">
+          ~<span class="text-soft-gray">{{ formatNumberToUS(lingoEquivalent) }}</span> LINGO
+        </span>
+      </div>
+      <div class="input-field">
+        <span class="text-lavender text-2xl font-semibold flex-shrink-0">$</span>
+        <input
+          type="number"
+          class="flex-1 text-lavender text-2xl sm:text-3xl tracking-[-1.2px] bg-transparent outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          :value="usdAmount"
+          @input="handleAmountInput"
+        >
+        <span class="text-purple-gray text-xs font-semibold">USD</span>
+      </div>
+    </div>
+
     <!-- === Section 1: Pick Your Wheel === -->
     <div class="section-card mb-4">
       <div class="flex items-center gap-2 mb-4">
@@ -188,49 +206,16 @@ const matchingExampleIndex = computed(() => {
       </div>
     </div>
 
-    <!-- === Section 2: How Many Spins? (Calculator) === -->
+    <!-- === Section 2: Reward Summary === -->
     <div class="section-card mb-4">
       <div class="flex items-center gap-2 mb-4">
         <span class="section-number">2</span>
-        <h3 class="text-lavender text-lg font-semibold tracking-[-0.4px]">How Many Spins?</h3>
+        <h3 class="text-lavender text-lg font-semibold tracking-[-0.4px]">Reward Summary</h3>
       </div>
 
       <p class="text-purple-gray text-sm mb-4 leading-5">
         <span class="text-lavender font-semibold">1 spin per $100</span> staked value. Bigger stakes unlock <span class="text-amber-soft font-semibold">bonus %</span> extra spins!
       </p>
-
-      <!-- Amount Input -->
-      <div class="mb-3">
-        <div class="flex items-center justify-between mb-1.5">
-          <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Stake Value (USD)</span>
-          <span class="text-xs text-purple-gray">
-            ~<span class="text-soft-gray">{{ formatNumberToUS(lingoEquivalent) }}</span> LINGO
-          </span>
-        </div>
-        <div class="input-field">
-          <span class="text-lavender text-2xl font-semibold flex-shrink-0">$</span>
-          <input
-            type="number"
-            class="flex-1 text-lavender text-2xl sm:text-3xl tracking-[-1.2px] bg-transparent outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-            :value="usdAmount"
-            @input="handleAmountInput"
-          >
-          <span class="text-purple-gray text-xs font-semibold">USD</span>
-        </div>
-      </div>
-
-      <!-- Preset Chips -->
-      <div class="flex flex-wrap gap-1.5 mb-5">
-        <button
-          v-for="val in presetAmounts"
-          :key="val"
-          class="preset-chip"
-          :class="{ 'preset-chip--active': usdAmount === val }"
-          @click="usdAmount = val"
-        >
-          ${{ formatNumberToUS(val) }}
-        </button>
-      </div>
 
       <!-- === Two Reward Cards Side by Side === -->
       <div class="reward-cards-row">
@@ -579,28 +564,12 @@ const matchingExampleIndex = computed(() => {
   border-color: rgba(88, 88, 245, 0.3);
 }
 
-.preset-chip {
-  padding: 5px 12px;
-  border-radius: 9999px;
-  background: rgba(38, 38, 56, 0.5);
+/* Main Input Section (top-level) */
+.main-input-section {
+  background: rgba(12, 12, 20, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--color-purple-gray);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.preset-chip:hover {
-  background: rgba(88, 88, 245, 0.12);
-  border-color: rgba(88, 88, 245, 0.2);
-  color: var(--color-lavender);
-}
-
-.preset-chip--active {
-  background: rgba(88, 88, 245, 0.18);
-  border-color: rgba(88, 88, 245, 0.35);
-  color: var(--color-lavender);
+  border-radius: 16px;
+  padding: 20px;
 }
 
 /* === Reward Cards (Two side-by-side) === */
