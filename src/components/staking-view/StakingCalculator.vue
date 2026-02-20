@@ -1,15 +1,26 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, h, ref, watch } from 'vue'
+import InlineSvg from 'vue-inline-svg'
 import { useLingoPrice } from '@/composables/contracts/lingo-price'
 import { useGetMe } from '@/composables/get-me'
 import { useStakes } from '@/composables/contracts/stakes'
+import { useBalance } from '@/composables/contracts/balance'
 import { formatNumberToUS } from '@/composables/helpers'
+import BalanceBadge from '@/components/user-balance/BalanceBadge.vue'
+
+import lingoIcon from '@/assets/images/game/points-processed.svg'
+import dollarIcon from '@/assets/images/dollar-icon.svg'
+import boltIcon from '@/assets/images/bolt.svg'
+import checkIcon from '@/assets/images/staking/check-period.svg'
+import bgImage from '@/assets/images/staking/lock-cards-bg.png'
+import giftBoxImg from '@/assets/images/gift-box.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
 const { price } = useLingoPrice()
 const { isConnected } = useGetMe()
 const { totalStakedLingo, totalPowerMiles } = useStakes()
+const { tokenBalanceAsString: userBalance } = useBalance()
 
 // === Constants ===
 const DEMO_LINGO = 100_000
@@ -22,7 +33,7 @@ const effectiveConnected = computed(() => props.demoMode || isConnected.value)
 watch(effectiveConnected, (connected) => {
   if (connected && !inputAmount.value) {
     const amount = props.demoMode ? DEMO_LINGO : Math.floor(totalStakedLingo.value)
-    if (amount > 0) inputAmount.value = amount.toLocaleString('en-US')
+    if (amount > 0) inputAmount.value = String(amount)
   }
 }, { immediate: true })
 
@@ -31,32 +42,61 @@ const parsedAmount = computed(() => {
   return isNaN(num) || num < 0 ? 0 : num
 })
 
-function formatInput() {
-  if (parsedAmount.value > 0) {
-    inputAmount.value = Math.floor(parsedAmount.value).toLocaleString('en-US')
-  }
+function setMax() {
+  const max = props.demoMode ? DEMO_LINGO : userBalance.value
+  inputAmount.value = String(max)
 }
 
-function setMax() {
-  const max = props.demoMode ? DEMO_LINGO : Math.floor(totalStakedLingo.value)
-  inputAmount.value = max.toLocaleString('en-US')
+const handleInput = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  inputAmount.value = input.value
 }
 
 const effectivePrice = computed(() => props.demoMode ? DEMO_PRICE : (price.value || 0))
 const usdAmount = computed(() => Math.round(parsedAmount.value * effectivePrice.value))
+
+const displayBalance = computed(() => {
+  if (props.demoMode) return formatNumberToUS(DEMO_LINGO)
+  return formatNumberToUS(userBalance.value)
+})
 
 // === Lock Period ===
 type LockId = 'flex' | '3mo' | '6mo' | '12mo'
 const selectedLock = ref<LockId>('12mo')
 
 const lockOptions = [
-  { id: 'flex' as LockId, label: 'Flexible', tierName: null, tierColor: '#6D6D8F', bonusPct: 0, monthlyMult: 1, multiplierLabel: 'No bonus', isVip: false },
-  { id: '3mo' as LockId, label: '3 Months', tierName: 'Silver', tierColor: '#8A9AC2', bonusPct: 20, monthlyMult: 1, multiplierLabel: '20% \u00b7 x1 monthly spins', isVip: false },
-  { id: '6mo' as LockId, label: '6 Months', tierName: 'Gold', tierColor: '#FFBC70', bonusPct: 80, monthlyMult: 3, multiplierLabel: '80% \u00b7 x3 monthly spins', isVip: false },
-  { id: '12mo' as LockId, label: '12 Months', tierName: 'Diamond', tierColor: '#F1E6FA', bonusPct: 180, monthlyMult: 5, multiplierLabel: '180% \u00b7 x5 monthly spins', isVip: true },
+  {
+    id: 'flex' as LockId, label: 'Flexible', reward: 0,
+    description: 'No bonus', badgeText: 'S', badgeColor: '#6D6D8F',
+    bonusPct: 0, monthlyMult: 1, isVip: false,
+  },
+  {
+    id: '3mo' as LockId, label: '3 Months', reward: 20,
+    description: 'More rewards', badgeText: 'M', badgeColor: '#5858F5',
+    bonusPct: 20, monthlyMult: 1, isVip: false,
+  },
+  {
+    id: '6mo' as LockId, label: '6 Months', reward: 80,
+    description: 'More rewards', badgeText: 'L', badgeColor: '#5858F5',
+    bonusPct: 80, monthlyMult: 3, isVip: false,
+  },
+  {
+    id: '12mo' as LockId, label: '12 Months', reward: 180,
+    description: 'More rewards', badgeText: 'VIP', badgeColor: '#FF9D5C',
+    bonusPct: 180, monthlyMult: 5, isVip: true,
+  },
 ]
 
 const currentLock = computed(() => lockOptions.find(o => o.id === selectedLock.value)!)
+
+// Badge render functions (matching LockPeriods.vue pattern)
+const badgeClass = 'inline-block min-w-[24px] align-middle'
+const badges: Record<LockId, () => ReturnType<typeof h>> = {
+  flex: () => h(BalanceBadge, { color: '#6D6D8F', class: badgeClass }, { default: () => 'S' }),
+  '3mo': () => h(BalanceBadge, { color: '#5858F5', class: badgeClass }, { default: () => 'M' }),
+  '6mo': () => h(BalanceBadge, { color: '#5858F5', class: badgeClass }, { default: () => 'L' }),
+  '12mo': () => h(BalanceBadge, { color: '#FF9D5C', class: badgeClass }, { default: () => 'VIP' }),
+}
 
 // === Welcome Wheel (one-time) ===
 const baseSpins = computed(() => Math.floor(usdAmount.value / 100))
@@ -97,8 +137,6 @@ const displayPowerMiles = computed(() => {
   return formatNumberToUS(Math.round(totalPowerMiles.value))
 })
 
-const displayStakedValue = computed(() => '$' + formatNumberToUS(usdAmount.value))
-
 // === UI State ===
 const showWheelDetails = ref(false)
 
@@ -121,107 +159,160 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 
 <template>
   <div class="calc">
-    <!-- 1. Amount Input -->
-    <div class="calc-section">
-      <div class="amount-header">
-        <span class="section-label">Amount</span>
-        <span class="usd-equiv">&approx; {{ displayStakedValue }}</span>
+    <!-- 1. Amount Input (PriceInput style) -->
+    <div class="amount-section">
+      <div class="flex justify-between w-full text-sm text-purple-gray tracking-[0.42px] font-semibold">
+        <div>
+          Amount <InlineSvg
+            :src="dollarIcon"
+            class="size-6 inline"
+            unique-ids="calc-dollar"
+          />
+          <span class="text-lavender">${{ formatNumberToUS(usdAmount) }} USD</span>
+        </div>
+        <div>
+          Available - <span class="text-lavender">{{ displayBalance }}</span>
+        </div>
       </div>
-      <div class="amount-wrap">
-        <input
-          v-model="inputAmount"
-          type="text"
-          inputmode="numeric"
-          placeholder="0"
-          class="amount-input"
-          @blur="formatInput"
-        />
-        <span class="amount-token">LINGO</span>
-        <button class="max-btn" @click="setMax">
-          Max
-        </button>
+      <div class="flex justify-between w-full">
+        <div class="relative flex items-center gap-2 w-full leading-0 h-10 text-5.5xl overflow-clip">
+          <InlineSvg
+            :src="lingoIcon"
+            class="size-10 flex-shrink-0"
+            unique-ids="calc-lingo"
+          />
+          <input
+            id="calc-amount-input"
+            type="number"
+            class="h-min text-lavender tracking-[-2.8px] bg-transparent outline-none w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            :value="inputAmount"
+            @input="handleInput"
+          >
+        </div>
+        <div class="flex items-center">
+          <button
+            class="text-sm text-white border border-purple-gray rounded-full px-6 py-2 h-10 bg-transparent cursor-pointer hover:border-lavender transition-colors"
+            @click="setMax"
+          >
+            Max
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- 2. Lock Period Selector -->
-    <div class="calc-section">
-      <span class="section-label">Lock Period</span>
+    <!-- 2. Lock Period Cards (matching LockPeriods/StakeOption design) -->
+    <div class="lock-section">
+      <span class="text-sm text-purple-gray tracking-[0.42px] font-semibold">Lock Period</span>
       <div class="lock-grid">
-        <button
-          v-for="opt in lockOptions"
+        <div
+          v-for="(opt, index) in lockOptions"
           :key="opt.id"
-          class="lock-card"
-          :class="{
-            'lock-card--active': selectedLock === opt.id,
-            'lock-card--vip-active': opt.isVip && selectedLock === opt.id,
-          }"
+          role="button"
+          class="lock-card cursor-pointer relative tracking-normal flex flex-col justify-between gap-2 rounded-2xl p-4 bg-[#0C0C14]"
+          :style="`background-image: url(${bgImage});`"
+          :class="[`lock-card-pos-${index}`]"
           @click="selectedLock = opt.id"
         >
-          <div
-            v-if="selectedLock === opt.id"
-            class="lock-check"
-          >
-            <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
+          <!-- Check icon (from check-period.svg) -->
+          <InlineSvg
+            :src="checkIcon"
+            class="size-8 absolute bottom-1 right-1 transition-opacity duration-300"
+            :class="{ 'opacity-100': selectedLock === opt.id, 'opacity-0': selectedLock !== opt.id }"
+            :unique-ids="`check-${opt.id}`"
+          />
+
+          <!-- Label + Badge -->
+          <span class="text-lavender font-semibold">
+            {{ opt.label }}
+            <component :is="badges[opt.id]" />
+          </span>
+
+          <!-- Big percentage number -->
+          <div class="relative">
+            <h1
+              v-if="opt.reward"
+              class="text-purple text-5.5xl leading-14 tracking-[-3.36px]"
+            >
+              {{ opt.reward }}<i class="text-[32px] font-bold not-italic">%</i>
+            </h1>
+            <h1
+              v-if="opt.reward"
+              class="flare text-purple text-5.5xl leading-14 tracking-[-3.36px]"
+              :class="{ 'flare-active': selectedLock === opt.id }"
+            >
+              {{ opt.reward }}<i class="text-[32px] font-bold not-italic">%</i>
+            </h1>
+            <span class="text-purple-gray font-semibold text-sm tracking-[0.14px]">{{ opt.description }}</span>
           </div>
-          <span class="lock-label">{{ opt.label }}</span>
-          <span
-            v-if="opt.tierName"
-            class="lock-tier"
-            :style="{ color: opt.tierColor }"
-          >
-            {{ opt.tierName }}
-          </span>
-          <span class="lock-multiplier">{{ opt.multiplierLabel }}</span>
-          <span
-            v-if="opt.isVip"
-            class="lock-vip"
-            :class="{ 'lock-vip--lit': selectedLock === opt.id }"
-          >
-            VIP
-          </span>
-        </button>
+
+          <!-- Selected border glow -->
+          <div
+            class="selected-border"
+            :class="{ 'selected-border-active': selectedLock === opt.id }"
+          />
+        </div>
       </div>
     </div>
 
-    <!-- 3. Reward Cards (Primary) -->
-    <div class="calc-section reward-row">
-      <div class="reward-card reward-card--welcome">
+    <!-- 3. Reward Cards -->
+    <div class="reward-row">
+      <!-- Welcome Wheel -->
+      <div class="reward-card">
+        <div class="reward-card-icon">
+          <img :src="giftBoxImg" alt="" class="size-8">
+        </div>
         <span class="reward-tag reward-tag--welcome">One-time</span>
-        <span class="reward-label">Welcome Wheel</span>
+        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px]">Welcome Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(welcomeSpins) }}</span>
           <span class="reward-unit">Spins</span>
         </div>
-        <span class="reward-meta">
-          {{ currentLock.tierName || 'Base' }} tier &middot; ~${{ formatNumberToUS(welcomeEstValue) }} est. value
+        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4]">
+          ~${{ formatNumberToUS(welcomeEstValue) }} est. value
         </span>
       </div>
 
-      <div class="reward-card reward-card--staking">
+      <!-- Staking Wheel -->
+      <div class="reward-card">
+        <div class="reward-card-icon">
+          <!-- Inline wheel/cycle SVG -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M9.66 14.34l-2.83 2.83m11.34 0l-2.83-2.83M9.66 9.66L6.83 6.83" stroke="#C95CFF" stroke-width="2" stroke-linecap="round" />
+            <circle cx="12" cy="12" r="3" fill="#C95CFF" opacity="0.5" />
+          </svg>
+        </div>
         <span class="reward-tag reward-tag--staking">Monthly</span>
-        <span class="reward-label">Staking Wheel</span>
+        <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px]">Staking Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(monthlySpins) }}</span>
           <span class="reward-unit">Spins/mo</span>
         </div>
-        <span class="reward-meta">
+        <span class="text-[11px] text-purple-gray font-medium text-center leading-[1.4]">
           {{ currentMonthlyBase?.name || '\u2014' }} tier &middot; ~${{ formatNumberToUS(monthlyEstValue) }}/mo
         </span>
       </div>
     </div>
 
-    <!-- 4. Secondary Stats Row -->
-    <div class="calc-section stats-row">
+    <!-- 4. Power Miles Row -->
+    <div class="stats-row">
       <div class="stat">
-        <span class="stat-label">Power Miles</span>
-        <span class="stat-value">{{ displayPowerMiles }}</span>
+        <InlineSvg
+          :src="boltIcon"
+          class="size-5"
+          unique-ids="calc-bolt"
+        />
+        <span class="text-[10px] font-semibold text-purple-gray uppercase tracking-[0.6px]">Power Miles</span>
+        <span class="text-base font-bold text-lavender tracking-[-0.3px]">{{ displayPowerMiles }}</span>
       </div>
       <div class="stat-divider" />
       <div class="stat">
-        <span class="stat-label">Staked Value</span>
-        <span class="stat-value">{{ displayStakedValue }}</span>
+        <InlineSvg
+          :src="dollarIcon"
+          class="size-5"
+          unique-ids="calc-dollar-stat"
+        />
+        <span class="text-[10px] font-semibold text-purple-gray uppercase tracking-[0.6px]">Staked Value</span>
+        <span class="text-base font-bold text-lavender tracking-[-0.3px]">${{ formatNumberToUS(usdAmount) }}</span>
       </div>
     </div>
 
@@ -236,9 +327,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         v-if="showLossAversion"
         class="loss-banner"
       >
-        <svg class="loss-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#fbbf24" />
-        </svg>
+        <InlineSvg
+          :src="boltIcon"
+          class="size-5 flex-shrink-0"
+          unique-ids="calc-bolt-loss"
+        />
         <span class="loss-text">
           Switch to <strong>12 Months VIP</strong> for
           <strong>{{ formatNumberToUS(missedWelcomeSpins) }} more spins</strong>
@@ -278,16 +371,16 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         class="details-panel"
       >
         <div
-          v-for="opt in lockOptions.filter(o => o.tierName)"
+          v-for="opt in lockOptions.filter(o => o.id !== 'flex')"
           :key="opt.id"
           class="detail-row"
         >
-          <div class="detail-dot" :style="{ background: opt.tierColor, boxShadow: `0 0 8px ${opt.tierColor}` }" />
+          <component :is="badges[opt.id]" />
           <div class="detail-info">
-            <span class="detail-name" :style="{ color: opt.tierColor }">{{ opt.tierName }}</span>
-            <span class="detail-period">{{ opt.label }}</span>
+            <span class="text-[13px] font-bold text-lavender">{{ opt.label }}</span>
+            <span class="text-[10px] text-purple-gray font-medium">{{ opt.reward }}% bonus</span>
           </div>
-          <span class="detail-prizes">{{ tierPrizes[opt.id] }}</span>
+          <span class="text-[11px] text-purple-gray leading-[1.4] ml-auto text-right">{{ tierPrizes[opt.id] }}</span>
         </div>
       </div>
     </Transition>
@@ -301,199 +394,125 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   gap: 24px;
 }
 
-/* === Section spacing === */
-.calc-section {
+/* === Amount Input Section (PriceInput style) === */
+.amount-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.section-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-purple-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-/* === Amount Input === */
-.amount-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.usd-equiv {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-purple-gray);
-}
-
-.amount-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: rgba(12, 12, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: border-color 0.2s ease;
-}
-
-.amount-wrap:focus-within {
-  border-color: rgba(88, 88, 245, 0.3);
-}
-
-.amount-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--color-lavender);
-  letter-spacing: -0.5px;
-  min-width: 0;
-  font-family: inherit;
-}
-
-.amount-input::placeholder {
-  color: rgba(109, 109, 143, 0.4);
-}
-
-.amount-token {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--color-purple-gray);
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-}
-
-.max-btn {
-  padding: 6px 14px;
-  border-radius: 8px;
-  background: rgba(88, 88, 245, 0.12);
-  border: 1px solid rgba(88, 88, 245, 0.2);
-  color: #7878ff;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.max-btn:hover {
-  background: rgba(88, 88, 245, 0.2);
-  border-color: rgba(88, 88, 245, 0.35);
+  gap: 24px;
+  width: 100%;
+  z-index: 1;
 }
 
 /* === Lock Period Grid === */
-.lock-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+.lock-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-@media (max-width: 560px) {
-  .lock-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.lock-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
 }
 
 .lock-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 16px 8px 14px;
-  border-radius: 14px;
-  background: rgba(20, 20, 31, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
+  flex: 1;
+  min-width: 100px;
+  height: 184px;
+  background-size: 1005px 548px;
+  background-repeat: no-repeat;
+}
+
+.lock-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  opacity: 0.56;
+  background: var(--dark-1, #14141f);
+  box-shadow: 0px 0px 48px -16px #1c1c29 inset;
+  pointer-events: none;
+  mix-blend-mode: screen;
   overflow: hidden;
 }
 
-.lock-card:hover {
-  background: rgba(30, 30, 48, 0.8);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.lock-card--active {
-  background: rgba(88, 88, 245, 0.08);
-  border-color: rgba(88, 88, 245, 0.35);
-  box-shadow: 0 0 16px rgba(88, 88, 245, 0.1);
-}
-
-.lock-card--vip-active {
-  background: rgba(241, 230, 250, 0.05);
-  border-color: rgba(241, 230, 250, 0.35);
-  box-shadow:
-    0 0 20px rgba(241, 230, 250, 0.12),
-    0 0 40px rgba(201, 92, 255, 0.08),
-    inset 0 0 20px rgba(241, 230, 250, 0.03);
-  transform: scale(1.03);
-}
-
-.lock-check {
+.lock-card::before {
+  content: "";
   position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(88, 88, 245, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid #ffffff0d;
+  mix-blend-mode: screen;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lock-card-pos-0 { background-position: -160px center; }
+.lock-card-pos-1 { background-position: -320px center; }
+.lock-card-pos-2 { background-position: -480px center; }
+.lock-card-pos-3 { background-position: -640px center; }
+
+@media (max-width: 560px) {
+  .lock-grid {
+    flex-wrap: wrap;
+  }
+  .lock-card {
+    min-width: calc(50% - 1px);
+  }
+}
+
+/* Flare effect (from StakeOption.vue) */
+.flare {
+  width: 100%;
+  position: absolute;
+  filter: blur(0px);
   color: #fff;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  background: linear-gradient(to bottom, #d0c2eb 10%, transparent 60%);
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s;
+  mix-blend-mode: plus-lighter;
+  pointer-events: none;
 }
 
-.lock-card--vip-active .lock-check {
-  background: linear-gradient(135deg, #c95cff, #f1e6fa);
+.flare-active {
+  opacity: 1;
+  left: 2px;
+  filter: blur(4px);
 }
 
-.lock-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--color-lavender);
-  letter-spacing: -0.2px;
+/* Selected border glow (from StakeOption.vue) */
+.selected-border {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: linear-gradient(#0b0b1300, #0b0b13) padding-box, linear-gradient(to top, #5858F5, transparent 76%) border-box;
+  border: 1px solid transparent;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s;
 }
 
-.lock-tier {
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
-}
-
-.lock-multiplier {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--color-purple-gray);
-  line-height: 1.3;
-  margin-top: 2px;
-}
-
-.lock-vip {
-  margin-top: 4px;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: rgba(241, 230, 250, 0.08);
-  color: rgba(241, 230, 250, 0.4);
-  transition: all 0.3s ease;
-}
-
-.lock-vip--lit {
-  background: linear-gradient(135deg, rgba(201, 92, 255, 0.2), rgba(241, 230, 250, 0.15));
-  color: #f1e6fa;
-  box-shadow: 0 0 12px rgba(201, 92, 255, 0.2);
+.selected-border-active {
+  opacity: 1;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
 }
 
 /* === Reward Cards === */
@@ -509,27 +528,19 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: 24px 14px 20px;
+  padding: 28px 14px 20px;
   border-radius: 16px;
   background: rgba(12, 12, 20, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: border-color 0.3s ease;
 }
 
-.reward-card--welcome {
-  border-color: rgba(88, 88, 245, 0.18);
+.reward-card:hover {
+  border-color: rgba(88, 88, 245, 0.2);
 }
 
-.reward-card--welcome:hover {
-  border-color: rgba(88, 88, 245, 0.3);
-}
-
-.reward-card--staking {
-  border-color: rgba(201, 92, 255, 0.18);
-}
-
-.reward-card--staking:hover {
-  border-color: rgba(201, 92, 255, 0.3);
+.reward-card-icon {
+  margin-bottom: 4px;
 }
 
 .reward-tag {
@@ -554,14 +565,6 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   color: #d490ff;
 }
 
-.reward-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--color-purple-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.7px;
-}
-
 .reward-hero {
   display: flex;
   align-items: baseline;
@@ -583,20 +586,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   color: var(--color-purple-gray);
 }
 
-.reward-meta {
-  font-size: 11px;
-  color: var(--color-purple-gray);
-  font-weight: 500;
-  text-align: center;
-  line-height: 1.4;
-}
-
-/* === Secondary Stats Row === */
+/* === Stats Row === */
 .stats-row {
-  flex-direction: row;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
   padding: 14px 20px;
   border-radius: 12px;
   background: rgba(12, 12, 20, 0.4);
@@ -609,21 +603,6 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-}
-
-.stat-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--color-purple-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-}
-
-.stat-value {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--color-lavender);
-  letter-spacing: -0.3px;
 }
 
 .stat-divider {
@@ -643,10 +622,6 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   border-radius: 12px;
   background: rgba(251, 191, 36, 0.06);
   border: 1px solid rgba(251, 191, 36, 0.15);
-}
-
-.loss-icon {
-  flex-shrink: 0;
 }
 
 .loss-text {
@@ -713,36 +688,10 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.detail-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
 .detail-info {
   display: flex;
   flex-direction: column;
   gap: 1px;
   min-width: 80px;
-}
-
-.detail-name {
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.detail-period {
-  font-size: 10px;
-  color: var(--color-purple-gray);
-  font-weight: 500;
-}
-
-.detail-prizes {
-  font-size: 11px;
-  color: var(--color-purple-gray);
-  line-height: 1.4;
-  margin-left: auto;
-  text-align: right;
 }
 </style>
