@@ -14,8 +14,12 @@
         <div
           v-for="tier in tiers"
           :key="tier.name"
-          class="relative bg-[rgba(14,14,26,0.8)] border rounded-2xl p-5 md:p-6 text-center overflow-hidden transition-all duration-300 hover:scale-[1.02]"
-          :class="tier.borderClass"
+          class="relative bg-[rgba(14,14,26,0.8)] border rounded-2xl p-5 md:p-6 text-center overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+          :class="[
+            tier.borderClass,
+            selectedTier === tier.name ? 'ring-2 ring-offset-2 ring-offset-[#0E0E1A] ' + tier.ringClass : '',
+          ]"
+          @click="selectedTier = tier.name"
         >
           <!-- Glow effect -->
           <div
@@ -76,8 +80,23 @@
         </div>
       </div>
 
+      <!-- Upsell warning bar -->
+      <div
+        v-if="upsellMessage"
+        class="flex items-center justify-center gap-2 mt-8 mx-auto max-w-xl rounded-xl bg-[#92400e]/20 border border-amber-500/30 px-5 py-3 text-amber-400 text-sm font-medium transition-all duration-300"
+      >
+        <span class="text-base">&#9888;</span>
+        <span>{{ upsellMessage }}</span>
+        <button
+          class="ml-1 underline underline-offset-2 hover:text-amber-300 transition-colors font-semibold"
+          @click="selectedTier = 'Diamond'"
+        >
+          Switch &rarr;
+        </button>
+      </div>
+
       <!-- CTA -->
-      <div class="text-center mt-12">
+      <div class="text-center mt-8">
         <button
           class="bg-gradient-to-r from-[#FF7847] to-[#FFBC70] text-white font-bold rounded-full px-10 py-4 text-lg hover:opacity-90 transition-opacity shadow-[0_0_40px_rgba(255,120,71,0.25)]"
         >
@@ -89,12 +108,19 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+
+const selectedTier = ref<string | null>(null)
+
 const tiers = [
   {
     name: 'Bronze',
     multiplier: '1x',
+    numericMultiplier: 1,
     stakeMin: '$500+',
+    annualRewardEstimate: 600,
     borderClass: 'border-[#EF8674]/20 hover:border-[#EF8674]/40',
+    ringClass: 'ring-[#EF8674]',
     glowClass: 'bg-[#EF8674]/10',
     badgeBgClass: 'bg-[#EF8674]/10 border border-[#EF8674]/20',
     textClass: 'text-[#EF8674]',
@@ -104,8 +130,11 @@ const tiers = [
   {
     name: 'Silver',
     multiplier: '2x',
+    numericMultiplier: 2,
     stakeMin: '$2,500+',
+    annualRewardEstimate: 3_000,
     borderClass: 'border-[#8A9AC2]/20 hover:border-[#8A9AC2]/40',
+    ringClass: 'ring-[#8A9AC2]',
     glowClass: 'bg-[#8A9AC2]/10',
     badgeBgClass: 'bg-[#8A9AC2]/10 border border-[#8A9AC2]/20',
     textClass: 'text-[#8A9AC2]',
@@ -115,8 +144,11 @@ const tiers = [
   {
     name: 'Gold',
     multiplier: '3x',
+    numericMultiplier: 3,
     stakeMin: '$10,000+',
+    annualRewardEstimate: 12_000,
     borderClass: 'border-[#FFBC70]/20 hover:border-[#FFBC70]/40',
+    ringClass: 'ring-[#FFBC70]',
     glowClass: 'bg-[#FFBC70]/10',
     badgeBgClass: 'bg-[#FFBC70]/10 border border-[#FFBC70]/20',
     textClass: 'text-[#FFBC70]',
@@ -126,8 +158,11 @@ const tiers = [
   {
     name: 'Diamond',
     multiplier: '5x',
+    numericMultiplier: 5,
     stakeMin: '$50,000+',
+    annualRewardEstimate: 60_000,
     borderClass: 'border-[#A8D8FF]/30 hover:border-[#A8D8FF]/60',
+    ringClass: 'ring-[#A8D8FF]',
     glowClass: 'bg-[#A8D8FF]/20',
     badgeBgClass: 'bg-gradient-to-br from-[#A8D8FF]/20 to-[#C4B5FD]/20 border border-[#A8D8FF]/30',
     textClass: 'text-[#A8D8FF]',
@@ -135,4 +170,19 @@ const tiers = [
     benefits: ['5 daily spins', '5x raffle entries', 'Exclusive prizes'],
   },
 ]
+
+const diamondTier = tiers.find(t => t.name === 'Diamond')!
+
+const upsellMessage = computed(() => {
+  if (!selectedTier.value) return null
+
+  const selected = tiers.find(t => t.name === selectedTier.value)
+  if (!selected || selected.name === 'Diamond' || selected.name === 'Bronze') return null
+
+  const multiplierDiff = diamondTier.numericMultiplier - selected.numericMultiplier
+  const rewardDiff = selected.annualRewardEstimate * multiplierDiff / selected.numericMultiplier
+  const formattedAmount = rewardDiff.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+
+  return `You're leaving ~${formattedAmount}/yr on the table vs Diamond.`
+})
 </script>
