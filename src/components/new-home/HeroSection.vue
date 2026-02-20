@@ -93,12 +93,12 @@
                 <div
                   class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,92,255,0.12)_0%,transparent_70%)] rounded-2xl"
                 />
-                <img
-                  src="/homepage-new/gaming-pc.png"
-                  alt="Rolex Submariner"
-                  class="relative max-w-full max-h-full object-contain z-10"
-                  loading="lazy"
-                >
+                <div class="relative z-10 flex flex-col items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 text-[#FFBC70] mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+                  </svg>
+                  <span class="text-lavender text-sm font-semibold">Rolex Submariner</span>
+                </div>
               </div>
             </div>
 
