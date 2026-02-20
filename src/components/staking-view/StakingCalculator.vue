@@ -12,7 +12,12 @@ import lingoIcon from '@/assets/images/game/points-processed.svg'
 import dollarIcon from '@/assets/images/dollar-icon.svg'
 import boltIcon from '@/assets/images/bolt.svg'
 import checkIcon from '@/assets/images/staking/check-period.svg'
-import bgImage from '@/assets/images/staking/lock-cards-bg.png'
+import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
+import apyCardsBg from '@/assets/images/staking/apy-cards-bg.png'
+import holdingCardsBg from '@/assets/images/staking/holding-cards-bg.png'
+import lingoIconLight from '@/assets/images/staking/lingo-icon-light.svg'
+import starIcon from '@/assets/icons/star.svg'
+import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import giftBoxImg from '@/assets/images/gift-box.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
@@ -209,25 +214,20 @@ const tierPrizes: Partial<Record<LockId, string>> = {
           :key="opt.id"
           role="button"
           class="lock-card cursor-pointer relative tracking-normal flex flex-col justify-between gap-2 rounded-2xl p-4 bg-[#0C0C14]"
-          :style="`background-image: url(${bgImage});`"
+          :style="`background-image: url(${lockCardsBg});`"
           :class="[`lock-card-pos-${index}`]"
           @click="selectedLock = opt.id"
         >
-          <!-- Check icon (from check-period.svg) -->
           <InlineSvg
             :src="checkIcon"
             class="size-8 absolute bottom-1 right-1 transition-opacity duration-300"
             :class="{ 'opacity-100': selectedLock === opt.id, 'opacity-0': selectedLock !== opt.id }"
             :unique-ids="`check-${opt.id}`"
           />
-
-          <!-- Label + Badge -->
           <span class="text-lavender font-semibold">
             {{ opt.label }}
             <component :is="badges[opt.id]" />
           </span>
-
-          <!-- Big percentage number -->
           <div class="relative">
             <h1
               v-if="opt.reward"
@@ -244,8 +244,6 @@ const tierPrizes: Partial<Record<LockId, string>> = {
             </h1>
             <span class="text-purple-gray font-semibold text-sm tracking-[0.14px]">{{ opt.description }}</span>
           </div>
-
-          <!-- Selected border glow -->
           <div
             class="selected-border"
             :class="{ 'selected-border-active': selectedLock === opt.id }"
@@ -254,13 +252,19 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </div>
 
-    <!-- 3. Reward Cards -->
+    <!-- 3. Reward Cards (with apy-cards-bg backgrounds) -->
     <div class="reward-row">
       <!-- Welcome Wheel -->
-      <div class="reward-card">
-        <div class="reward-card-icon">
-          <img :src="giftBoxImg" alt="" class="size-8">
-        </div>
+      <div
+        :style="{ backgroundImage: `url(${apyCardsBg})` }"
+        class="reward-card bg-cover bg-left"
+      >
+        <InlineSvg
+          :src="starIcon"
+          class="absolute top-2 left-2 !z-1 size-6 opacity-80"
+          unique-ids="calc-star-welcome"
+        />
+        <img :src="giftBoxImg" alt="" class="reward-card-icon size-10">
         <span class="reward-tag reward-tag--welcome">One-time</span>
         <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px]">Welcome Wheel</span>
         <div class="reward-hero">
@@ -273,14 +277,20 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
 
       <!-- Staking Wheel -->
-      <div class="reward-card">
-        <div class="reward-card-icon">
-          <!-- Inline wheel/cycle SVG -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M9.66 14.34l-2.83 2.83m11.34 0l-2.83-2.83M9.66 9.66L6.83 6.83" stroke="#C95CFF" stroke-width="2" stroke-linecap="round" />
-            <circle cx="12" cy="12" r="3" fill="#C95CFF" opacity="0.5" />
-          </svg>
-        </div>
+      <div
+        :style="{ backgroundImage: `url(${apyCardsBg})` }"
+        class="reward-card bg-cover bg-right"
+      >
+        <InlineSvg
+          :src="lingoIconLight"
+          class="absolute top-0 left-0 !z-1"
+          unique-ids="calc-lingo-staking"
+        />
+        <InlineSvg
+          :src="starIcon"
+          class="reward-card-icon size-10 opacity-90"
+          unique-ids="calc-star-staking"
+        />
         <span class="reward-tag reward-tag--staking">Monthly</span>
         <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px]">Staking Wheel</span>
         <div class="reward-hero">
@@ -293,26 +303,33 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       </div>
     </div>
 
-    <!-- 4. Power Miles Row -->
-    <div class="stats-row">
+    <!-- 4. Stats Row (with holding-cards-bg background) -->
+    <div
+      :style="{ backgroundImage: `url(${holdingCardsBg})` }"
+      class="stats-row bg-cover bg-center"
+    >
       <div class="stat">
         <InlineSvg
-          :src="boltIcon"
-          class="size-5"
-          unique-ids="calc-bolt"
+          :src="powerMilesIcon"
+          class="size-10"
+          unique-ids="calc-power-lg"
         />
         <span class="text-[10px] font-semibold text-purple-gray uppercase tracking-[0.6px]">Power Miles</span>
-        <span class="text-base font-bold text-lavender tracking-[-0.3px]">{{ displayPowerMiles }}</span>
+        <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
+          {{ displayPowerMiles }}
+        </h2>
       </div>
       <div class="stat-divider" />
       <div class="stat">
         <InlineSvg
           :src="dollarIcon"
-          class="size-5"
+          class="size-6"
           unique-ids="calc-dollar-stat"
         />
         <span class="text-[10px] font-semibold text-purple-gray uppercase tracking-[0.6px]">Staked Value</span>
-        <span class="text-base font-bold text-lavender tracking-[-0.3px]">${{ formatNumberToUS(usdAmount) }}</span>
+        <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
+          ${{ formatNumberToUS(usdAmount) }}
+        </h2>
       </div>
     </div>
 
@@ -519,7 +536,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 .reward-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 5px;
 }
 
 .reward-card {
@@ -528,18 +545,13 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: 28px 14px 20px;
+  padding: 28px 14px 16px;
   border-radius: 16px;
-  background: rgba(12, 12, 20, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: border-color 0.3s ease;
-}
-
-.reward-card:hover {
-  border-color: rgba(88, 88, 245, 0.2);
+  overflow: hidden;
 }
 
 .reward-card-icon {
+  z-index: 1;
   margin-bottom: 4px;
 }
 
@@ -553,15 +565,16 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   letter-spacing: 0.8px;
   padding: 2px 7px;
   border-radius: 6px;
+  z-index: 1;
 }
 
 .reward-tag--welcome {
-  background: rgba(88, 88, 245, 0.12);
+  background: rgba(88, 88, 245, 0.18);
   color: #7878ff;
 }
 
 .reward-tag--staking {
-  background: rgba(201, 92, 255, 0.12);
+  background: rgba(201, 92, 255, 0.18);
   color: #d490ff;
 }
 
@@ -570,6 +583,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   align-items: baseline;
   gap: 6px;
   margin: 6px 0 4px;
+  z-index: 1;
 }
 
 .reward-number {
@@ -591,10 +605,10 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 20px;
-  border-radius: 12px;
-  background: rgba(12, 12, 20, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 20px 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
 }
 
 .stat {
@@ -602,13 +616,13 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 }
 
 .stat-divider {
   width: 1px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.06);
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
   margin: 0 16px;
   flex-shrink: 0;
 }
