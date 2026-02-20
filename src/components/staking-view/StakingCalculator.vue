@@ -17,37 +17,36 @@ const lockOptions = [
 ]
 
 const wheelTiers = {
-  '3mo': { name: 'Silver', color: '#8A9AC2', prizes: 'Merch, Vouchers, LINGO' },
-  '6mo': { name: 'Gold', color: '#FFBC70', prizes: 'Electronics, Travel, LINGO' },
-  '12mo': { name: 'Diamond', color: '#F1E6FA', prizes: 'Luxury Watches, Cars, LINGO' },
+  '3mo': { name: 'Silver', color: '#8A9AC2', prizes: 'Gift Cards & Merch' },
+  '6mo': { name: 'Gold', color: '#FFBC70', prizes: 'Tech & Travel' },
+  '12mo': { name: 'Diamond', color: '#F1E6FA', prizes: 'Luxury Watches, Supercars, LINGO Jackpots' },
 }
 
 const bonusSpinTiers = [
-  { min: 250, label: '$250+', bonus: 1 },
-  { min: 1000, label: '$1K+', bonus: 2 },
-  { min: 5000, label: '$5K+', bonus: 5 },
-  { min: 10000, label: '$10K+', bonus: 10 },
-  { min: 25000, label: '$25K+', bonus: 25 },
+  { min: 250, max: 499, label: '$250+', bonusPct: 20 },
+  { min: 500, max: 999, label: '$500+', bonusPct: 40 },
+  { min: 1000, max: 4999, label: '$1K+', bonusPct: 60 },
+  { min: 5000, max: 9999, label: '$5K+', bonusPct: 80 },
+  { min: 10000, max: 24999, label: '$10K+', bonusPct: 100 },
+  { min: 25000, max: Infinity, label: '$25K+', bonusPct: 150 },
 ]
 
 const fiatValue = computed(() => amount.value * price.value)
 
-const baseSpins = computed(() => {
-  const usdValue = fiatValue.value
-  return Math.floor(usdValue / 100)
-})
-
-const bonusSpins = computed(() => {
-  const usdValue = fiatValue.value
-  let bonus = 0
+function getBonusPct(usdValue: number): number {
   for (let i = bonusSpinTiers.length - 1; i >= 0; i--) {
     if (usdValue >= bonusSpinTiers[i].min) {
-      bonus = bonusSpinTiers[i].bonus
-      break
+      return bonusSpinTiers[i].bonusPct
     }
   }
-  return bonus
-})
+  return 0
+}
+
+const baseSpins = computed(() => Math.floor(fiatValue.value / 100))
+
+const bonusPct = computed(() => getBonusPct(fiatValue.value))
+
+const bonusSpins = computed(() => Math.floor(baseSpins.value * (bonusPct.value / 100)))
 
 const totalSpins = computed(() => baseSpins.value + bonusSpins.value)
 
@@ -61,26 +60,13 @@ const handleAmountInput = (event: Event) => {
   if (value >= 0) amount.value = value
 }
 
-const quickExamples = computed(() => [
-  { stake: 500, lock: '3mo' as const },
-  { stake: 1000, lock: '6mo' as const },
-  { stake: 5000, lock: '12mo' as const },
-  { stake: 10000, lock: '12mo' as const },
-  { stake: 25000, lock: '12mo' as const },
-])
-
-function calcSpinsForExample(stakeAmount: number) {
-  const usd = stakeAmount * price.value
-  const base = Math.floor(usd / 100)
-  let bonus = 0
-  for (let i = bonusSpinTiers.length - 1; i >= 0; i--) {
-    if (usd >= bonusSpinTiers[i].min) {
-      bonus = bonusSpinTiers[i].bonus
-      break
-    }
-  }
-  return { base, bonus, total: base + bonus }
-}
+const quickExamples = [
+  { stake: '$250', lock: '3mo' as const, spins: 3 },
+  { stake: '$1,000', lock: '6mo' as const, spins: 16 },
+  { stake: '$5,000', lock: '12mo' as const, spins: 90 },
+  { stake: '$10,000', lock: '12mo' as const, spins: 200 },
+  { stake: '$25,000', lock: '12mo' as const, spins: 625 },
+]
 </script>
 
 <template>
@@ -134,7 +120,7 @@ function calcSpinsForExample(stakeAmount: number) {
       </div>
 
       <p class="text-purple-gray text-sm mb-4 leading-5">
-        <span class="text-lavender font-semibold">1 spin per $100</span> staked value. Bigger stakes unlock bonus spins!
+        <span class="text-lavender font-semibold">1 spin per $100</span> staked value. Bigger stakes unlock <span class="text-amber-soft font-semibold">bonus %</span> extra spins!
       </p>
 
       <!-- Amount Input -->
@@ -185,7 +171,7 @@ function calcSpinsForExample(stakeAmount: number) {
             :class="{ 'bonus-tier-chip--active': fiatValue >= tier.min }"
           >
             <span class="text-xs font-semibold">{{ tier.label }}</span>
-            <span class="text-[10px] text-amber-soft">+{{ tier.bonus }}</span>
+            <span class="text-[10px] text-amber-soft">+{{ tier.bonusPct }}%</span>
           </div>
         </div>
       </div>
@@ -222,7 +208,7 @@ function calcSpinsForExample(stakeAmount: number) {
 
         <!-- Bonus -->
         <div class="flex flex-col items-center gap-1 min-w-[70px]">
-          <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Bonus</span>
+          <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Bonus ({{ bonusPct }}%)</span>
           <span class="text-amber-soft text-2xl font-bold tracking-[-1px]">+{{ bonusSpins }}</span>
         </div>
 
@@ -257,9 +243,9 @@ function calcSpinsForExample(stakeAmount: number) {
         v-for="(ex, i) in quickExamples"
         :key="i"
         class="example-row cursor-pointer"
-        @click="amount = ex.stake; selectedLock = ex.lock"
+        @click="selectedLock = ex.lock"
       >
-        <span class="text-lavender font-semibold">{{ formatNumberToUS(ex.stake) }}</span>
+        <span class="text-lavender font-semibold">{{ ex.stake }}</span>
         <span class="text-purple-gray">{{ lockOptions.find(l => l.id === ex.lock)?.label }}</span>
         <span
           class="font-semibold"
@@ -267,7 +253,7 @@ function calcSpinsForExample(stakeAmount: number) {
         >
           {{ wheelTiers[ex.lock].name }}
         </span>
-        <span class="text-lavender font-bold">{{ calcSpinsForExample(ex.stake).total }}</span>
+        <span class="text-lavender font-bold">{{ ex.spins }}</span>
       </div>
     </div>
   </div>
