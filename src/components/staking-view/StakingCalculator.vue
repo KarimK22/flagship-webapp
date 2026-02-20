@@ -3,21 +3,15 @@ import { computed, ref } from 'vue'
 import { useLingoPrice } from '@/composables/contracts/lingo-price'
 import { useGetMe } from '@/composables/get-me'
 import { useStakes } from '@/composables/contracts/stakes'
-import { useWalletConnect } from '@/composables/wallet/use-wallet-connect'
-import { formatNumberToUS, redirectToService } from '@/composables/helpers'
+import { formatNumberToUS } from '@/composables/helpers'
 
 const { price } = useLingoPrice()
-const { isConnected, accountAddress } = useGetMe()
+const { isConnected } = useGetMe()
 const { totalStakedLingo } = useStakes()
-const { connect } = useWalletConnect()
 
 const selectedLock = ref<'3mo' | '6mo' | '12mo'>('12mo')
 
-// === Demo mode ===
-const demoMode = ref(false)
-const DEMO_USD = 2500
-const DEMO_LINGO = 100000
-const showAsConnected = computed(() => isConnected.value || demoMode.value)
+const PREVIEW_USD = 2500
 
 const lockOptions = [
   { id: '3mo' as const, label: '3 Months', short: '3M' },
@@ -40,16 +34,11 @@ const bonusSpinTiers = [
   { min: 25000, max: Infinity, label: '$25K+', bonusPct: 150 },
 ]
 
-// USD value derived from user's actual staked LINGO (or demo data)
+// When disconnected, use preview data so content is visible behind the overlay
 const usdAmount = computed(() => {
-  if (demoMode.value) return DEMO_USD
+  if (!isConnected.value) return PREVIEW_USD
   if (!price.value || price.value <= 0) return 0
   return Math.round(totalStakedLingo.value * price.value)
-})
-
-const displayLingo = computed(() => {
-  if (demoMode.value) return DEMO_LINGO
-  return Math.floor(totalStakedLingo.value)
 })
 
 function getBonusPct(usdValue: number): number {
@@ -91,199 +80,57 @@ const currentMonthlyTier = computed(() => {
 
 const monthlySpins = computed(() => currentMonthlyTier.value ? currentMonthlyTier.value.dailySpins * 30 : 0)
 const monthlyEstValue = computed(() => currentMonthlyTier.value ? monthlySpins.value * currentMonthlyTier.value.valuePerSpin : 0)
-
-// === Buy LINGO ===
-const buyLingo = () => {
-  if (!accountAddress.value) return
-  redirectToService('https://buy.kryptonim.com/redirect-form', {
-    currency: 'USD',
-    convertedCurrency: 'LINGO',
-    convertedAmount: 100,
-    blockchain: 'Base',
-    address: accountAddress.value,
-    theme: 'dark',
-    successUrl: `${window.location.href}`,
-  })
-}
-
 </script>
 
 <template>
-  <div class="calculator-outer">
-    <!-- Header -->
-    <div class="flex flex-col gap-1 mb-8 text-center">
-      <h2 class="text-lavender text-3xl sm:text-4xl tracking-[-1.6px] font-semibold leading-tight">
-        Stake LINGO. Spin the Wheel.
-      </h2>
-      <h2 class="text-purple text-3xl sm:text-4xl tracking-[-1.6px] font-semibold leading-tight">
-        Win Prizes.
-      </h2>
-    </div>
-
-    <!-- Not connected (and not in demo): Connect Wallet CTA -->
-    <div
-      v-if="!showAsConnected"
-      class="connect-wallet-card mb-4"
-    >
-      <div class="flex flex-col items-center gap-3 py-6">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-purple-gray opacity-60">
-          <path d="M19 7h-1V6a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3ZM5 5h10a1 1 0 0 1 1 1v1H5a1 1 0 0 1 0-2Zm15 12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8.83A3 3 0 0 0 5 9h14a1 1 0 0 1 1 1v2h-3a2 2 0 0 0 0 4h3v1Zm0-3h-3v-2h3v2Z" fill="currentColor" />
-        </svg>
-        <span class="text-lavender text-lg font-semibold tracking-[-0.4px]">
-          Connect wallet to see your rewards
-        </span>
-        <span class="text-purple-gray text-sm">
-          Your staking position will determine your spins and prizes
-        </span>
-        <div class="flex items-center gap-3 mt-2">
-          <button
-            class="connect-wallet-btn"
-            @click="connect()"
-          >
-            Connect Wallet
-          </button>
-          <button
-            class="demo-toggle-btn"
-            @click="demoMode = true"
-          >
-            Preview Demo
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Connected (or demo): Staked amount display + Buy LINGO -->
-    <div
-      v-else
-      class="stake-display mb-4"
-    >
-      <!-- Demo banner -->
-      <div
-        v-if="demoMode"
-        class="demo-banner"
+  <!-- Lock Period / Wheel Selection -->
+  <div class="section-card mb-4">
+    <h3 class="text-lavender text-sm font-semibold tracking-[0.42px] mb-3">Lock Period</h3>
+    <div class="grid grid-cols-3 gap-2">
+      <button
+        v-for="opt in lockOptions"
+        :key="opt.id"
+        class="wheel-card"
+        :class="{ 'wheel-card--active': selectedLock === opt.id }"
+        @click="selectedLock = opt.id"
       >
-        <span>Demo Preview</span>
-        <span class="text-purple-gray">Showing sample data for a ${{ formatNumberToUS(DEMO_USD) }} stake</span>
-        <button
-          class="demo-exit-btn"
-          @click="demoMode = false"
+        <div
+          class="wheel-dot"
+          :style="{ background: wheelTiers[opt.id].color }"
+        />
+        <span
+          class="wheel-tier-name"
+          :style="{ color: wheelTiers[opt.id].color }"
         >
-          Exit Demo
-        </button>
-      </div>
-      <div class="flex items-center justify-between">
-        <div class="flex flex-col gap-0.5">
-          <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Your Staked Value</span>
-          <div class="flex items-baseline gap-2">
-            <span class="text-lavender text-2xl sm:text-3xl font-bold tracking-[-1.2px]">
-              ${{ formatNumberToUS(usdAmount) }}
-            </span>
-            <span class="text-purple-gray text-sm">
-              ~{{ formatNumberToUS(displayLingo) }} LINGO
-            </span>
-          </div>
-        </div>
-        <button
-          v-if="!demoMode"
-          class="buy-lingo-btn"
-          @click="buyLingo"
-        >
-          Buy LINGO
-        </button>
-      </div>
+          {{ wheelTiers[opt.id].name }}
+        </span>
+        <span class="text-purple-gray text-xs mt-0.5">{{ opt.label }}</span>
+        <span class="wheel-prizes">{{ wheelTiers[opt.id].prizes }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Reward Cards -->
+  <div class="reward-cards-row">
+    <!-- Welcome Wheel (One-time) -->
+    <div class="reward-card reward-card--welcome">
+      <span class="reward-card-tag">One-time</span>
+      <span class="reward-card-label">Welcome Wheel</span>
+      <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
+      <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
     </div>
 
-    <!-- Lock Period / Wheel Selection -->
-    <div class="section-card mb-4">
-      <h3 class="text-lavender text-sm font-semibold tracking-[0.42px] mb-3">Lock Period</h3>
-      <div class="grid grid-cols-3 gap-2">
-        <button
-          v-for="opt in lockOptions"
-          :key="opt.id"
-          class="wheel-card"
-          :class="{ 'wheel-card--active': selectedLock === opt.id }"
-          @click="selectedLock = opt.id"
-        >
-          <div
-            class="wheel-dot"
-            :style="{ background: wheelTiers[opt.id].color }"
-          />
-          <span
-            class="wheel-tier-name"
-            :style="{ color: wheelTiers[opt.id].color }"
-          >
-            {{ wheelTiers[opt.id].name }}
-          </span>
-          <span class="text-purple-gray text-xs mt-0.5">{{ opt.label }}</span>
-          <span class="wheel-prizes">{{ wheelTiers[opt.id].prizes }}</span>
-        </button>
-      </div>
+    <!-- Monthly Staking Wheel -->
+    <div class="reward-card reward-card--monthly">
+      <span class="reward-card-tag">Recurring</span>
+      <span class="reward-card-label">Monthly Wheel</span>
+      <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
+      <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
     </div>
-
-    <!-- Connected (or demo): Reward Cards, details, summary -->
-    <template v-if="showAsConnected">
-      <!-- Reward Cards -->
-      <div class="reward-cards-row mb-2">
-        <!-- Welcome Wheel (One-time) -->
-        <div class="reward-card reward-card--welcome">
-          <span class="reward-card-tag">One-time</span>
-          <span class="reward-card-label">Welcome Wheel</span>
-          <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
-          <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
-        </div>
-
-        <!-- Monthly Staking Wheel -->
-        <div class="reward-card reward-card--monthly">
-          <span class="reward-card-tag">Recurring</span>
-          <span class="reward-card-label">Monthly Wheel</span>
-          <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
-          <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
-        </div>
-      </div>
-
-    </template>
   </div>
 </template>
 
 <style scoped>
-.calculator-outer {
-  position: relative;
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  border-radius: 24px;
-  padding: 28px 24px;
-  background: rgba(20, 20, 31, 0.88);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(88, 88, 245, 0.1);
-}
-
-.calculator-outer::before {
-  content: "";
-  position: absolute;
-  top: -100px;
-  right: -80px;
-  width: 240px;
-  height: 240px;
-  background: rgba(88, 88, 245, 0.06);
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-.calculator-outer::after {
-  content: "";
-  position: absolute;
-  bottom: -80px;
-  left: -60px;
-  width: 200px;
-  height: 200px;
-  background: rgba(201, 92, 255, 0.05);
-  border-radius: 50%;
-  filter: blur(60px);
-  pointer-events: none;
-}
-
 .section-card {
   background: rgba(12, 12, 20, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -338,129 +185,11 @@ const buyLingo = () => {
   margin-top: 4px;
 }
 
-/* Connect Wallet Card */
-.connect-wallet-card {
-  background: rgba(12, 12, 20, 0.5);
-  border: 1px solid rgba(88, 88, 245, 0.12);
-  border-radius: 16px;
-  padding: 8px 20px;
-  text-align: center;
-}
-
-.connect-wallet-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 28px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #5858F5 0%, #7B5BF5 100%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.connect-wallet-btn:hover {
-  background: linear-gradient(135deg, #6868FF 0%, #8B6BFF 100%);
-  box-shadow: 0 0 20px rgba(88, 88, 245, 0.25);
-}
-
-.demo-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--color-purple-gray);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.demo-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: var(--color-lavender);
-}
-
-.demo-banner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  font-size: 12px;
-  font-weight: 600;
-  color: #fbbf24;
-}
-
-.demo-banner .text-purple-gray {
-  font-weight: 500;
-  flex: 1;
-}
-
-.demo-exit-btn {
-  padding: 4px 12px;
-  border-radius: 8px;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  color: #fbbf24;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.demo-exit-btn:hover {
-  background: rgba(245, 158, 11, 0.2);
-}
-
-/* Staked Amount Display */
-.stake-display {
-  background: rgba(12, 12, 20, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  padding: 16px 20px;
-}
-
-.buy-lingo-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 20px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #5858F5 0%, #7B5BF5 100%);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.buy-lingo-btn:hover {
-  background: linear-gradient(135deg, #6868FF 0%, #8B6BFF 100%);
-  box-shadow: 0 0 16px rgba(88, 88, 245, 0.2);
-}
-
 /* === Reward Cards (Two side-by-side) === */
 .reward-cards-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-bottom: 12px;
 }
 
 .reward-card {
@@ -530,5 +259,4 @@ const buyLingo = () => {
   color: var(--color-purple-gray);
   font-weight: 500;
 }
-
 </style>
