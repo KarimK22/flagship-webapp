@@ -3,32 +3,13 @@ import StakingCalculator from '@/components/staking-view/StakingCalculator.vue'
 import mixpanel from 'mixpanel-browser'
 import { computed, onMounted, ref } from 'vue'
 import { useGetMe } from '@/composables/get-me'
-import { useStakes } from '@/composables/contracts/stakes'
 import { useWalletConnect } from '@/composables/wallet/use-wallet-connect'
-import { formatNumberToUS, formatNumber } from '@/composables/helpers'
-import lingoIcon from '@/assets/images/lingo-icon.svg'
-import powerIcon from '@/assets/images/bolt.svg'
-import InlineSVG from 'vue-inline-svg'
-import IconWrapper from '@/components/icon-wrapper/IconWrapper.vue'
 
 const { isConnected } = useGetMe()
-const { totalPowerMiles, totalStakedLingo } = useStakes()
 const { connect } = useWalletConnect()
 
 const demoMode = ref(false)
 const showAsConnected = computed(() => isConnected.value || demoMode.value)
-
-const DEMO_POWER_MILES = 4_825
-const DEMO_HOLDING_TOTAL = 100_000
-
-const displayPowerMiles = computed(() => {
-  if (demoMode.value) return formatNumberToUS(DEMO_POWER_MILES)
-  return isConnected.value ? formatNumberToUS(totalPowerMiles.value) : '0'
-})
-const displayHoldingTotal = computed(() => {
-  if (demoMode.value) return formatNumber(DEMO_HOLDING_TOTAL, 2)
-  return isConnected.value ? formatNumber(totalStakedLingo.value, 2) : '0'
-})
 
 onMounted(() => {
   mixpanel.track('Staking Page View')
@@ -37,61 +18,6 @@ onMounted(() => {
 
 <template>
   <div class="py-10 px-4 md:px-6 flex flex-col items-center">
-    <!-- Stats Row: Power Miles · Holding Total -->
-    <div class="w-full max-w-[720px] mb-8">
-      <div class="flex justify-between items-start gap-4">
-        <!-- Power Miles -->
-        <div class="flex gap-2 items-start">
-          <IconWrapper
-            variant="orange"
-            position="left"
-            :with-borders="false"
-          >
-            <InlineSVG
-              :src="powerIcon"
-              class="size-10"
-            />
-          </IconWrapper>
-          <div class="flex flex-col">
-            <h1
-              class="text-4xl md:text-5.5xl leading-tightest tracking-tighter transition-colors duration-300"
-              :class="showAsConnected ? 'text-lavender' : 'text-purple-gray/40'"
-            >
-              {{ displayPowerMiles }}
-            </h1>
-            <span class="text-purple-gray text-sm sm:text-xl leading-loose tracking-tighter-x1 font-normal whitespace-nowrap">
-              Power Miles
-            </span>
-          </div>
-        </div>
-
-        <!-- Holding Total -->
-        <div class="flex flex-row-reverse gap-2 items-start">
-          <IconWrapper
-            variant="purple"
-            position="right"
-            :with-borders="false"
-          >
-            <InlineSVG
-              :src="lingoIcon"
-              class="size-10"
-            />
-          </IconWrapper>
-          <div class="flex flex-col items-end">
-            <h1
-              class="text-4xl md:text-5.5xl leading-tightest tracking-tighter transition-colors duration-300"
-              :class="showAsConnected ? 'text-lavender' : 'text-purple-gray/40'"
-            >
-              {{ displayHoldingTotal }}
-            </h1>
-            <span class="text-purple-gray text-sm sm:text-xl leading-loose tracking-tighter-x1 font-normal whitespace-nowrap">
-              Holding Total
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Calculator section with conditional overlay -->
     <div class="w-full max-w-[720px] relative">
       <!-- Demo banner -->
@@ -116,7 +42,7 @@ onMounted(() => {
         </div>
       </Transition>
 
-      <!-- Calculator content (always visible) -->
+      <!-- Calculator content -->
       <div
         class="calculator-outer transition-[filter] duration-300"
         :class="{ 'blur-[3px] pointer-events-none select-none': !showAsConnected }"
