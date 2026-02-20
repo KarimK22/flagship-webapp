@@ -5,6 +5,8 @@ import { useGetMe } from '@/composables/get-me'
 import { useStakes } from '@/composables/contracts/stakes'
 import { formatNumberToUS } from '@/composables/helpers'
 
+const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
+
 const { price } = useLingoPrice()
 const { isConnected } = useGetMe()
 const { totalStakedLingo } = useStakes()
@@ -34,9 +36,9 @@ const bonusSpinTiers = [
   { min: 25000, max: Infinity, label: '$25K+', bonusPct: 150 },
 ]
 
-// When disconnected, use preview data so content is visible behind the overlay
+// When disconnected or in demo mode, use preview data so content is visible
 const usdAmount = computed(() => {
-  if (!isConnected.value) return PREVIEW_USD
+  if (props.demoMode || !isConnected.value) return PREVIEW_USD
   if (!price.value || price.value <= 0) return 0
   return Math.round(totalStakedLingo.value * price.value)
 })
