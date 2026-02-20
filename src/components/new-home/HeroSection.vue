@@ -1,214 +1,136 @@
 <template>
-  <section class="relative px-6 md:px-16 lg:px-24 pb-8">
+  <section class="relative px-6 md:px-16 lg:px-24 pt-12 pb-16 overflow-hidden">
     <!-- Background glow effects -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(51,51,255,0.12)_0%,transparent_70%)]" />
-      <div class="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,92,255,0.08)_0%,transparent_70%)]" />
+    <div class="absolute inset-0 pointer-events-none">
+      <div
+        class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(51,51,255,0.1)_0%,transparent_70%)]"
+      />
+      <div
+        class="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,92,255,0.06)_0%,transparent_70%)]"
+      />
     </div>
 
-    <!-- Top row: Welcome + Spins Ready -->
-    <div class="relative flex items-start justify-between mb-8">
-      <div>
-        <p class="text-purple-gray text-lg font-medium">Welcome Back,</p>
-        <h2 class="text-2xl md:text-3xl font-bold text-lavender">
-          <span class="text-orange-400">🔥</span> {{ username }}!
-        </h2>
-      </div>
-      <div class="flex flex-col items-center bg-[rgba(14,14,26,0.8)] border border-[#262638] rounded-2xl px-6 py-4 backdrop-blur-sm">
-        <span class="text-4xl font-bold text-lavender">{{ spinsReady }}</span>
-        <span class="text-sm text-purple-gray">Spins Ready</span>
-      </div>
-    </div>
-
-    <!-- Wheel Area -->
-    <div class="relative flex flex-col items-center">
-      <!-- Wheel Visual -->
-      <div class="relative w-[320px] h-[320px] md:w-[420px] md:h-[420px]">
-        <!-- Outer ring -->
-        <div class="absolute inset-0 rounded-full border-2 border-[#262638]" />
-        <!-- Wheel segments -->
-        <svg
-          viewBox="0 0 420 420"
-          class="w-full h-full"
-          :style="{ transform: `rotate(${wheelRotation}deg)`, transition: isSpinning ? 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)' : 'none' }"
-        >
-          <defs>
-            <linearGradient
-              id="wheelGradient1"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop
-                offset="0%"
-                stop-color="#1a1a3e"
-              />
-              <stop
-                offset="100%"
-                stop-color="#0C0C14"
-              />
-            </linearGradient>
-            <linearGradient
-              id="wheelGradient2"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop
-                offset="0%"
-                stop-color="#1e1e4a"
-              />
-              <stop
-                offset="100%"
-                stop-color="#12122a"
-              />
-            </linearGradient>
-          </defs>
-          <!-- Wheel sections -->
-          <g
-            v-for="(prize, i) in wheelPrizes"
-            :key="i"
+    <div class="relative max-w-6xl mx-auto">
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <!-- Left: Headline + CTA -->
+        <div class="flex-1 text-center lg:text-left">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-lavender leading-tight tracking-tight mb-6"
           >
-            <path
-              :d="getWheelSectionPath(i, wheelPrizes.length, 200)"
-              :fill="i % 2 === 0 ? 'url(#wheelGradient1)' : 'url(#wheelGradient2)'"
-              stroke="#2a2a5e"
-              stroke-width="1"
-            />
-            <text
-              :transform="getTextTransform(i, wheelPrizes.length, 200)"
-              fill="#e0d4f0"
-              font-size="14"
-              font-weight="600"
-              text-anchor="middle"
+            Stake $500.<br />
+            <span
+              class="bg-gradient-to-r from-[#FF7847] to-[#FFBC70] bg-clip-text text-transparent"
             >
-              {{ prize }}
-            </text>
-          </g>
-          <!-- Center circle -->
-          <circle
-            cx="210"
-            cy="210"
-            r="50"
-            fill="#0C0C14"
-            stroke="#3333FF"
-            stroke-width="2"
-          />
-          <!-- Center Lingo logo placeholder -->
-          <text
-            x="210"
-            y="215"
-            fill="#C95CFF"
-            font-size="16"
-            font-weight="bold"
-            text-anchor="middle"
-          >
-            LINGO
-          </text>
-        </svg>
-        <!-- Wheel pointer (top) -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-10">
-          <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-[#FF7847]" />
-        </div>
-      </div>
+              Win up to $20,000
+            </span>
+            <br />in real prizes.
+          </h1>
 
-      <!-- Daily Spins Badge -->
-      <div class="flex items-center gap-2 mt-6 mb-3">
-        <span class="text-purple-gray text-sm font-medium">Daily Spins</span>
-        <span class="bg-[rgba(14,14,26,0.8)] border border-[#262638] rounded-full px-3 py-1 text-xs text-lavender font-semibold">
-          DAY {{ dayStreak }}
-        </span>
-      </div>
+          <p class="text-lg text-purple-gray mb-8 max-w-lg mx-auto lg:mx-0">
+            Stake your LINGO tokens, earn daily spins, and win real-world prizes
+            from iPhones to Rolexes.
+          </p>
 
-      <!-- Heading -->
-      <h1 class="text-3xl md:text-5xl font-bold text-lavender text-center mb-6 tracking-tight leading-tight">
-        Spin & Win<br>Guaranteed!
-      </h1>
-
-      <!-- Claim Powermiles -->
-      <div class="flex items-center gap-3 bg-[rgba(14,14,26,0.8)] border border-[#262638] rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
-        <span class="text-sm text-purple-gray">Claim Your Powermiles</span>
-        <div class="flex items-center gap-2">
-          <div class="w-5 h-5 rounded-full bg-gradient-to-br from-[#FF7847] to-[#FFBC70] flex items-center justify-center">
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
+          <!-- Single primary CTA -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 mb-10 lg:justify-start justify-center">
+            <button
+              class="bg-gradient-to-r from-[#FF7847] to-[#FFBC70] text-white font-bold rounded-full px-10 py-4 text-lg hover:opacity-90 transition-opacity shadow-[0_0_40px_rgba(255,120,71,0.3)]"
+              @click="$emit('stake')"
             >
-              <path
-                d="M6 1L7.5 4.5L11 6L7.5 7.5L6 11L4.5 7.5L1 6L4.5 4.5L6 1Z"
-                fill="white"
-              />
-            </svg>
+              Start Staking
+            </button>
+            <button
+              class="text-lavender font-semibold text-base hover:text-white transition-colors underline underline-offset-4 decoration-purple-gray/40"
+              @click="$emit('learn-more')"
+            >
+              How does it work?
+            </button>
           </div>
-          <span class="text-lavender font-bold text-lg">+{{ claimablePowermiles }}</span>
-        </div>
-        <button class="bg-gradient-to-r from-[#FF7847] to-[#FFBC70] text-white font-semibold rounded-full px-4 py-1.5 text-sm hover:opacity-90 transition-opacity">
-          Claim Now!
-        </button>
-      </div>
 
-      <!-- Spin Button -->
-      <button
-        class="bg-gradient-to-r from-[#FF7847] to-[#FFBC70] text-white font-bold rounded-full px-10 py-3 text-lg hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(255,120,71,0.3)]"
-        @click="handleSpin"
-      >
-        Spin Now!
-      </button>
+          <!-- Stats bar -->
+          <div class="flex flex-wrap items-center gap-6 lg:gap-10 justify-center lg:justify-start">
+            <div class="text-center lg:text-left">
+              <p class="text-2xl font-bold text-lavender">15,950+</p>
+              <p class="text-sm text-purple-gray">Active Stakers</p>
+            </div>
+            <div class="w-px h-10 bg-[#262638] hidden sm:block" />
+            <div class="text-center lg:text-left">
+              <p class="text-2xl font-bold text-lavender">$127K+</p>
+              <p class="text-sm text-purple-gray">Prizes Awarded</p>
+            </div>
+            <div class="w-px h-10 bg-[#262638] hidden sm:block" />
+            <div class="text-center lg:text-left">
+              <p class="text-2xl font-bold text-lavender">$2.4M+</p>
+              <p class="text-sm text-purple-gray">Total Staked</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Featured Prize Card -->
+        <div class="flex-shrink-0 w-full max-w-[380px]">
+          <div
+            class="relative bg-[rgba(14,14,26,0.8)] border border-[#262638] rounded-3xl p-6 backdrop-blur-sm overflow-hidden"
+          >
+            <!-- Card glow -->
+            <div
+              class="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,188,112,0.1)_0%,transparent_70%)] pointer-events-none"
+            />
+
+            <!-- Featured tag -->
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="bg-gradient-to-r from-[#FF7847] to-[#FFBC70] text-white text-xs font-bold rounded-full px-3 py-1"
+              >
+                FEATURED PRIZE
+              </span>
+            </div>
+
+            <!-- Prize image -->
+            <div class="flex items-center justify-center mb-4">
+              <div
+                class="relative w-full h-[200px] flex items-center justify-center"
+              >
+                <div
+                  class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,92,255,0.12)_0%,transparent_70%)] rounded-2xl"
+                />
+                <img
+                  src="/homepage-new/gaming-pc.png"
+                  alt="Rolex Submariner"
+                  class="relative max-w-full max-h-full object-contain z-10"
+                  loading="lazy"
+                >
+              </div>
+            </div>
+
+            <!-- Prize info -->
+            <h3 class="text-xl font-bold text-lavender mb-1">
+              Rolex Submariner
+            </h3>
+            <p class="text-purple-gray text-sm mb-4">
+              Value: <span class="text-[#FFBC70] font-semibold">$20,000</span>
+            </p>
+
+            <!-- Winner progress -->
+            <div class="flex items-center justify-between text-xs text-purple-gray mb-2">
+              <span>842 participants</span>
+              <span>Drawing in 4d 12h</span>
+            </div>
+            <div class="w-full h-1.5 bg-[#1a1a3e] rounded-full overflow-hidden">
+              <div
+                class="h-full bg-gradient-to-r from-[#C95CFF] to-[#3333FF] rounded-full"
+                style="width: 68%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{
-  username: string
-  spinsReady: number
-  dayStreak: number
-  claimablePowermiles: number
-  wheelPrizes: string[]
+defineEmits<{
+  stake: []
+  'learn-more': []
 }>()
-
-const wheelRotation = ref(0)
-const isSpinning = ref(false)
-
-function handleSpin() {
-  if (isSpinning.value) return
-  isSpinning.value = true
-  const extraRotation = 360 * 6 + Math.floor(Math.random() * 360)
-  wheelRotation.value += extraRotation
-  setTimeout(() => {
-    isSpinning.value = false
-  }, 4200)
-}
-
-function getWheelSectionPath(index: number, total: number, radius: number): string {
-  const angle = (2 * Math.PI) / total
-  const startAngle = angle * index - Math.PI / 2
-  const endAngle = startAngle + angle
-  const cx = 210
-  const cy = 210
-  const x1 = cx + radius * Math.cos(startAngle)
-  const y1 = cy + radius * Math.sin(startAngle)
-  const x2 = cx + radius * Math.cos(endAngle)
-  const y2 = cy + radius * Math.sin(endAngle)
-  const largeArc = angle > Math.PI ? 1 : 0
-  return `M ${cx} ${cy} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z`
-}
-
-function getTextTransform(index: number, total: number, radius: number): string {
-  const angle = (2 * Math.PI) / total
-  const midAngle = angle * index + angle / 2 - Math.PI / 2
-  const cx = 210
-  const cy = 210
-  const textR = radius * 0.65
-  const x = cx + textR * Math.cos(midAngle)
-  const y = cy + textR * Math.sin(midAngle)
-  const rotation = (midAngle * 180) / Math.PI + 90
-  return `translate(${x}, ${y}) rotate(${rotation})`
-}
 </script>
