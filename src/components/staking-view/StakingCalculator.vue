@@ -258,8 +258,8 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         :style="{ backgroundImage: `url(${apyCardsBg})` }"
         class="reward-card bg-cover bg-left"
       >
-        <img :src="giftBoxImg" alt="" class="reward-card-icon size-8">
         <span class="reward-tag reward-tag--welcome">One-time</span>
+        <img :src="giftBoxImg" alt="" class="reward-card-icon size-8">
         <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px] z-1">Welcome Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(welcomeSpins) }}</span>
@@ -275,12 +275,12 @@ const tierPrizes: Partial<Record<LockId, string>> = {
         :style="{ backgroundImage: `url(${apyCardsBg})` }"
         class="reward-card bg-cover bg-right"
       >
+        <span class="reward-tag reward-tag--staking">Monthly</span>
         <InlineSvg
           :src="starIcon"
           class="reward-card-icon size-7"
           unique-ids="calc-star-staking"
         />
-        <span class="reward-tag reward-tag--staking">Monthly</span>
         <span class="text-[11px] font-semibold text-purple-gray uppercase tracking-[0.7px] z-1">Staking Wheel</span>
         <div class="reward-hero">
           <span class="reward-number">{{ formatNumberToUS(monthlySpins) }}</span>
@@ -534,20 +534,19 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: 28px 14px 16px;
+  padding: 12px 14px 16px;
   border-radius: 16px;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .reward-card-icon {
   z-index: 1;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .reward-tag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  align-self: flex-end;
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
@@ -555,6 +554,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   padding: 2px 7px;
   border-radius: 6px;
   z-index: 1;
+  margin-bottom: 4px;
 }
 
 .reward-tag--welcome {
