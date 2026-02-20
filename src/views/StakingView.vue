@@ -8,6 +8,7 @@ import StakingTokens from '@/components/staking-view/StakingTokens.vue'
 import HoldingsTable from '@/components/staking-view/HoldingsTable.vue'
 import APYDetails from '@/components/staking-view/APYDetails.vue'
 import BuyLingoBanner from '@/components/staking-view/BuyLingoBanner.vue'
+import StakingCalculator from '@/components/staking-view/StakingCalculator.vue'
 import mixpanel from 'mixpanel-browser'
 import { computed, onMounted } from 'vue'
 import { useGetMe } from '@/composables/get-me'
@@ -83,6 +84,11 @@ onMounted(() => {
     </Transition>
 
     <APYDetails />
+
+    <!-- Staking wheel spin calculator -->
+    <div class="py-8">
+      <StakingCalculator />
+    </div>
 
     <HoldingCards />
 
