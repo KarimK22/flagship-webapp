@@ -26,7 +26,12 @@
             </div>
             <div>
               <p class="text-sm font-semibold text-lavender">{{ winner.name }}</p>
-              <p class="text-xs text-purple-gray">{{ winner.tier }} Tier</p>
+              <p
+                class="text-xs font-semibold mt-0.5"
+                :style="{ color: winner.color }"
+              >
+                {{ winner.tier }} Tier
+              </p>
             </div>
           </div>
 
@@ -34,7 +39,6 @@
           <div
             class="bg-[#1a1a3e] border border-[#262638] rounded-xl p-4 mb-4"
           >
-            <p class="text-xs text-purple-gray mb-1">Won</p>
             <p class="text-lg font-bold text-lavender">{{ winner.prize }}</p>
             <p class="text-sm text-[#FFBC70] font-semibold">{{ winner.value }}</p>
           </div>

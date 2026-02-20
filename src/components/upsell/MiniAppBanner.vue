@@ -8,12 +8,22 @@
     }"
     class="sticky top-0 left-0 right-0 z-10 w-full h-0 transition-[height,opacity] duration-300 ease-in-out opacity-0 overflow-hidden"
     :class="{
-      'h-[104px] md:h-[80px] pointer-events-all opacity-100 cursor-pointer z-10': shouldShow,
+      'h-[104px] md:h-[80px] pointer-events-all opacity-100 cursor-pointer z-10': shouldShow && !isDismissed,
     }"
     role="button"
     @click="handleClick"
   >
     <div class="relative flex flex-row items-center justify-center container h-full">
+      <!-- Dismiss button -->
+      <button
+        class="absolute top-2 right-2 md:top-1/2 md:right-4 md:-translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 text-white/70 hover:text-white transition-colors z-20"
+        aria-label="Dismiss banner"
+        @click.stop="dismissBanner"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
       <img
         :src="sparklesLeft"
         class="pointer-events-none absolute left-0 top-0 h-full w-auto object-contain"
@@ -73,7 +83,12 @@ import { useLocalStorage } from '@vueuse/core'
 
 const { isConnected } = useGetMe()
 const shouldShow = ref(true)
+const isDismissed = useLocalStorage('miniAppBannerDismissed', false)
 const forceClose = useLocalStorage('forceCloseMiniAppBanner', false)
+
+function dismissBanner() {
+  isDismissed.value = true
+}
 
 watch(isConnected, (newVal) => {
   if (newVal && !forceClose.value) {

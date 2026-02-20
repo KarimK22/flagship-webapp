@@ -25,36 +25,16 @@
             >
               <defs>
                 <linearGradient
-                  id="seg1"
+                  v-for="(seg, i) in segmentColors"
+                  :id="`seg-${i}`"
+                  :key="i"
                   x1="0%"
                   y1="0%"
                   x2="100%"
                   y2="100%"
                 >
-                  <stop
-                    offset="0%"
-                    stop-color="#1a1a3e"
-                  />
-                  <stop
-                    offset="100%"
-                    stop-color="#0C0C14"
-                  />
-                </linearGradient>
-                <linearGradient
-                  id="seg2"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    stop-color="#1e1e4a"
-                  />
-                  <stop
-                    offset="100%"
-                    stop-color="#12122a"
-                  />
+                  <stop offset="0%" :stop-color="seg.from" />
+                  <stop offset="100%" :stop-color="seg.to" />
                 </linearGradient>
               </defs>
 
@@ -64,8 +44,8 @@
                 cy="200"
                 r="195"
                 fill="none"
-                stroke="#262638"
-                stroke-width="2"
+                stroke="#3a3a6e"
+                stroke-width="3"
               />
 
               <!-- Segments -->
@@ -75,16 +55,17 @@
               >
                 <path
                   :d="getSectionPath(i, prizes.length, 190)"
-                  :fill="i % 2 === 0 ? 'url(#seg1)' : 'url(#seg2)'"
-                  stroke="#2a2a5e"
-                  stroke-width="1"
+                  :fill="`url(#seg-${i % segmentColors.length})`"
+                  stroke="#4a4a7e"
+                  stroke-width="1.5"
                 />
                 <text
                   :transform="getTextTransform(i, prizes.length, 190)"
-                  fill="#e0d4f0"
-                  font-size="13"
-                  font-weight="600"
+                  fill="#ffffff"
+                  font-size="14"
+                  font-weight="700"
                   text-anchor="middle"
+                  style="text-shadow: 0 1px 3px rgba(0,0,0,0.5)"
                 >
                   {{ prize }}
                 </text>
@@ -97,7 +78,7 @@
                 r="45"
                 fill="#0C0C14"
                 stroke="#3333FF"
-                stroke-width="2"
+                stroke-width="3"
               />
               <text
                 x="200"
@@ -111,11 +92,13 @@
               </text>
             </svg>
 
-            <!-- Pointer -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-10">
-              <div
-                class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-[#FF7847]"
-              />
+            <!-- Pointer — larger and more prominent -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 z-10">
+              <div class="relative">
+                <div
+                  class="w-0 h-0 border-l-[14px] border-l-transparent border-r-[14px] border-r-transparent border-t-[26px] border-t-[#FF7847] drop-shadow-[0_0_8px_rgba(255,120,71,0.6)]"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -166,6 +149,15 @@ import { ref } from 'vue'
 
 const prizes = ['$25 LINGO', 'Powermiles', '$50 USDC', 'Raffle Entry', '$25 LINGO', 'Powermiles']
 const rewardTypes = ['USDC', 'Powermiles', 'Raffle Entries', 'LINGO Tokens', 'Premium Prizes']
+
+const segmentColors = [
+  { from: '#2a1540', to: '#1a0e2e' },  // deep purple
+  { from: '#1a2a4a', to: '#0e1a3a' },  // deep blue
+  { from: '#2a2a1e', to: '#1a1a0e' },  // deep amber
+  { from: '#1a3a2a', to: '#0e2a1a' },  // deep teal
+  { from: '#3a1a2a', to: '#2a0e1a' },  // deep rose
+  { from: '#1a1a4a', to: '#0e0e3a' },  // deep indigo
+]
 
 const wheelRotation = ref(0)
 const isSpinning = ref(false)

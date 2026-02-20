@@ -1,0 +1,2 @@
+\*.svg filter=lfs diff=lfs merge=lfs -text
+public/Lingo[[:space:]]Dashboard[[:space:]]Home[[:space:]]Page[[:space:]]+[[:space:]]adds.svg filter=lfs diff=lfs merge=lfs -text
