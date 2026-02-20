@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useLingoPrice } from '@/composables/contracts/lingo-price'
-import { formatNumberToUS } from '@/composables/helpers'
-const { price } = useLingoPrice()
+import { useGetMe } from '@/composables/get-me'
+import { useStakes } from '@/composables/contracts/stakes'
+import { useWalletConnect } from '@/composables/wallet/use-wallet-connect'
+import { formatNumberToUS, redirectToService } from '@/composables/helpers'
 
-const usdAmount = ref<number>(1000)
+const { price } = useLingoPrice()
+const { isConnected, accountAddress } = useGetMe()
+const { totalStakedLingo } = useStakes()
+const { connect } = useWalletConnect()
+
 const selectedLock = ref<'3mo' | '6mo' | '12mo'>('12mo')
 const showWheelDetails = ref(false)
 
@@ -29,9 +35,10 @@ const bonusSpinTiers = [
   { min: 25000, max: Infinity, label: '$25K+', bonusPct: 150 },
 ]
 
-const lingoEquivalent = computed(() => {
+// USD value derived from user's actual staked LINGO
+const usdAmount = computed(() => {
   if (!price.value || price.value <= 0) return 0
-  return Math.floor(usdAmount.value / price.value)
+  return Math.round(totalStakedLingo.value * price.value)
 })
 
 function getBonusPct(usdValue: number): number {
@@ -52,12 +59,6 @@ const bonusSpins = computed(() => Math.floor(baseSpins.value * (bonusPct.value /
 const totalSpins = computed(() => baseSpins.value + bonusSpins.value)
 
 const currentWheel = computed(() => wheelTiers[selectedLock.value])
-
-const handleAmountInput = (event: Event) => {
-  const input = event.target as HTMLInputElement
-  const value = Number(input.value)
-  if (value >= 0) usdAmount.value = value
-}
 
 const quickExamples = [
   { stake: '$250', stakeNum: 250, lock: '3mo' as const, spins: 3 },
@@ -117,6 +118,20 @@ const switchToDiamond = () => {
   selectedLock.value = '12mo'
 }
 
+// === Buy LINGO ===
+const buyLingo = () => {
+  if (!accountAddress.value) return
+  redirectToService('https://buy.kryptonim.com/redirect-form', {
+    currency: 'USD',
+    convertedCurrency: 'LINGO',
+    convertedAmount: 100,
+    blockchain: 'Base',
+    address: accountAddress.value,
+    theme: 'dark',
+    successUrl: `${window.location.href}`,
+  })
+}
+
 // === Highlight matching Quick Examples row ===
 const matchingExampleIndex = computed(() => {
   let bestIdx = -1
@@ -155,23 +170,53 @@ const matchingExampleIndex = computed(() => {
       </h2>
     </div>
 
-    <!-- Stake Input -->
-    <div class="main-input-section mb-4">
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Stake Value (USD)</span>
-        <span class="text-xs text-purple-gray">
-          ~<span class="text-soft-gray">{{ formatNumberToUS(lingoEquivalent) }}</span> LINGO
+    <!-- Not connected: Connect Wallet CTA -->
+    <div
+      v-if="!isConnected"
+      class="connect-wallet-card mb-4"
+    >
+      <div class="flex flex-col items-center gap-3 py-6">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-purple-gray opacity-60">
+          <path d="M19 7h-1V6a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3ZM5 5h10a1 1 0 0 1 1 1v1H5a1 1 0 0 1 0-2Zm15 12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8.83A3 3 0 0 0 5 9h14a1 1 0 0 1 1 1v2h-3a2 2 0 0 0 0 4h3v1Zm0-3h-3v-2h3v2Z" fill="currentColor" />
+        </svg>
+        <span class="text-lavender text-lg font-semibold tracking-[-0.4px]">
+          Connect wallet to see your rewards
         </span>
-      </div>
-      <div class="input-field">
-        <span class="text-lavender text-2xl font-semibold flex-shrink-0">$</span>
-        <input
-          type="number"
-          class="flex-1 text-lavender text-2xl sm:text-3xl tracking-[-1.2px] bg-transparent outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          :value="usdAmount"
-          @input="handleAmountInput"
+        <span class="text-purple-gray text-sm">
+          Your staking position will determine your spins and prizes
+        </span>
+        <button
+          class="connect-wallet-btn mt-2"
+          @click="connect()"
         >
-        <span class="text-purple-gray text-xs font-semibold">USD</span>
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+
+    <!-- Connected: Staked amount display + Buy LINGO -->
+    <div
+      v-else
+      class="stake-display mb-4"
+    >
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col gap-0.5">
+          <span class="text-xs text-purple-gray font-semibold tracking-[0.42px]">Your Staked Value</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-lavender text-2xl sm:text-3xl font-bold tracking-[-1.2px]">
+              ${{ formatNumberToUS(usdAmount) }}
+            </span>
+            <span class="text-purple-gray text-sm">
+              ~{{ formatNumberToUS(Math.floor(totalStakedLingo)) }} LINGO
+            </span>
+          </div>
+        </div>
+        <button
+          class="buy-lingo-btn"
+          @click="buyLingo"
+        >
+          Buy LINGO
+        </button>
       </div>
     </div>
 
@@ -202,192 +247,195 @@ const matchingExampleIndex = computed(() => {
       </div>
     </div>
 
-    <!-- Reward Cards -->
-    <div class="reward-cards-row mb-2">
-      <!-- Welcome Wheel (One-time) -->
-      <div class="reward-card reward-card--welcome">
-        <span class="reward-card-tag">One-time</span>
-        <span class="reward-card-label">Welcome Wheel</span>
-        <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
-        <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
+    <!-- Connected-only: Reward Cards, details, summary -->
+    <template v-if="isConnected">
+      <!-- Reward Cards -->
+      <div class="reward-cards-row mb-2">
+        <!-- Welcome Wheel (One-time) -->
+        <div class="reward-card reward-card--welcome">
+          <span class="reward-card-tag">One-time</span>
+          <span class="reward-card-label">Welcome Wheel</span>
+          <span class="reward-card-value">{{ totalSpins }} <span class="reward-card-unit">spins</span></span>
+          <span class="reward-card-sub">~${{ formatNumberToUS(welcomeEstValue) }} est. value</span>
+        </div>
+
+        <!-- Monthly Staking Wheel -->
+        <div class="reward-card reward-card--monthly">
+          <span class="reward-card-tag">Recurring</span>
+          <span class="reward-card-label">Monthly Wheel</span>
+          <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
+          <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
+        </div>
       </div>
 
-      <!-- Monthly Staking Wheel -->
-      <div class="reward-card reward-card--monthly">
-        <span class="reward-card-tag">Recurring</span>
-        <span class="reward-card-label">Monthly Wheel</span>
-        <span class="reward-card-value">{{ monthlySpins }} <span class="reward-card-unit">spins</span></span>
-        <span class="reward-card-sub">~${{ formatNumberToUS(monthlyEstValue) }}/mo</span>
-      </div>
-    </div>
+      <!-- Collapsible: Show Wheel Details -->
+      <div class="mb-4">
+        <button
+          class="details-toggle"
+          @click="showWheelDetails = !showWheelDetails"
+        >
+          <svg
+            class="details-toggle-icon"
+            :class="{ 'details-toggle-icon--open': showWheelDetails }"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {{ showWheelDetails ? 'Hide wheel details' : 'Show wheel details' }}
+        </button>
 
-    <!-- Collapsible: Show Wheel Details -->
-    <div class="mb-4">
-      <button
-        class="details-toggle"
-        @click="showWheelDetails = !showWheelDetails"
+        <Transition name="details-expand">
+          <div
+            v-if="showWheelDetails"
+            class="details-panel"
+          >
+            <!-- Welcome Wheel Tier Table -->
+            <div class="detail-table-section">
+              <h4 class="detail-table-title">Welcome Wheel Tiers</h4>
+              <div class="detail-table-header detail-table-grid--welcome">
+                <span>Tier</span>
+                <span>Lock</span>
+                <span>$/Spin</span>
+                <span>Prize Examples</span>
+              </div>
+              <div
+                v-for="row in welcomeWheelTiers"
+                :key="row.tier"
+                class="detail-table-row detail-table-grid--welcome"
+              >
+                <span class="font-semibold" :style="{ color: row.color }">{{ row.tier }}</span>
+                <span class="text-purple-gray">{{ row.lock }}</span>
+                <span class="text-lavender font-semibold">{{ row.valuePerSpin }}</span>
+                <span class="text-purple-gray text-xs leading-tight">{{ row.prizes }}</span>
+              </div>
+            </div>
+
+            <!-- Monthly Staking Wheel Tier Table -->
+            <div class="detail-table-section">
+              <h4 class="detail-table-title">Monthly Staking Wheel Tiers</h4>
+              <div class="detail-table-header detail-table-grid--monthly">
+                <span>Tier</span>
+                <span>Stake Min</span>
+                <span>Spins/Mo</span>
+                <span>$/Spin</span>
+              </div>
+              <div
+                v-for="row in monthlyStakingTiers"
+                :key="row.name"
+                class="detail-table-row detail-table-grid--monthly"
+                :class="{ 'detail-table-row--active': currentMonthlyTier?.name === row.name }"
+              >
+                <span class="font-semibold" :style="{ color: row.color }">{{ row.name }}</span>
+                <span class="text-purple-gray">${{ formatNumberToUS(row.minStake) }}+</span>
+                <span class="text-lavender font-semibold">{{ row.dailySpins * 30 }}</span>
+                <span class="text-lavender">${{ row.valuePerSpin }}</span>
+              </div>
+            </div>
+
+            <!-- Bonus Spins Table -->
+            <div class="detail-table-section">
+              <h4 class="detail-table-title">Bonus Spins</h4>
+              <div class="detail-table-header detail-table-grid--bonus">
+                <span>Stake Amount</span>
+                <span>Bonus</span>
+              </div>
+              <div
+                v-for="tier in bonusSpinTiers"
+                :key="tier.min"
+                class="detail-table-row detail-table-grid--bonus"
+                :class="{ 'detail-table-row--active': usdAmount >= tier.min && (tier.max === Infinity || usdAmount <= tier.max) }"
+              >
+                <span class="text-lavender font-semibold">{{ tier.label }}</span>
+                <span class="text-amber-soft font-semibold">+{{ tier.bonusPct }}%</span>
+              </div>
+            </div>
+
+            <!-- Lock Multipliers Table -->
+            <div class="detail-table-section">
+              <h4 class="detail-table-title">Lock Multipliers</h4>
+              <div class="detail-table-header detail-table-grid--lock">
+                <span>Lock Period</span>
+                <span>Multiplier</span>
+                <span>Wheel</span>
+              </div>
+              <div
+                v-for="row in lockMultipliers"
+                :key="row.lock"
+                class="detail-table-row detail-table-grid--lock"
+                :class="{ 'detail-table-row--active': row.lock === lockOptions.find(l => l.id === selectedLock)?.label }"
+              >
+                <span class="text-purple-gray">{{ row.lock }}</span>
+                <span class="text-lavender font-bold">{{ row.multiplier }}</span>
+                <span class="font-semibold" :style="{ color: row.color }">{{ row.wheel }}</span>
+              </div>
+            </div>
+          </div>
+        </Transition>
+      </div>
+
+      <!-- Loss Aversion Banner -->
+      <div
+        v-if="showLossAversion && usdAmount > 0"
+        class="loss-aversion-banner"
       >
-        <svg
-          class="details-toggle-icon"
-          :class="{ 'details-toggle-icon--open': showWheelDetails }"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-        >
-          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        {{ showWheelDetails ? 'Hide wheel details' : 'Show wheel details' }}
-      </button>
+        <span>
+          You're leaving ~${{ lossAmount }} on the table —
+          <a
+            class="loss-aversion-link"
+            @click.prevent="switchToDiamond"
+          >Switch to Diamond &rarr;</a>
+        </span>
+      </div>
 
-      <Transition name="details-expand">
-        <div
-          v-if="showWheelDetails"
-          class="details-panel"
-        >
-          <!-- Welcome Wheel Tier Table -->
-          <div class="detail-table-section">
-            <h4 class="detail-table-title">Welcome Wheel Tiers</h4>
-            <div class="detail-table-header detail-table-grid--welcome">
-              <span>Tier</span>
-              <span>Lock</span>
-              <span>$/Spin</span>
-              <span>Prize Examples</span>
-            </div>
-            <div
-              v-for="row in welcomeWheelTiers"
-              :key="row.tier"
-              class="detail-table-row detail-table-grid--welcome"
-            >
-              <span class="font-semibold" :style="{ color: row.color }">{{ row.tier }}</span>
-              <span class="text-purple-gray">{{ row.lock }}</span>
-              <span class="text-lavender font-semibold">{{ row.valuePerSpin }}</span>
-              <span class="text-purple-gray text-xs leading-tight">{{ row.prizes }}</span>
+      <!-- Sticky Summary Bar -->
+      <div class="results-card">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <!-- Wheel Tier -->
+          <div class="flex flex-col items-center gap-1 min-w-[80px]">
+            <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Wheel</span>
+            <div class="flex items-center gap-1.5">
+              <div
+                class="w-3 h-3 rounded-full"
+                :style="{ background: currentWheel.color }"
+              />
+              <span
+                class="text-xl font-bold tracking-[-0.5px]"
+                :style="{ color: currentWheel.color }"
+              >
+                {{ currentWheel.name }}
+              </span>
             </div>
           </div>
 
-          <!-- Monthly Staking Wheel Tier Table -->
-          <div class="detail-table-section">
-            <h4 class="detail-table-title">Monthly Staking Wheel Tiers</h4>
-            <div class="detail-table-header detail-table-grid--monthly">
-              <span>Tier</span>
-              <span>Stake Min</span>
-              <span>Spins/Mo</span>
-              <span>$/Spin</span>
-            </div>
-            <div
-              v-for="row in monthlyStakingTiers"
-              :key="row.name"
-              class="detail-table-row detail-table-grid--monthly"
-              :class="{ 'detail-table-row--active': currentMonthlyTier?.name === row.name }"
-            >
-              <span class="font-semibold" :style="{ color: row.color }">{{ row.name }}</span>
-              <span class="text-purple-gray">${{ formatNumberToUS(row.minStake) }}+</span>
-              <span class="text-lavender font-semibold">{{ row.dailySpins * 30 }}</span>
-              <span class="text-lavender">${{ row.valuePerSpin }}</span>
-            </div>
+          <!-- Divider -->
+          <div class="hidden sm:block w-px h-12 bg-[rgba(255,255,255,0.06)]" />
+
+          <!-- Base Spins -->
+          <div class="flex flex-col items-center gap-1 min-w-[70px]">
+            <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Base</span>
+            <span class="text-lavender text-2xl font-bold tracking-[-1px]">{{ baseSpins }}</span>
           </div>
 
-          <!-- Bonus Spins Table -->
-          <div class="detail-table-section">
-            <h4 class="detail-table-title">Bonus Spins</h4>
-            <div class="detail-table-header detail-table-grid--bonus">
-              <span>Stake Amount</span>
-              <span>Bonus</span>
-            </div>
-            <div
-              v-for="tier in bonusSpinTiers"
-              :key="tier.min"
-              class="detail-table-row detail-table-grid--bonus"
-              :class="{ 'detail-table-row--active': usdAmount >= tier.min && (tier.max === Infinity || usdAmount <= tier.max) }"
-            >
-              <span class="text-lavender font-semibold">{{ tier.label }}</span>
-              <span class="text-amber-soft font-semibold">+{{ tier.bonusPct }}%</span>
-            </div>
+          <!-- Bonus -->
+          <div class="flex flex-col items-center gap-1 min-w-[70px]">
+            <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Bonus ({{ bonusPct }}%)</span>
+            <span class="text-amber-soft text-2xl font-bold tracking-[-1px]">+{{ bonusSpins }}</span>
           </div>
 
-          <!-- Lock Multipliers Table -->
-          <div class="detail-table-section">
-            <h4 class="detail-table-title">Lock Multipliers</h4>
-            <div class="detail-table-header detail-table-grid--lock">
-              <span>Lock Period</span>
-              <span>Multiplier</span>
-              <span>Wheel</span>
-            </div>
-            <div
-              v-for="row in lockMultipliers"
-              :key="row.lock"
-              class="detail-table-row detail-table-grid--lock"
-              :class="{ 'detail-table-row--active': row.lock === lockOptions.find(l => l.id === selectedLock)?.label }"
-            >
-              <span class="text-purple-gray">{{ row.lock }}</span>
-              <span class="text-lavender font-bold">{{ row.multiplier }}</span>
-              <span class="font-semibold" :style="{ color: row.color }">{{ row.wheel }}</span>
-            </div>
+          <!-- Divider -->
+          <div class="hidden sm:block w-px h-12 bg-[rgba(255,255,255,0.06)]" />
+
+          <!-- Total -->
+          <div class="flex flex-col items-center gap-1 total-spins-highlight">
+            <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Total Spins</span>
+            <span class="text-lavender text-4xl font-bold tracking-[-2px]">{{ totalSpins }}</span>
           </div>
-        </div>
-      </Transition>
-    </div>
-
-    <!-- Loss Aversion Banner -->
-    <div
-      v-if="showLossAversion && usdAmount > 0"
-      class="loss-aversion-banner"
-    >
-      <span>
-        You're leaving ~${{ lossAmount }} on the table —
-        <a
-          class="loss-aversion-link"
-          @click.prevent="switchToDiamond"
-        >Switch to Diamond &rarr;</a>
-      </span>
-    </div>
-
-    <!-- Sticky Summary Bar -->
-    <div class="results-card">
-      <div class="flex items-center justify-between flex-wrap gap-4">
-        <!-- Wheel Tier -->
-        <div class="flex flex-col items-center gap-1 min-w-[80px]">
-          <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Wheel</span>
-          <div class="flex items-center gap-1.5">
-            <div
-              class="w-3 h-3 rounded-full"
-              :style="{ background: currentWheel.color }"
-            />
-            <span
-              class="text-xl font-bold tracking-[-0.5px]"
-              :style="{ color: currentWheel.color }"
-            >
-              {{ currentWheel.name }}
-            </span>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="hidden sm:block w-px h-12 bg-[rgba(255,255,255,0.06)]" />
-
-        <!-- Base Spins -->
-        <div class="flex flex-col items-center gap-1 min-w-[70px]">
-          <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Base</span>
-          <span class="text-lavender text-2xl font-bold tracking-[-1px]">{{ baseSpins }}</span>
-        </div>
-
-        <!-- Bonus -->
-        <div class="flex flex-col items-center gap-1 min-w-[70px]">
-          <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Bonus ({{ bonusPct }}%)</span>
-          <span class="text-amber-soft text-2xl font-bold tracking-[-1px]">+{{ bonusSpins }}</span>
-        </div>
-
-        <!-- Divider -->
-        <div class="hidden sm:block w-px h-12 bg-[rgba(255,255,255,0.06)]" />
-
-        <!-- Total -->
-        <div class="flex flex-col items-center gap-1 total-spins-highlight">
-          <span class="text-xs text-purple-gray font-semibold uppercase tracking-wider">Total Spins</span>
-          <span class="text-lavender text-4xl font-bold tracking-[-2px]">{{ totalSpins }}</span>
         </div>
       </div>
-    </div>
+    </template>
 
     <!-- Quick Examples -->
     <div class="section-card mt-4">
@@ -407,7 +455,7 @@ const matchingExampleIndex = computed(() => {
         :key="i"
         class="example-row cursor-pointer"
         :class="{ 'example-row--matched': i === matchingExampleIndex }"
-        @click="selectedLock = ex.lock; usdAmount = ex.stakeNum"
+        @click="selectedLock = ex.lock"
       >
         <span class="text-lavender font-semibold">{{ ex.stake }}</span>
         <span class="text-purple-gray">{{ lockOptions.find(l => l.id === ex.lock)?.label }}</span>
@@ -516,28 +564,64 @@ const matchingExampleIndex = computed(() => {
   margin-top: 4px;
 }
 
-/* Input */
-.input-field {
-  display: flex;
+/* Connect Wallet Card */
+.connect-wallet-card {
+  background: rgba(12, 12, 20, 0.5);
+  border: 1px solid rgba(88, 88, 245, 0.12);
+  border-radius: 16px;
+  padding: 8px 20px;
+  text-align: center;
+}
+
+.connect-wallet-btn {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(12, 12, 20, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  justify-content: center;
+  padding: 10px 28px;
   border-radius: 12px;
-  padding: 12px 14px;
-  transition: border-color 0.2s ease;
+  background: linear-gradient(135deg, #5858F5 0%, #7B5BF5 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.input-field:focus-within {
-  border-color: rgba(88, 88, 245, 0.3);
+.connect-wallet-btn:hover {
+  background: linear-gradient(135deg, #6868FF 0%, #8B6BFF 100%);
+  box-shadow: 0 0 20px rgba(88, 88, 245, 0.25);
 }
 
-/* Main Input Section (top-level) */
-.main-input-section {
+/* Staked Amount Display */
+.stake-display {
   background: rgba(12, 12, 20, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 16px;
-  padding: 20px;
+  padding: 16px 20px;
+}
+
+.buy-lingo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #5858F5 0%, #7B5BF5 100%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.buy-lingo-btn:hover {
+  background: linear-gradient(135deg, #6868FF 0%, #8B6BFF 100%);
+  box-shadow: 0 0 16px rgba(88, 88, 245, 0.2);
 }
 
 /* === Reward Cards (Two side-by-side) === */
