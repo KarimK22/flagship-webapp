@@ -323,11 +323,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       <div class="stat">
         <InlineSvg
           :src="powerMilesIcon"
-          class="size-5"
+          class="size-7"
           unique-ids="calc-power-lg"
         />
         <span class="stat-label">Power Miles</span>
-        <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
+        <h2 class="stat-number stat-number--miles">
           {{ displayPowerMiles }}
         </h2>
       </div>
@@ -335,11 +335,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       <div class="stat">
         <InlineSvg
           :src="dollarIcon"
-          class="size-5"
+          class="size-7"
           unique-ids="calc-dollar-stat"
         />
         <span class="stat-label">Staked Value</span>
-        <h2 class="text-purple text-2xl tracking-[-1.5px] leading-8">
+        <h2 class="stat-number stat-number--value">
           {{ isEmpty ? '\u2014' : `$${formatNumberToUS(usdAmount)}` }}
         </h2>
       </div>
@@ -594,11 +594,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 }
 
 .reward-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--color-purple-gray);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  letter-spacing: 1.6px;
   z-index: 1;
 }
 
@@ -606,26 +606,34 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  margin: 6px 0 4px;
+  margin: 8px 0 6px;
   z-index: 1;
 }
 
 .reward-number {
-  font-size: 36px;
+  font-size: 64px;
   font-weight: 800;
-  color: var(--color-lavender);
-  letter-spacing: -1.5px;
+  color: #fff;
+  letter-spacing: -2.5px;
   line-height: 1;
 }
 
+.reward-card--welcome .reward-number {
+  text-shadow: 0 0 20px rgba(255, 190, 80, 0.45), 0 0 40px rgba(255, 160, 40, 0.2);
+}
+
+.reward-card--staking .reward-number {
+  text-shadow: 0 0 20px rgba(120, 100, 255, 0.5), 0 0 40px rgba(88, 88, 245, 0.25);
+}
+
 .reward-unit {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--color-purple-gray);
 }
 
 .reward-meta {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--color-purple-gray);
   font-weight: 500;
   text-align: center;
@@ -638,12 +646,13 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
   background: #0C0C14;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 40px -10px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .stat {
@@ -651,21 +660,37 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   z-index: 1;
 }
 
 .stat-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--color-purple-gray);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 1.2px;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+
+.stat-number--miles {
+  text-shadow: 0 0 16px rgba(255, 190, 80, 0.4), 0 0 32px rgba(255, 160, 40, 0.15);
+}
+
+.stat-number--value {
+  text-shadow: 0 0 16px rgba(80, 220, 120, 0.4), 0 0 32px rgba(60, 200, 100, 0.15);
 }
 
 .stat-divider {
   width: 1px;
-  height: 40px;
+  height: 48px;
   background: rgba(255, 255, 255, 0.08);
   margin: 0 16px;
   flex-shrink: 0;
