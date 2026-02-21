@@ -17,7 +17,7 @@ import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import starIcon from '@/assets/icons/star.svg'
 import stakeInfoBg from '@/assets/images/staking/stake-info-bg.png'
-import holdingCardsBg from '@/assets/images/staking/holding-cards-bg.png'
+import rewardCardsBg from '@/assets/images/textures/radio-card-light.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
@@ -273,7 +273,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       <!-- Welcome Wheel -->
       <div
         class="reward-card reward-card--welcome"
-        :style="`background-image: url(${holdingCardsBg});`"
+        :style="`background-image: url(${rewardCardsBg});`"
       >
         <span class="reward-tag reward-tag--welcome">One-time</span>
         <span class="reward-label">Welcome Wheel</span>
@@ -289,7 +289,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
       <!-- Staking Wheel -->
       <div
         class="reward-card reward-card--staking"
-        :style="`background-image: url(${holdingCardsBg});`"
+        :style="`background-image: url(${rewardCardsBg});`"
       >
         <span class="reward-tag reward-tag--staking">Monthly</span>
         <InlineSvg
@@ -565,8 +565,9 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   padding: 12px 14px 16px;
   border-radius: 16px;
   background-color: #0D0D1A;
-  background-size: 200% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   overflow: hidden;
   isolation: isolate;
 }
@@ -576,18 +577,19 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  background: rgba(10, 10, 18, 0.45);
+  background: inherit;
+  background-color: transparent;
+  mix-blend-mode: screen;
+  opacity: 0.18;
   pointer-events: none;
 }
 
 .reward-card--welcome {
-  background-position: 0% center;
   border: 1px solid rgba(88, 88, 245, 0.25);
   box-shadow: 0 0 20px -4px rgba(88, 88, 245, 0.15), inset 0 0 20px -8px rgba(88, 88, 245, 0.06);
 }
 
 .reward-card--staking {
-  background-position: 100% center;
   border: 1px solid rgba(201, 92, 255, 0.25);
   box-shadow: 0 0 20px -4px rgba(201, 92, 255, 0.15), inset 0 0 20px -8px rgba(201, 92, 255, 0.06);
 }
