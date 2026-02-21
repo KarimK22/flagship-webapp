@@ -1,21 +1,21 @@
 <template>
   <div class="play-page">
-    <!-- 1. Header section -->
-    <section class="play-section play-section--header">
-      <img src="/homepage-new/header.svg" alt="" class="play-section__img" />
+    <!-- 1. Hero -->
+    <section class="play-section">
+      <img src="/hero.svg" alt="Hero" class="play-section__img" />
     </section>
 
-    <!-- 2. Fill gradient (purple/magenta glow) -->
+    <!-- 2. Fill gradient -->
     <section class="play-section play-section--fill">
       <img src="/homepage-new/fill.svg" alt="" class="play-section__img" />
     </section>
 
-    <!-- 3. Wheel section (empty placeholder for now) -->
+    <!-- 3. Wheel (empty for now) -->
     <section class="play-section play-section--wheel">
       <div class="wheel-placeholder" />
     </section>
 
-    <!-- 4. Fill-1 gradient (blue/cyan glow) -->
+    <!-- 4. Fill-1 gradient -->
     <section class="play-section play-section--fill">
       <img src="/homepage-new/fill-1.svg" alt="" class="play-section__img" />
     </section>
@@ -76,14 +76,14 @@
 
 .play-section__img {
   width: 100%;
-  max-width: 1536px;
+  max-width: 1200px;
   height: auto;
   display: block;
 }
 
 .play-section--fill {
-  margin-top: -100px;
-  margin-bottom: -100px;
+  margin-top: -80px;
+  margin-bottom: -80px;
   pointer-events: none;
 }
 
@@ -95,7 +95,6 @@
 
 .wheel-placeholder {
   width: 100%;
-  max-width: 1536px;
-  height: 400px;
+  max-width: 1200px;
 }
 </style>
