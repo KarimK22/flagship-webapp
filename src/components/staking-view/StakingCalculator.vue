@@ -16,6 +16,7 @@ import checkIcon from '@/assets/images/staking/check-period.svg'
 import lockCardsBg from '@/assets/images/staking/lock-cards-bg.png'
 import powerMilesIcon from '@/assets/images/game/power-miles-lg.svg'
 import starIcon from '@/assets/icons/star.svg'
+import stakeInfoBg from '@/assets/images/staking/stake-info-bg.png'
 
 const props = withDefaults(defineProps<{ demoMode?: boolean }>(), { demoMode: false })
 
@@ -320,6 +321,11 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 
     <!-- 4. Stats Row -->
     <div class="stats-row">
+      <img
+        :src="stakeInfoBg"
+        alt=""
+        class="stats-row-bg"
+      >
       <div class="stat">
         <InlineSvg
           :src="powerMilesIcon"
@@ -657,6 +663,17 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   background: #0C0C14;
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: inset 0 0 40px -10px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.stats-row-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.5;
 }
 
 .stat {
