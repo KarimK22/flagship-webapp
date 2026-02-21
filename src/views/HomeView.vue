@@ -1,67 +1,101 @@
 <template>
-  <div class="flex flex-col w-full bg-[#0C0C14] -mt-20 -mb-24 pt-24 overflow-hidden">
-    <!-- Hero: Clean headline + single CTA + featured prize -->
-    <HeroSection
-      @stake="handleStake"
-      @learn-more="scrollToHowItWorks"
-    />
+  <div class="play-page">
+    <!-- 1. Header section -->
+    <section class="play-section play-section--header">
+      <img src="/homepage-new/header.svg" alt="" class="play-section__img" />
+    </section>
 
-    <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#262638] to-transparent" />
+    <!-- 2. Fill gradient (purple/magenta glow) -->
+    <section class="play-section play-section--fill">
+      <img src="/homepage-new/fill.svg" alt="" class="play-section__img" />
+    </section>
 
-    <!-- How It Works: 3-step explainer -->
-    <div ref="howItWorksRef">
-      <HowItWorks />
-    </div>
+    <!-- 3. Wheel section (empty placeholder for now) -->
+    <section class="play-section play-section--wheel">
+      <div class="wheel-placeholder" />
+    </section>
 
-    <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#262638] to-transparent" />
+    <!-- 4. Fill-1 gradient (blue/cyan glow) -->
+    <section class="play-section play-section--fill">
+      <img src="/homepage-new/fill-1.svg" alt="" class="play-section__img" />
+    </section>
 
-    <!-- Spin Wheel: With clear mechanic explanation -->
-    <SpinWheelSection />
+    <!-- 5. Staking -->
+    <section class="play-section">
+      <img src="/homepage-new/Staking.svg" alt="Staking" class="play-section__img" />
+    </section>
 
-    <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#262638] to-transparent" />
+    <!-- 6. Raffles -->
+    <section class="play-section">
+      <img src="/homepage-new/Raffles.svg" alt="Raffles" class="play-section__img" />
+    </section>
 
-    <!-- Live Raffles: Cards with countdown + enter CTA -->
-    <RafflesSection />
+    <!-- 7. Live Wins -->
+    <section class="play-section">
+      <img src="/homepage-new/Live Wins.svg" alt="Live Wins" class="play-section__img" />
+    </section>
 
-    <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#262638] to-transparent" />
+    <!-- 8. Trading Boosts -->
+    <section class="play-section">
+      <img src="/homepage-new/Trading Boosts.svg" alt="Trading Boosts" class="play-section__img" />
+    </section>
 
-    <!-- Staking Tiers: Visual tier comparison -->
-    <StakingTiers />
+    <!-- 9. Dream Reward -->
+    <section class="play-section">
+      <img src="/homepage-new/dream Reward.svg" alt="Dream Reward" class="play-section__img" />
+    </section>
 
-    <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#262638] to-transparent" />
-
-    <!-- Social Proof: Real winners + live feed -->
-    <SocialProof />
-
-    <!-- Footer: Final CTA + links -->
-    <HomeFooter />
+    <!-- 10. Footer -->
+    <section class="play-section">
+      <img src="/homepage-new/foot.svg" alt="" class="play-section__img" />
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import HeroSection from '@/components/new-home/HeroSection.vue'
-import HowItWorks from '@/components/new-home/HowItWorks.vue'
-import SpinWheelSection from '@/components/new-home/SpinWheelSection.vue'
-import RafflesSection from '@/components/new-home/RafflesSection.vue'
-import StakingTiers from '@/components/new-home/StakingTiers.vue'
-import SocialProof from '@/components/new-home/SocialProof.vue'
-import HomeFooter from '@/components/new-home/HomeFooter.vue'
-
-const router = useRouter()
-const howItWorksRef = ref<HTMLElement>()
-
-function handleStake() {
-  router.push('/staking')
-}
-
-function scrollToHowItWorks() {
-  howItWorksRef.value?.scrollIntoView({ behavior: 'smooth' })
-}
 </script>
+
+<style scoped>
+.play-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #0C0C14;
+  margin-top: -80px;
+  padding-top: 80px;
+  margin-bottom: -96px;
+  overflow: hidden;
+}
+
+.play-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.play-section__img {
+  width: 100%;
+  max-width: 1536px;
+  height: auto;
+  display: block;
+}
+
+.play-section--fill {
+  margin-top: -100px;
+  margin-bottom: -100px;
+  pointer-events: none;
+}
+
+.play-section--wheel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wheel-placeholder {
+  width: 100%;
+  max-width: 1536px;
+  height: 400px;
+}
+</style>
