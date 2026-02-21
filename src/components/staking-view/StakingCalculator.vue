@@ -613,19 +613,19 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 
 .reward-tag--welcome {
   background: rgba(88, 88, 245, 0.18);
-  color: #7878ff;
+  color: #fff;
 }
 
 .reward-tag--staking {
   background: rgba(201, 92, 255, 0.18);
-  color: #d490ff;
+  color: #fff;
 }
 
 .reward-label {
   font-family: 'Afacad', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 1.6px;
   z-index: 1;
@@ -660,13 +660,13 @@ const tierPrizes: Partial<Record<LockId, string>> = {
   font-family: 'Afacad', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: var(--color-purple-gray);
+  color: #fff;
 }
 
 .reward-meta {
   font-family: 'Afacad', sans-serif;
   font-size: 13px;
-  color: var(--color-purple-gray);
+  color: #fff;
   font-weight: 500;
   text-align: center;
   line-height: 1.4;
