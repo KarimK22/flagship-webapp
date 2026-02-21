@@ -594,6 +594,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 }
 
 .reward-label {
+  font-family: 'Afacad', sans-serif;
   font-size: 12px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.85);
@@ -611,8 +612,9 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 }
 
 .reward-number {
+  font-family: 'Afacad', sans-serif;
   font-size: 64px;
-  font-weight: 800;
+  font-weight: 700;
   color: #fff;
   letter-spacing: -2.5px;
   line-height: 1;
@@ -627,12 +629,14 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 }
 
 .reward-unit {
+  font-family: 'Afacad', sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--color-purple-gray);
 }
 
 .reward-meta {
+  font-family: 'Afacad', sans-serif;
   font-size: 13px;
   color: var(--color-purple-gray);
   font-weight: 500;
@@ -665,6 +669,7 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 }
 
 .stat-label {
+  font-family: 'Afacad', sans-serif;
   font-size: 11px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.8);
@@ -673,8 +678,9 @@ const tierPrizes: Partial<Record<LockId, string>> = {
 }
 
 .stat-number {
+  font-family: 'Afacad', sans-serif;
   font-size: 36px;
-  font-weight: 800;
+  font-weight: 700;
   color: #fff;
   letter-spacing: -1.5px;
   line-height: 1.1;
